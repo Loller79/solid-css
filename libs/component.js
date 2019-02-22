@@ -13,6 +13,10 @@ class Component {
   parse () {
     let classes = {}
 
+    if (_.has(this.classes, 'normal')) {
+      classes = this.classes.normal
+    }
+
     if (_.has(this.classes, 'int')) {
       _.forEach(this.classes.int, (_property, _name) => {
         for (let i = 0; i <= 100; i++) {
