@@ -26,7 +26,7 @@ class Component {
 
     if (_.has(_classes, 'int')) {
       _.forEach(_classes.int, (_property, _name) => {
-        for (let i = 0; i <= 100 || this.length; i++) {
+        for (let i = 0; i <= (100 || this.length); i++) {
           let name, property
 
           name = _override ? _name.replace(regex.int, i) : (_name + i)
