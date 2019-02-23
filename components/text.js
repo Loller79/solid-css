@@ -4,6 +4,7 @@ const data = {
   normal: {
     'tfl': '{ font-weight: 300 }',
     'tfr': '{ font-weight: 400 }',
+    'tfm': '{ font-weight: 500 }'
     'tfsb': '{ font-weight: 600 }',
     'tfb': '{ font-weight: 700 }',
     'tal': '{ text-align: left }',
