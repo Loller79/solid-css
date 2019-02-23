@@ -10,19 +10,25 @@ class Component {
     this.classes = _classes
   }
 
-  parse () {
+  parseNormal (_classes) {
     let classes = {}
 
     if (_.has(this.classes, 'normal')) {
       classes = this.classes.normal
     }
 
-    if (_.has(this.classes, 'int')) {
-      _.forEach(this.classes.int, (_property, _name) => {
-        for (let i = 0; i <= 100; i++) {
+    return classes
+  }
+
+  parseInt (_classes, _override) {
+    let classes = {}
+
+    if (_.has(_classes, 'int')) {
+      _.forEach(_classes.int, (_property, _name) => {
+        for (let i = 0; i <= 100 || this.length; i++) {
           let name, property
 
-          name = _name + i
+          name = _override ? _name.replace(regex.int, i) : (_name + i)
           property = _property.replace(regex.int, i)
 
           classes[name] = property
@@ -30,12 +36,18 @@ class Component {
       })
     }
 
-    if (_.has(this.classes, 'color')) {
-      _.forEach(this.classes.color, (_property, _name) => {
+    return classes
+  }
+
+  parseColor (_classes, _override) {
+    let classes = {}
+
+    if (_.has(_classes, 'color')) {
+      _.forEach(_classes.color, (_property, _name) => {
         this.colors.forEach((color) => {
           let name, property
 
-          name = _name + color
+          name = _override ? _name.replace(regex.color, color) : (_name + color)
           property = _property.replace(regex.color, color)
 
           classes[name] = property
@@ -43,7 +55,41 @@ class Component {
       })
     }
 
-    this.classes = classes
+    return classes
+  }
+
+  parseSpecial (_classes) {
+    let inject = {}; let int = {}; let color = {}
+
+    if (_.has(_classes, 'special')) {
+      _.forEach(_classes.special, (_property, _name) => {
+        if (_name.includes('$INT')) {
+          _.set(inject, `int.${_name}`, _property)
+
+          int = { ...int, ...this.parseInt(inject, true) }
+        }
+        if (_name.includes('$COLOR')) {
+          _.set(inject, `color.${_name}`, _property)
+
+          color = { ...int, ...this.parseColor(inject, true) }
+        }
+
+        inject = {}
+      })
+    }
+
+    return { ...int, ...color }
+  }
+
+  parse () {
+    let normal, int, color, special
+
+    normal = this.parseNormal(this.classes)
+    int = this.parseInt(this.classes)
+    color = this.parseColor(this.classes)
+    special = this.parseSpecial(this.classes)
+
+    this.classes = { ...normal, ...int, ...color, ...special }
   }
 
   toCss () {
@@ -55,7 +101,7 @@ class Component {
       })
     })
 
-    this.css = css.replace(/\s/gm, '')
+    this.css = css
   }
 
   write () {
