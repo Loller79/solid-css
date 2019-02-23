@@ -11,12 +11,12 @@ const data = {
     'wp': '{ width: $INT% }',
     'mnwp': '{ min-width: $INT% }',
     'mxwp': '{ max-width: $INT% }',
-    'wd': '{ width: calc(var(--vh) * $INT) }',
-    'mnwd': '{ min-width: calc(var(--vh) * $INT) }',
-    'mxwd': '{ max-width: calc(var(--vh) * $INT) }'
+    'wd': '{ width: $INTvw }',
+    'mnwd': '{ min-width: $INTvw }',
+    'mxwd': '{ max-width: $INTvw }'
   }
 }
 
-const Width = new Component('width', data)
+const Width = new Component('width', data, false, 200)
 
 module.exports = Width

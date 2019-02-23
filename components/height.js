@@ -11,12 +11,12 @@ const data = {
     'hp': '{ height: $INT% }',
     'mnhp': '{ min-height: $INT% }',
     'mxhp': '{ max-height: $INT% }',
-    'hd': '{ height: calc(var(--vh) * $INT) }',
-    'mnhd': '{ min-height: calc(var(--vh) * $INT) }',
-    'mxhd': '{ max-height: calc(var(--vh) * $INT) }'
+    'hd': '{ height: $INTvh }',
+    'mnhd': '{ min-height: $INTvh }',
+    'mxhd': '{ max-height: $INTvh }'
   }
 }
 
-const Height = new Component('height', data)
+const Height = new Component('height', data, false, 200)
 
 module.exports = Height

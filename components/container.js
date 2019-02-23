@@ -11,12 +11,12 @@ const data = {
     'cnp': '{ width: $INT%; height: $INT% }',
     'mncnp': '{ min-width: $INT%; min-height: $INT% }',
     'mxcnp': '{ max-width: $INT%; max-height: $INT% }',
-    'cnd': '{ width: calc(var(--vh) * $INT); height: calc(var(--vh) * $INT) }',
-    'mncnd': '{ min-width: calc(var(--vh) * $INT); min-height: calc(var(--vh) * $INT) }',
-    'mxcnd': '{ max-width: calc(var(--vh) * $INT); max-height: calc(var(--vh) * $INT) }'
+    'cnd': '{ width: $INTvw; height: $INTvh }',
+    'mncnd': '{ min-width: $INTvw; min-height: $INTvh }',
+    'mxcnd': '{ max-width: $INTvw; max-height: $INTvh }'
   }
 }
 
-const Container = new Component('container', data)
+const Container = new Component('container', data, false, 200)
 
 module.exports = Container

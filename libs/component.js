@@ -4,10 +4,11 @@ const regex = require('./regex')
 const mediaQueries = require('../assets/media-queries.json')
 
 class Component {
-  constructor (_name, _classes, _colors) {
+  constructor (_name, _classes, _colors, _length) {
     this.name = _name
     this.colors = _colors
     this.classes = _classes
+    this.length = _length
   }
 
   parseNormal (_classes) {
