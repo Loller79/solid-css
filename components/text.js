@@ -14,7 +14,7 @@ const data = {
     'tdu': '{ text-decoration: underline }'
   },
   int: {
-    'ts': '{ font-size: calc(($INTpx * 2) + 6); line-height: calc((($INTpx * 2) + 6)) + ((($INTpx * 2) + 6))) / 4) }'
+    'ts': '{ font-size: $INTpx; line-height: calc($INTpx + ($INTpx / 4)) }'
   }
 }
 
