@@ -55,5 +55,4 @@ class Solid {
   }
 }
 
-const solid = new Solid(['black', 'white'])
-solid.build()
+module.exports = Solid
