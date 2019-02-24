@@ -66,7 +66,11 @@ class Solid {
     files = await getFiles(_path)
     search = []
 
-    _.forEach(files, (file) => {
+    _.forEach(files, (_file) => {
+      let file
+
+      file = fs.readFileSync(_file, 'utf8')
+
       search = [...search, ...file.match(regex)]
     })
 
