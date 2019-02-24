@@ -1,3 +1,8 @@
+const _ = require('lodash')
+const fs = require('fs-extra')
+const { getFiles, formatBytes } = require('./utils')
+const regexMedia = require('./libs/regex').media
+const mediaQueries = require('./assets/media-queries.json')
 const Border = require('./components/border')
 const Color = require('./components/color')
 const Container = require('./components/container')
@@ -16,42 +21,78 @@ const Width = require('./components/width')
 const ZIndex = require('./components/zindex')
 
 class Solid {
-  constructor (_colors) {
-    this.border = Border(_colors)
-    this.color = Color(_colors)
-    this.container = Container
-    this.display = Display
-    this.flex = Flex
-    this.height = Height
-    this.margin = Margin
-    this.opacity = Opacity
-    this.overflow = Overflow
-    this.padding = Padding
-    this.placeholder = Placeholder(_colors)
-    this.position = Position
-    this.shadow = Shadow
-    this.text = Text
-    this.width = Width
-    this.zindex = ZIndex
+  constructor (_colors, _verbose) {
+    this.components = {
+      border: Border(_colors),
+      color: Color(_colors),
+      container: Container,
+      display: Display,
+      flex: Flex,
+      height: Height,
+      margin: Margin,
+      opacity: Opacity,
+      overflow: Overflow,
+      padding: Padding,
+      placeholder: Placeholder(_colors),
+      position: Position,
+      shadow: Shadow,
+      text: Text,
+      width: Width,
+      zindex: ZIndex
+    }
+    this.verbose = _verbose
   }
 
   build () {
-    this.border.build()
-    this.color.build()
-    this.container.build()
-    this.display.build()
-    this.flex.build()
-    this.height.build()
-    this.margin.build()
-    this.opacity.build()
-    this.overflow.build()
-    this.padding.build()
-    this.placeholder.build()
-    this.position.build()
-    this.shadow.build()
-    this.text.build()
-    this.width.build()
-    this.zindex.build()
+    if (!_.isEmpty(this.components)) {
+      _.forEach(this.components, (component, name) => {
+        component.build()
+        if (this.verbose) console.log(`The ${name} component has been built`)
+      })
+    }
+  }
+
+  async minify (_path) {
+    let regex, files, search, classes, css, size
+
+    if (!_.isEmpty(this.components)) {
+      regex = ''
+      _.forEach(this.components, (component, name) => {
+        regex += component.getRegex()
+      })
+    }
+
+    regex = new RegExp(`(sm-|md-|lg-|xl-|)(${regex})`, 'gm')
+    files = await getFiles(_path)
+    search = []
+
+    _.forEach(files, (file) => {
+      search = [...search, ...file.match(regex)]
+    })
+
+    if (search) {
+      css = ''
+      _.forEach(this.components, (component, name) => {
+        classes = component.getClasses(search)
+        _.forEach(classes, (property, name) => {
+          let media, prefix, result
+
+          media = name.match(regexMedia) || ''
+          prefix = mediaQueries[media]
+
+          result = `${prefix}.${name} ${property} ${media ? '}' : ''}`
+
+          if (media) css += result; else css = result + css
+        })
+      })
+    }
+
+    if (!fs.existsSync('./dist')) fs.mkdirSync('./dist')
+    fs.writeFileSync('./dist/solid.min.css', css)
+
+    size = formatBytes(fs.statSync('./dist/solid.min.css').size)
+
+    if (this.verbose) console.log(`The minified css file weighs ${size}`)
   }
 }
 

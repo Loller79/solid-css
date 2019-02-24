@@ -11,6 +11,53 @@ class Component {
     this.length = _length
   }
 
+  getRegex () {
+    let classes; let regex = ''
+
+    classes = this.parse()
+    classes = _.mapKeys(classes, (value, key) => `\\b${key}\\b`)
+    regex = Object.keys(classes).join('|')
+
+    return regex
+  }
+
+  getClasses (_selector) {
+    let classes, filtered, ordered
+
+    classes = this.parse()
+    filtered = {}
+
+    _.forEach(_selector, (_name) => {
+      let name
+
+      name = _name.replace(regex.media, '')
+
+      if (_.has(classes, name)) filtered[_name] = classes[name]
+    })
+
+    ordered = {}
+
+    Object.keys(filtered).sort((a, b) => {
+      let priority = { a: -1, b: -1 }
+
+      if (a.includes('sm-')) priority.a = 0
+      if (a.includes('md-')) priority.a = 1
+      if (a.includes('lg-')) priority.a = 2
+      if (a.includes('xl-')) priority.a = 3
+
+      if (b.includes('sm-')) priority.b = 0
+      if (b.includes('md-')) priority.b = 1
+      if (b.includes('lg-')) priority.b = 2
+      if (b.includes('xl-')) priority.b = 3
+
+      return priority.a - priority.b
+    }).forEach(key => {
+      ordered[key] = filtered[key]
+    })
+
+    return ordered
+  }
+
   parseNormal (_classes) {
     let classes = {}
 
@@ -90,30 +137,33 @@ class Component {
     color = this.parseColor(this.classes)
     special = this.parseSpecial(this.classes)
 
-    this.classes = { ...normal, ...int, ...color, ...special }
+    return { ...normal, ...int, ...color, ...special }
   }
 
-  toCss () {
+  toCss (_classes) {
     let css = ''
 
     _.forEach(mediaQueries, (prefix, media) => {
-      _.forEach(this.classes, (property, name) => {
+      _.forEach(_classes, (property, name) => {
         css += `${prefix}.${media}${name} ${property} ${prefix && media ? '}' : ''}`
       })
     })
 
-    this.css = css
+    return css
   }
 
-  write () {
+  write (_css) {
     if (!fs.existsSync('./dist')) fs.mkdirSync('./dist')
-    fs.writeFileSync(`./dist/${this.name}.css`, this.css)
+    fs.writeFileSync(`./dist/${this.name}.css`, _css)
   }
 
   build () {
-    this.parse()
-    this.toCss()
-    this.write()
+    let classes, css
+
+    classes = this.parse()
+    css = this.toCss(classes)
+
+    this.write(css)
   }
 }
 
