@@ -1,6 +1,7 @@
 const fs = require('fs-extra')
 const resolve = require('path').resolve
 const _ = require('lodash')
+const regexType = require('./libs/regex').type
 
 async function getFiles (_path) {
   let folders, files, output
@@ -17,9 +18,30 @@ async function getFiles (_path) {
   return files
 }
 
+async function readFiles (_path) {
+  let files, readable
+
+  files = await getFiles(_path)
+  readable = []
+
+  _.forEach(files, (_file) => {
+    let supported, file
+
+    supported = regexType.test(_file)
+
+    if (supported) {
+      file = fs.readFileSync(_file, 'utf8')
+      readable.push(file)
+    }
+  })
+
+  return readable
+}
+
 function formatBytes (a, b) { if (a === 0) return '0 Bytes'; var c = 1024; var d = b || 2; var e = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']; var f = Math.floor(Math.log(a) / Math.log(c)); return parseFloat((a / Math.pow(c, f)).toFixed(d)) + ' ' + e[f] }
 
 module.exports = {
   getFiles: getFiles,
+  readFiles: readFiles,
   formatBytes: formatBytes
 }

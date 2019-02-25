@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const fs = require('fs-extra')
-const { getFiles, formatBytes } = require('./utils')
+const { readFiles, formatBytes } = require('./utils')
 const regexMedia = require('./libs/regex').media
 const mediaQueries = require('./assets/media-queries.json')
 const Border = require('./components/border')
@@ -63,14 +63,10 @@ class Solid {
     }
 
     regex = new RegExp(`(sm-|md-|lg-|xl-|)(${regex})`, 'gm')
-    files = await getFiles(_path)
+    files = await readFiles(_path)
     search = []
 
-    _.forEach(files, (_file) => {
-      let file
-
-      file = fs.readFileSync(_file, 'utf8')
-
+    _.forEach(files, (file) => {
       search = [...search, ...file.match(regex)]
     })
 
