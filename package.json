@@ -1,6 +1,6 @@
 {
   "name": "solid-css",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "main": "index.js",
   "author": {
     "name": "Dario Sechi",
@@ -14,11 +14,18 @@
     "standard": "^12.0.1"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Loller79/solid-css"
+    "type": "git",
+    "url": "https://github.com/Loller79/solid-css"
   },
   "homepage": "https://github.com/Loller79/solid-css",
-  "keywords": ["solid", "css", "library", "free", "open", "source"],
+  "keywords": [
+    "solid",
+    "css",
+    "library",
+    "free",
+    "open",
+    "source"
+  ],
   "bugs": {
     "email": "dario.sechi.rnd@gmail.com",
     "url": "https://github.com/Loller79/solid-css/issues"

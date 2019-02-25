@@ -44,11 +44,18 @@ class Solid {
   }
 
   build () {
+    let css
+
     if (!_.isEmpty(this.components)) {
+      css = ''
+
       _.forEach(this.components, (component, name) => {
         component.build()
+        css += `@import url('./${name}.css');\n`
         if (this.verbose) console.log(`The ${name} component has been built`)
       })
+
+      fs.writeFileSync('./dist/solid.css', css)
     }
   }
 
