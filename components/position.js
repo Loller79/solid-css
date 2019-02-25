@@ -25,14 +25,14 @@ const data = {
     'apbn': '{ bottom: -$INT% }',
     'apln': '{ left: -$INT% }',
     'aprn': '{ right: -$INT% }',
-    'adt': '{ top: calc(var(--vh) * $INT) }',
-    'adb': '{ bottom: calc(var(--vh) * $INT) }',
-    'adl': '{ left: calc(var(--vh) * $INT) }',
-    'adr': '{ right: calc(var(--vh) * $INT) }',
-    'adtn': '{ top: -calc(var(--vh) * $INT) }',
-    'adbn': '{ bottom: -calc(var(--vh) * $INT) }',
-    'adln': '{ left: -calc(var(--vh) * $INT) }',
-    'adrn': '{ right: -calc(var(--vh) * $INT) }'
+    'adt': '{ top: calc(var(--intensity) * $INT) }',
+    'adb': '{ bottom: calc(var(--intensity) * $INT) }',
+    'adl': '{ left: calc(var(--intensity) * $INT) }',
+    'adr': '{ right: calc(var(--intensity) * $INT) }',
+    'adtn': '{ top: -calc(var(--intensity) * $INT) }',
+    'adbn': '{ bottom: -calc(var(--intensity) * $INT) }',
+    'adln': '{ left: -calc(var(--intensity) * $INT) }',
+    'adrn': '{ right: -calc(var(--intensity) * $INT) }'
   }
 }
 
