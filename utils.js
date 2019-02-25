@@ -27,7 +27,7 @@ async function readFiles (_path) {
   _.forEach(files, (_file) => {
     let supported, file
 
-    supported = regexType.test(_file)
+    supported = _file.match(regexType)
 
     if (supported) {
       file = fs.readFileSync(_file, 'utf8')
