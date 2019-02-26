@@ -59,18 +59,39 @@ The **&** means that it works with dynamic colors.
 
 -  `b-& => applies border-color with & color`
 -  `bw$ => applies border-width on every corner with $ px`
--  `bwv$ => applies border-width on top and bottom corners with $ px`
--  `bwh$ => applies border-width on left and right corners with $ px`
--  `bwt$ => applies border-width on top corner with $ px`
--  `bwb$ => applies border-width on bottom corner with $ px`
--  `bwl$ => applies border-width on left corner with $ px`
--  `bwr$ => applies border-width on right corner with $ px`
+-  `bwv$ => applies border-width on top and bottom sides with $ px`
+-  `bwh$ => applies border-width on left and right sides with $ px`
+-  `bwt$ => applies border-width on top side with $ px`
+-  `bwb$ => applies border-width on bottom side with $ px`
+-  `bwl$ => applies border-width on left side with $ px`
+-  `bwr$ => applies border-width on right side with $ px`
 -  `br$ => applies border-radius on every corner with $ intensity`
 -  `brt$ => applies border-radius on top corners with $ intensity`
 -  `brb$ => applies border-radius on bottom corners with $ intensity`
+-  `brl$ => applies border-radius on left corners with $ intensity`
+-  `brr$ => applies border-radius on right corners with $ intensity`
+-  `brtl$ => applies border-radius on top-left corner with $ intensity`
+-  `brtr$ => applies border-radius on top-right corner with $ intensity`
+-  `brbl$ => applies border-radius on bottom-left corner with $ intensity`
+-  `brbr$ => applies border-radius on bottom-right corner with $ intensity`
+-  `brf$ => applies border-radius on every corner with $ px`
+-  `brft$ => applies border-radius on top corners with $ px`
+-  `brfb$ => applies border-radius on bottom corners with $ px`
+-  `brfl$ => applies border-radius on left corners with $ px`
+-  `brfr$ => applies border-radius on right corners with $ px`
+-  `brftl$ => applies border-radius on top-left corner with $ px`
+-  `brftr$ => applies border-radius on top-right corner with $ px`
+-  `brfbl$ => applies border-radius on bottom-left corner with $ px`
+-  `brfbr$ => applies border-radius on bottom-right corner with $ px`
 -  `brp$ => applies border-radius on every corner with $ percentual`
 -  `brpt$ => applies border-radius on top corners with $ percentual`
 -  `brpb$ => applies border-radius on bottom corners with $ percentual`
+-  `brpl$ => applies border-radius on left corners with $ percentual`
+-  `brpr$ => applies border-radius on right corners with $ percentual`
+-  `brptl$ => applies border-radius on top-left corner with $ percentual`
+-  `brptr$ => applies border-radius on top-right corner with $ percentual`
+-  `brpbl$ => applies border-radius on bottom-left corner with $ percentual`
+-  `brpbr$ => applies border-radius on bottom-right corner with $ percentual`
 
 ### Color
 
@@ -89,7 +110,12 @@ The **&** means that it works with dynamic colors.
 -  `mncnd$ => applies min-width with $ vw and min-height with $ vh`
 -  `mxcnd$ => applies max-width with $ vw and max-height with $ vh`
 
-  
+### Display
+
+-  `df => applies display: flex`
+-  `dn => applies display: none`
+-  `pen => applies pointer-events: none`
+-  `pea => applies pointer-events: all`
 
 ### Flex
 
@@ -99,6 +125,7 @@ The **&** means that it works with dynamic colors.
 -  `fcr => applies flex-direction: column-reverse`
 -  `fw => applies flex-wrap: wrap`
 -  `ff => applies flex: 1`
+-  `ffr => applies flex: initial`
 -  `jcfs => applies justify-content: flex-start`
 -  `jcfe => applies justify-content: flex-end`
 -  `jcc => applies justify-content: center`
@@ -107,11 +134,10 @@ The **&** means that it works with dynamic colors.
 -  `aifs => applies align-items: flex-start`
 -  `aife => applies align-items: flex-end`
 -  `aic => applies align-items: center`
+-  `ais => applies align-items: stretch`
 -  `asfs => applies align-self: flex-start`
 -  `asfe => applies align-self: flex-end`
 -  `asc => applies align-self: center`
-
-  
 
 ### Height
 
@@ -124,8 +150,7 @@ The **&** means that it works with dynamic colors.
 -  `hd$ => applies height with $ vh`
 -  `mnhd$ => applies min-height with $ vh`
 -  `mxhd$ => applies max-height with $ vh`
-
-  
+-  `ha => applies height: auto`
 
 ### Margin
 
@@ -136,6 +161,10 @@ The **&** means that it works with dynamic colors.
 -  `mb$ => applies margin on bottom side with $ intensity`
 -  `ml$ => applies margin on left side with $ intensity`
 -  `mr$ => applies margin on right side with $ intensity`
+-  `mtn$ => applies margin on top side with negative $ intensity`
+-  `mbn$ => applies margin on bottom side with negative $ intensity`
+-  `mln$ => applies margin on left side with negative $ intensity`
+-  `mrn$ => applies margin on right side with negative $ intensity`
 -  `fm$ => applies margin on every side with $ px`
 -  `fmv$ => applies margin on top and bottom sides with $ px`
 -  `fmh$ => applies margin on left and right sides with $ px`
@@ -143,8 +172,10 @@ The **&** means that it works with dynamic colors.
 -  `fmb$ => applies margin on bottom side with $ px`
 -  `fml$ => applies margin on left side with $ px`
 -  `fmr$ => applies margin on right side with $ px`
-
-  
+-  `fmtn$ => applies margin on top side with negative $ px`
+-  `fmbn$ => applies margin on bottom side with negative $ px`
+-  `fmln$ => applies margin on left side with negative $ px`
+-  `fmrn$ => applies margin on right side with negative $ px`
 
 ### Opacity
 
@@ -160,10 +191,10 @@ The **&** means that it works with dynamic colors.
 -  `ofxh => applies overflow-x: hidden`
 -  `ofxs => applies overflow-x: scroll`
 -  `ofxv => applies overflow-x: visible`
--  `ofva => applies overflow-y: auto`
--  `ofvh => applies overflow-y: hidden`
--  `ofvs => applies overflow-y: scroll`
--  `ofvv => applies overflow-y: visible`
+-  `ofya => applies overflow-y: auto`
+-  `ofyh => applies overflow-y: hidden`
+-  `ofys => applies overflow-y: scroll`
+-  `ofyv => applies overflow-y: visible`
 
 ### Padding
 
@@ -188,6 +219,11 @@ The **&** means that it works with dynamic colors.
 
 ### Position
 
+-  `dp => applies position: static`
+-  `rp => applies position: relative`
+-  `ap => applies position: absolute`
+-  `sp => applies position: sticky`
+-  `fp => applies position: fixed`
 -  `at$ => applies top with $ px`
 -  `ab$ => applies bottom with $ px`
 -  `al$ => applies left with $ px`
@@ -216,7 +252,7 @@ The **&** means that it works with dynamic colors.
 ### Shadow
 
 -  `s$ => applies box-shadow with $ px radius`
--  `s$-& => applies box-shadow with $ px radius and & color`
+-  `s-& => applies & color to the box-shadow`
 
 ### Text
 
@@ -230,6 +266,7 @@ The **&** means that it works with dynamic colors.
 -  `tac => applies text-align: center`
 -  `tar => applies text-align: right`
 -  `toe => applies text-overflow: ellipsis`
+-  `tdu => applies text-decoration: underline`
 
 ### Width
 
@@ -242,6 +279,7 @@ The **&** means that it works with dynamic colors.
 -  `wd$ => applies width with $ vh`
 -  `mnwd$ => applies min-width with $ vh`
 -  `mxwd$ => applies max-width with $ vh`
+-  `wa => applies width: auto`
 
 ### zIndex
 

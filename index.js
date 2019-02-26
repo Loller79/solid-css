@@ -35,7 +35,7 @@ class Solid {
       padding: Padding,
       placeholder: Placeholder(_colors),
       position: Position,
-      shadow: Shadow,
+      shadow: Shadow(_colors),
       text: Text,
       width: Width,
       zindex: ZIndex

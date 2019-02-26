@@ -6,7 +6,7 @@ const data = {
     'rp': '{ position: relative }',
     'ap': '{ position: absolute }',
     'sp': '{ position: sticky }',
-    'sd': '{ position: static }'
+    'dp': '{ position: static }'
   },
   int: {
     'at': '{ top: $INTpx }',

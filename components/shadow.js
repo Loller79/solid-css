@@ -2,10 +2,13 @@ const Component = require('../libs/component')
 
 const data = {
   int: {
-    's': '{ box-shadow: 0 0 $INTpx 0 rgba(0,0,0,0.2) }'
+    's': '{ box-shadow: 0 0 $INTpx 0 }'
+  },
+  color: {
+    's-': '{ color: var(--$COLOR) }'
   }
 }
 
-const Shadow = new Component('shadow', data)
+const Shadow = (colors) => new Component('shadow', data, colors)
 
 module.exports = Shadow
