@@ -29,5 +29,8 @@
   "bugs": {
     "email": "dario.sechi.rnd@gmail.com",
     "url": "https://github.com/Loller79/solid-css/issues"
+  },
+  "scripts": {
+    "lint": "standard"
   }
 }
