@@ -8,7 +8,7 @@ class Component {
     this.name = _name
     this.colors = _colors
     this.classes = _classes
-    this.length = _length
+    this.length = _length || 100
   }
 
   getRegex () {
@@ -73,7 +73,7 @@ class Component {
 
     if (_.has(_classes, 'int')) {
       _.forEach(_classes.int, (_property, _name) => {
-        for (let i = 0; i <= (100 || this.length); i++) {
+        for (let i = 0; i <= this.length; i++) {
           let name, property
 
           name = _override ? _name.replace(regex.int, i) : (_name + i)
@@ -107,26 +107,36 @@ class Component {
   }
 
   parseSpecial (_classes) {
-    let inject = {}; let int = {}; let color = {}
+    let inject = {}; let int = {}; let color = {}; let both = {}
 
     if (_.has(_classes, 'special')) {
       _.forEach(_classes.special, (_property, _name) => {
-        if (_name.includes('$INT')) {
+        if (_name.includes('$INT') && _name.includes('$COLOR')) {
+          for (let i = 0; i <= this.length; i++) {
+            this.colors.forEach((color) => {
+              let name, property
+
+              name = _name.replace(regex.color, color).replace(regex.int, i)
+              property = _property.replace(regex.color, color).replace(regex.int, i)
+
+              both[name] = property
+            })
+          }
+        } else if (_name.includes('$INT')) {
           _.set(inject, `int.${_name}`, _property)
 
           int = { ...int, ...this.parseInt(inject, true) }
-        }
-        if (_name.includes('$COLOR')) {
+        } else if (_name.includes('$COLOR')) {
           _.set(inject, `color.${_name}`, _property)
 
-          color = { ...int, ...this.parseColor(inject, true) }
+          color = { ...color, ...this.parseColor(inject, true) }
         }
 
         inject = {}
       })
     }
 
-    return { ...int, ...color }
+    return { ...int, ...color, ...both }
   }
 
   parse () {
