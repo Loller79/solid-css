@@ -101,7 +101,7 @@ class Solid {
       if (this.custom) {
         classes = this.custom.parse()
         _.forEach(classes, (property, name) => {
-          css = `${name} ${property}` + css
+          css = `.${name} ${property}` + css
         })
       }
     }
