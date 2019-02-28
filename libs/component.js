@@ -12,13 +12,48 @@ class Component {
   }
 
   getRegex () {
-    let classes; let regex = ''
+    let result
 
-    classes = this.parse()
-    classes = _.mapKeys(classes, (value, key) => `\\b${key}\\b`)
-    regex = Object.keys(classes).join('|')
+    result = []
+    if (_.has(this.classes, 'normal')) {
+      _.forEach(this.classes.normal, (_property, _name) => {
+        result.push(_name)
+      })
+    }
+    if (_.has(this.classes, 'int')) {
+      _.forEach(this.classes.int, (_property, _name) => {
+        result.push(_name + '\\d+')
+      })
+    }
+    if (_.has(this.classes, 'color')) {
+      _.forEach(this.classes.color, (_property, _name) => {
+        _.forEach(this.colors, (_color) => {
+          result.push(_name + _color)
+        })
+      })
+    }
+    if (_.has(this.classes, 'special')) {
+      _.forEach(this.classes.special, (_property, _name) => {
+        let name
 
-    return regex
+        if (_name.includes('::placeholder')) name = _name.replace('::placeholder', '')
+        else name = _name
+
+        if (_name.includes('$INT') && (_name.includes('$COLOR'))) {
+          _.forEach(this.colors, (_color) => {
+            result.push(name.replace(regex.int, '\\d+').replace(regex.color, _color))
+          })
+        } else if (_name.includes('$INT')) {
+          result.push(name.replace(regex.int, '\\d+'))
+        } else if (_name.includes('$COLOR')) {
+          _.forEach(this.colors, (_color) => {
+            result.push(name.replace(regex.color, _color))
+          })
+        }
+      })
+    }
+
+    return result
   }
 
   getClasses (_selector) {
@@ -139,13 +174,15 @@ class Component {
     return { ...int, ...color, ...both }
   }
 
-  parse () {
-    let normal, int, color, special
+  parse (_classes) {
+    let classes, normal, int, color, special
 
-    normal = this.parseNormal(this.classes)
-    int = this.parseInt(this.classes)
-    color = this.parseColor(this.classes)
-    special = this.parseSpecial(this.classes)
+    classes = _classes || this.classes
+
+    normal = this.parseNormal(classes)
+    int = this.parseInt(classes)
+    color = this.parseColor(classes)
+    special = this.parseSpecial(classes)
 
     return { ...normal, ...int, ...color, ...special }
   }

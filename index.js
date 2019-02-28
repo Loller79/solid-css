@@ -21,7 +21,7 @@ const Width = require('./components/width')
 const ZIndex = require('./components/zindex')
 
 class Solid {
-  constructor (_colors, _out, _verbose) {
+  constructor (_colors, _out, _custom, _verbose) {
     this.components = {
       border: Border(_colors),
       color: Color(_colors),
@@ -42,6 +42,7 @@ class Solid {
     }
     this.verbose = _verbose
     this.out = _out || './dist'
+    this.custom = _custom && _custom(_colors)
   }
 
   build () {
@@ -60,14 +61,15 @@ class Solid {
     }
   }
 
-  async minify (_path) {
-    let regex, files, search, classes, css, size
+  async minify (_path, _custom) {
+    let regex, files, search, match, classes, css, size
 
     if (!_.isEmpty(this.components)) {
-      regex = ''
+      regex = []
       _.forEach(this.components, (component, name) => {
-        regex += component.getRegex()
+        regex = [...regex, ...component.getRegex()]
       })
+      regex = regex.join('|')
     }
 
     regex = new RegExp(`(sm-|md-|lg-|xl-|)(${regex})`, 'gm')
@@ -75,8 +77,11 @@ class Solid {
     search = []
 
     _.forEach(files, (file) => {
-      search = [...search, ...file.match(regex)]
+      match = file.match(regex) || []
+      search = [...search, ...match]
     })
+
+    search = _.uniq(search)
 
     if (search) {
       css = ''
@@ -93,6 +98,12 @@ class Solid {
           if (media) css += result; else css = result + css
         })
       })
+      if (this.custom) {
+        classes = this.custom.parse()
+        _.forEach(classes, (property, name) => {
+          css = `${name} ${property}` + css
+        })
+      }
     }
 
     if (!fs.existsSync(this.out)) fs.mkdirSync(this.out)
