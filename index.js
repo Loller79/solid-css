@@ -21,7 +21,7 @@ const Width = require('./components/width')
 const ZIndex = require('./components/zindex')
 
 class Solid {
-  constructor (_colors, _verbose) {
+  constructor (_colors, _out, _verbose) {
     this.components = {
       border: Border(_colors),
       color: Color(_colors),
@@ -41,6 +41,7 @@ class Solid {
       zindex: ZIndex
     }
     this.verbose = _verbose
+    this.out = _out || './dist'
   }
 
   build () {
@@ -50,12 +51,12 @@ class Solid {
       css = ''
 
       _.forEach(this.components, (component, name) => {
-        component.build()
+        component.build(this.out)
         css += `@import url('./${name}.css');\n`
         if (this.verbose) console.log(`The ${name} component has been built`)
       })
 
-      fs.writeFileSync('./dist/solid.css', css)
+      fs.writeFileSync(`${this.out}/solid.css`, css)
     }
   }
 
@@ -94,10 +95,10 @@ class Solid {
       })
     }
 
-    if (!fs.existsSync('./dist')) fs.mkdirSync('./dist')
-    fs.writeFileSync('./dist/solid.min.css', css)
+    if (!fs.existsSync(this.out)) fs.mkdirSync(this.out)
+    fs.writeFileSync(`${this.out}/solid.min.css`, css)
 
-    size = formatBytes(fs.statSync('./dist/solid.min.css').size)
+    size = formatBytes(fs.statSync(`${this.out}/solid.min.css`).size)
 
     if (this.verbose) console.log(`The minified css file weighs ${size}`)
   }

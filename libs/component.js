@@ -152,18 +152,18 @@ class Component {
     return css
   }
 
-  write (_css) {
-    if (!fs.existsSync('./dist')) fs.mkdirSync('./dist')
-    fs.writeFileSync(`./dist/${this.name}.css`, _css)
+  write (_css, _out) {
+    if (!fs.existsSync(_out)) fs.mkdirSync(_out)
+    fs.writeFileSync(`${_out}/${this.name}.css`, _css)
   }
 
-  build () {
+  build (_out) {
     let classes, css
 
     classes = this.parse()
     css = this.toCss(classes)
 
-    this.write(css)
+    this.write(css, _out)
   }
 }
 

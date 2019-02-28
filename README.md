@@ -47,6 +47,10 @@ To make the filters that use the intensity coefficient you have to define it in 
     
     }
 
+You can also choose a different path than dist for building the css files, by doing this:
+
+`const MyCss = new SolidCss(['black', 'white'], './my-folder/my-subfolder')`
+
 # How to use it
 
 This may be a bit tricky at first but you'll get used to it once you understand the logic behind the class names, down below you'll find a guide for every property that this library currently supports.
