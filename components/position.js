@@ -29,10 +29,10 @@ const data = {
     'adb': '{ bottom: calc(var(--intensity) * $INT) }',
     'adl': '{ left: calc(var(--intensity) * $INT) }',
     'adr': '{ right: calc(var(--intensity) * $INT) }',
-    'adtn': '{ top: -calc(var(--intensity) * $INT) }',
-    'adbn': '{ bottom: -calc(var(--intensity) * $INT) }',
-    'adln': '{ left: -calc(var(--intensity) * $INT) }',
-    'adrn': '{ right: -calc(var(--intensity) * $INT) }'
+    'adtn': '{ top: calc(var(--intensity) * -$INT) }',
+    'adbn': '{ bottom: calc(var(--intensity) * -$INT) }',
+    'adln': '{ left: calc(var(--intensity) * -$INT) }',
+    'adrn': '{ right: calc(var(--intensity) * -$INT) }'
   }
 }
 
