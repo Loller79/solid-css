@@ -12,23 +12,25 @@ class Component {
   }
 
   getRegex () {
-    let result
+    let result, push
 
     result = []
+    push = (name) => result.push(`\\b${name}\\b`)
+
     if (_.has(this.classes, 'normal')) {
       _.forEach(this.classes.normal, (_property, _name) => {
-        result.push(`\b${_name}\b`)
+        push(_name)
       })
     }
     if (_.has(this.classes, 'int')) {
       _.forEach(this.classes.int, (_property, _name) => {
-        result.push(`\b${_name}\\d+\b`)
+        push(`${_name}\\d+`)
       })
     }
     if (_.has(this.classes, 'color')) {
       _.forEach(this.classes.color, (_property, _name) => {
         _.forEach(this.colors, (_color) => {
-          result.push(`\b${_name}${_color}\b`)
+          push(`${_name}${_color}`)
         })
       })
     }
@@ -41,13 +43,13 @@ class Component {
 
         if (_name.includes('$INT') && (_name.includes('$COLOR'))) {
           _.forEach(this.colors, (_color) => {
-            result.push(`\b${name.replace(regex.int, '\\d+').replace(regex.color, _color)}\b`)
+            push(`${name.replace(regex.int, '\\d+').replace(regex.color, _color)}`)
           })
         } else if (_name.includes('$INT')) {
-          result.push(`\b${name.replace(regex.int, '\\d+')}\b`)
+          push(`${name.replace(regex.int, '\\d+')}`)
         } else if (_name.includes('$COLOR')) {
           _.forEach(this.colors, (_color) => {
-            result.push(`\b${name.replace(regex.color, _color)}\b`)
+            push(`${name.replace(regex.color, _color)}`)
           })
         }
       })
