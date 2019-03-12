@@ -36,6 +36,6 @@ const data = {
   }
 }
 
-const Position = new Component('position', data)
+const Position = new Component('position', data, false, 200)
 
 module.exports = Position
