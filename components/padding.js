@@ -1,6 +1,15 @@
 const Component = require('../libs/component')
 
 const data = {
+  normal: {
+    'pa': '{ padding: auto }',
+    'pha': '{ padding-top: auto; padding-bottom: auto }',
+    'pva': '{ padding-left: auto; padding-right: auto }',
+    'pta': '{ padding-top: auto }',
+    'ptb': '{ padding-bottom: auto }',
+    'ptl': '{ padding-left: auto }',
+    'ptr': '{ padding-right: auto }'
+  },
   int: {
     'p': '{ padding: calc(var(--intensity) * $INT) }',
     'pv': '{ padding-top: calc(var(--intensity) * $INT); padding-bottom: calc(var(--intensity) * $INT) }',

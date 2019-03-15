@@ -1,6 +1,15 @@
 const Component = require('../libs/component')
 
 const data = {
+  normal: {
+    'ma': '{ margin: auto }',
+    'mha': '{ margin-top: auto; margin-bottom: auto }',
+    'mva': '{ margin-left: auto; margin-right: auto }',
+    'mta': '{ margin-top: auto }',
+    'mtb': '{ margin-bottom: auto }',
+    'mtl': '{ margin-left: auto }',
+    'mtr': '{ margin-right: auto }'
+  },
   int: {
     'm': '{ margin: calc(var(--intensity) * $INT) }',
     'mv': '{ margin-top: calc(var(--intensity) * $INT); margin-bottom: calc(var(--intensity) * $INT) }',
