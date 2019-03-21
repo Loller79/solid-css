@@ -44,6 +44,8 @@ To make the filters that use the intensity coefficient you have to define it in 
     --black: #000000;
     
     --white: #FFFFFF;
+
+    --shadow: rgba(0,0,0,0.1);
     
     }
 
