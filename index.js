@@ -21,6 +21,14 @@ const Width = require('./components/width')
 const ZIndex = require('./components/zindex')
 
 class Solid {
+  /**
+   * Creates a new SolidCss instance
+   *
+   * @param {Array} _colors This array determines which css classes based on the colors will be generated
+   * @param {String} _out This string determines whether the build files will go
+   * @param {Array} _custom This array lets you hard-code classes into the minified css
+   * @param {Boolean} _verbose This boolean lets you see more informations about the build and minification processes
+   */
   constructor (_colors, _out, _custom, _verbose) {
     this.components = {
       border: Border(_colors),
@@ -45,6 +53,9 @@ class Solid {
     this.custom = _custom && _custom(_colors)
   }
 
+  /**
+   * Compiles the development css files
+   */
   build () {
     let css
 
@@ -61,7 +72,13 @@ class Solid {
     }
   }
 
-  async minify (_path, _custom) {
+  /**
+   * Creates a minified css file
+   *
+   * @param {String} _path The folder to scan recursively, supported file extensions are: html, js, jsx, ts
+   * @returns {String} The minified css string
+   */
+  async minify (_path) {
     let regex, files, search, match, classes, css, size
 
     if (!isEmpty(this.components)) {
@@ -112,6 +129,8 @@ class Solid {
     size = formatBytes(fs.statSync(`${this.out}/solid.min.css`).size)
 
     if (this.verbose) console.log(`The minified css file weighs ${size}`)
+
+    return css
   }
 }
 
