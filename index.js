@@ -1,4 +1,4 @@
-const _ = require('lodash')
+const { isEmpty, forEach, uniq } = require('lodash')
 const fs = require('fs-extra')
 const { readFiles, formatBytes } = require('./utils')
 const regexMedia = require('./libs/regex').media
@@ -48,10 +48,10 @@ class Solid {
   build () {
     let css
 
-    if (!_.isEmpty(this.components)) {
+    if (!isEmpty(this.components)) {
       css = ''
 
-      _.forEach(this.components, (component, name) => {
+      forEach(this.components, (component, name) => {
         component.build(this.out)
         css += `@import url('./${name}.css');\n`
         if (this.verbose) console.log(`The ${name} component has been built`)
@@ -64,9 +64,9 @@ class Solid {
   async minify (_path, _custom) {
     let regex, files, search, match, classes, css, size
 
-    if (!_.isEmpty(this.components)) {
+    if (!isEmpty(this.components)) {
       regex = []
-      _.forEach(this.components, (component, name) => {
+      forEach(this.components, (component, name) => {
         regex = [...regex, ...component.getRegex()]
       })
       regex = regex.join('|')
@@ -76,18 +76,18 @@ class Solid {
     files = await readFiles(_path)
     search = []
 
-    _.forEach(files, (file) => {
+    forEach(files, (file) => {
       match = file.match(regex) || []
       search = [...search, ...match]
     })
 
-    search = _.uniq(search)
+    search = uniq(search)
 
     if (search) {
       css = ''
-      _.forEach(this.components, (component, name) => {
+      forEach(this.components, (component, name) => {
         classes = component.getClasses(search)
-        _.forEach(classes, (property, name) => {
+        forEach(classes, (property, name) => {
           let media, prefix, result
 
           media = name.match(regexMedia) || ''
@@ -100,7 +100,7 @@ class Solid {
       })
       if (this.custom) {
         classes = this.custom.parse()
-        _.forEach(classes, (property, name) => {
+        forEach(classes, (property, name) => {
           css = `.${name} ${property}` + css
         })
       }
