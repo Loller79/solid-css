@@ -1,6 +1,6 @@
 const fs = require('fs-extra')
 const resolve = require('path').resolve
-const _ = require('lodash')
+const { forEach } = require('lodash')
 const regexType = require('./libs/regex').type
 
 async function getFiles (_path) {
@@ -24,7 +24,7 @@ async function readFiles (_path) {
   files = await getFiles(_path)
   readable = []
 
-  _.forEach(files, (_file) => {
+  forEach(files, (_file) => {
     let supported, file
 
     supported = _file.match(regexType)

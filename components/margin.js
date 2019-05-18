@@ -1,6 +1,15 @@
 const Component = require('../libs/component')
 
 const data = {
+  normal: {
+    'ma': '{ margin: auto }',
+    'mha': '{ margin-top: auto; margin-bottom: auto }',
+    'mva': '{ margin-left: auto; margin-right: auto }',
+    'mta': '{ margin-top: auto }',
+    'mtb': '{ margin-bottom: auto }',
+    'mtl': '{ margin-left: auto }',
+    'mtr': '{ margin-right: auto }'
+  },
   int: {
     'm': '{ margin: calc(var(--intensity) * $INT) }',
     'mv': '{ margin-top: calc(var(--intensity) * $INT); margin-bottom: calc(var(--intensity) * $INT) }',
@@ -9,10 +18,10 @@ const data = {
     'mb': '{ margin-bottom: calc(var(--intensity) * $INT) }',
     'ml': '{ margin-left: calc(var(--intensity) * $INT) }',
     'mr': '{ margin-right: calc(var(--intensity) * $INT) }',
-    'mtn': '{ margin-top: -calc(var(--intensity) * $INT) }',
-    'mbn': '{ margin-bottom: -calc(var(--intensity) * $INT) }',
-    'mln': '{ margin-left: -calc(var(--intensity) * $INT) }',
-    'mrn': '{ margin-right: -calc(var(--intensity) * $INT) }',
+    'mtn': '{ margin-top: calc(var(--intensity) * -$INT) }',
+    'mbn': '{ margin-bottom: calc(var(--intensity) * -$INT) }',
+    'mln': '{ margin-left: calc(var(--intensity) * -$INT) }',
+    'mrn': '{ margin-right: calc(var(--intensity) * -$INT) }',
     'fm': '{ margin: $INTpx }',
     'fmv': '{ margin-top: $INTpx; margin-bottom: $INTpx }',
     'fmh': '{ margin-left: $INTpx; margin-right: $INTpx }',

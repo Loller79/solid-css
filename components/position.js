@@ -29,13 +29,13 @@ const data = {
     'adb': '{ bottom: calc(var(--intensity) * $INT) }',
     'adl': '{ left: calc(var(--intensity) * $INT) }',
     'adr': '{ right: calc(var(--intensity) * $INT) }',
-    'adtn': '{ top: -calc(var(--intensity) * $INT) }',
-    'adbn': '{ bottom: -calc(var(--intensity) * $INT) }',
-    'adln': '{ left: -calc(var(--intensity) * $INT) }',
-    'adrn': '{ right: -calc(var(--intensity) * $INT) }'
+    'adtn': '{ top: calc(var(--intensity) * -$INT) }',
+    'adbn': '{ bottom: calc(var(--intensity) * -$INT) }',
+    'adln': '{ left: calc(var(--intensity) * -$INT) }',
+    'adrn': '{ right: calc(var(--intensity) * -$INT) }'
   }
 }
 
-const Position = new Component('position', data)
+const Position = new Component('position', data, false, 200)
 
 module.exports = Position

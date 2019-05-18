@@ -3,7 +3,7 @@ const Component = require('../libs/component')
 const data = {
   color: {
     '': '{ color: var(--$COLOR) }',
-    'bg-': '{ background-color: var(--$COLOR) }'
+    'bg-': '{ background: var(--$COLOR) }'
   }
 }
 

@@ -2,10 +2,10 @@ const Component = require('../libs/component')
 
 const data = {
   int: {
-    's': '{ box-shadow: 0 0 $INTpx 0 }'
+    's': '{ box-shadow: 0 0 $INTpx 0 var(--shadow) }'
   },
-  color: {
-    's-': '{ color: var(--$COLOR) }'
+  special: {
+    's$INT-$COLOR': '{ box-shadow: 0 0 $INTpx 0 var(--$COLOR) }'
   }
 }
 

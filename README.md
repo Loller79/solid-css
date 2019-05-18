@@ -44,8 +44,14 @@ To make the filters that use the intensity coefficient you have to define it in 
     --black: #000000;
     
     --white: #FFFFFF;
+
+    --shadow: rgba(0,0,0,0.1);
     
     }
+
+You can also choose a different path than dist for building the css files, by doing this:
+
+`const MyCss = new SolidCss(['black', 'white'], './my-folder/my-subfolder')`
 
 # How to use it
 
