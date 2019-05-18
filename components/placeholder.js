@@ -2,7 +2,7 @@ const Component = require('../libs/component')
 
 const data = {
   special: {
-    'ph-$COLOR::placeholder': '{ color: var(--$COLOR) }'
+    'ph-$COLOR::placeholder': '{ "color": "$COLOR" }'
   }
 }
 

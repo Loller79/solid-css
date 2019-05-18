@@ -2,7 +2,7 @@ const Component = require('../libs/component')
 
 const data = {
   int: {
-    'o': '{ opacity: calc($INT / 100) }'
+    'o': '{ "opacity": $INT }'
   }
 }
 

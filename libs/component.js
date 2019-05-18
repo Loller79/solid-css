@@ -1,14 +1,14 @@
-const fs = require('fs-extra')
 const { has, forEach, set } = require('lodash')
 const regex = require('./regex')
-const mediaQueries = require('../assets/media-queries.json')
+const { toCamelCase } = require('../utils')
 
 class Component {
-  constructor (_name, _classes, _colors, _length) {
+  constructor (_name, _classes, _colors, _length, _screen) {
     this.name = _name
     this.colors = _colors
     this.classes = _classes
     this.length = _length || 100
+    this.screen = _screen
   }
 
   getRegex () {
@@ -95,7 +95,7 @@ class Component {
     return ordered
   }
 
-  parseNormal (_classes) {
+  parseNormal () {
     let classes = {}
 
     if (has(this.classes, 'normal')) {
@@ -114,7 +114,15 @@ class Component {
           let name, property
 
           name = _override ? _name.replace(regex.int, i) : (_name + i)
-          property = _property.replace(regex.int, i)
+          property = _property
+
+          if (this.screen && i === 50) console.log(i === 0 ? 0 : (i / 100) * this.screen.width)
+
+          if (_property.match(regex.width)) { property = property.replace(regex.width, i === 0 ? 0 : (i / 100) * this.screen.width) }
+          if (_property.match(regex.height)) { property = property.replace(regex.height, i === 0 ? 0 : (i / 100) * this.screen.height) }
+          if (_property.match(regex.lineHeight)) { property = property.replace(regex.lineHeight, i === 0 ? 0 : i + (i / 4)) }
+
+          property = property.replace(regex.int, i === 0 ? 0 : (i / 100) * 100)
 
           classes[name] = property
         }
@@ -144,7 +152,10 @@ class Component {
   }
 
   parseSpecial (_classes) {
-    let inject = {}; let int = {}; let color = {}; let both = {}
+    let inject = {}
+    let int = {}
+    let color = {}
+    let both = {}
 
     if (has(_classes, 'special')) {
       forEach(_classes.special, (_property, _name) => {
@@ -189,30 +200,23 @@ class Component {
     return { ...normal, ...int, ...color, ...special }
   }
 
-  toCss (_classes) {
-    let css = ''
+  toJs (_classes) {
+    let js = {}
 
-    forEach(mediaQueries, (prefix, media) => {
-      forEach(_classes, (property, name) => {
-        css += `${prefix}.${media}${name} ${property} ${prefix && media ? '}' : ''}`
-      })
+    forEach(_classes, (property, name) => {
+      js[name] = JSON.parse(property, toCamelCase)
     })
 
-    return css
+    return js
   }
 
-  write (_css, _out) {
-    if (!fs.existsSync(_out)) fs.mkdirSync(_out)
-    fs.writeFileSync(`${_out}/${this.name}.css`, _css)
-  }
-
-  build (_out) {
-    let classes, css
+  build () {
+    let classes, js
 
     classes = this.parse()
-    css = this.toCss(classes)
+    js = this.toJs(classes)
 
-    this.write(css, _out)
+    return js
   }
 }
 

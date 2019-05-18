@@ -1,8 +1,6 @@
 const { isEmpty, forEach, uniq } = require('lodash')
 const fs = require('fs-extra')
-const { readFiles, formatBytes } = require('./utils')
-const regexMedia = require('./libs/regex').media
-const mediaQueries = require('./assets/media-queries.json')
+const { readFiles, formatBytes, toCamelCase } = require('./utils')
 const Border = require('./components/border')
 const Color = require('./components/color')
 const Container = require('./components/container')
@@ -26,17 +24,17 @@ class Solid {
    *
    * @param {Array} _colors This array determines which css classes based on the colors will be generated
    * @param {String} _out This string determines whether the build files will go
-   * @param {Array} _custom This array lets you hard-code classes into the minified css
-   * @param {Boolean} _verbose This boolean lets you see more informations about the build and minification processes
+   * @param {String} _screen
+   * @param {Object} _verbose This boolean lets you see more information about the build and minification processes
    */
-  constructor (_colors, _out, _custom, _verbose) {
+  constructor (_colors, _out, _screen, _verbose) {
     this.components = {
       border: Border(_colors),
       color: Color(_colors),
-      container: Container,
+      container: Container(_screen),
       display: Display,
       flex: Flex,
-      height: Height,
+      height: Height(_screen),
       margin: Margin,
       opacity: Opacity,
       overflow: Overflow,
@@ -45,30 +43,28 @@ class Solid {
       position: Position,
       shadow: Shadow(_colors),
       text: Text,
-      width: Width,
+      width: Width(_screen),
       zindex: ZIndex
     }
     this.verbose = _verbose
     this.out = _out || './dist'
-    this.custom = _custom && _custom(_colors)
   }
 
   /**
    * Compiles the development css files
    */
   build () {
-    let css
+    let js
 
     if (!isEmpty(this.components)) {
-      css = ''
+      js = {}
 
       forEach(this.components, (component, name) => {
-        component.build(this.out)
-        css += `@import url('./${name}.css');\n`
+        js = { ...js, ...component.build(this.out) }
         if (this.verbose) console.log(`The ${name} component has been built`)
       })
 
-      fs.writeFileSync(`${this.out}/solid.css`, css)
+      return js
     }
   }
 
@@ -101,26 +97,13 @@ class Solid {
     search = uniq(search)
 
     if (search) {
-      css = ''
+      css = []
       forEach(this.components, (component, name) => {
         classes = component.getClasses(search)
         forEach(classes, (property, name) => {
-          let media, prefix, result
-
-          media = name.match(regexMedia) || ''
-          prefix = mediaQueries[media]
-
-          result = `${prefix}.${name} ${property} ${media ? '}' : ''}`
-
-          if (media) css += result; else css = result + css
+          css.push(JSON.parse(property, toCamelCase))
         })
       })
-      if (this.custom) {
-        classes = this.custom.parse()
-        forEach(classes, (property, name) => {
-          css = `.${name} ${property}` + css
-        })
-      }
     }
 
     if (!fs.existsSync(this.out)) fs.mkdirSync(this.out)
@@ -133,5 +116,8 @@ class Solid {
     return css
   }
 }
+
+const test = new Solid(['black', 'white'], '', { width: 320, height: 700 })
+test.build()
 
 module.exports = Solid

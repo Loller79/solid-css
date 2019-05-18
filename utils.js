@@ -1,6 +1,6 @@
 const fs = require('fs-extra')
 const resolve = require('path').resolve
-const { forEach } = require('lodash')
+const { forEach, mapKeys, camelCase, isObject } = require('lodash')
 const regexType = require('./libs/regex').type
 
 async function getFiles (_path) {
@@ -40,8 +40,13 @@ async function readFiles (_path) {
 
 function formatBytes (a, b) { if (a === 0) return '0 Bytes'; var c = 1024; var d = b || 2; var e = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']; var f = Math.floor(Math.log(a) / Math.log(c)); return parseFloat((a / Math.pow(c, f)).toFixed(d)) + ' ' + e[f] }
 
+function toCamelCase (k, v) {
+  return isObject(v) ? mapKeys(v, (_v, _k) => camelCase(_k)) : v
+}
+
 module.exports = {
   getFiles: getFiles,
   readFiles: readFiles,
-  formatBytes: formatBytes
+  formatBytes: formatBytes,
+  toCamelCase
 }

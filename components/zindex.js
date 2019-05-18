@@ -2,7 +2,7 @@ const Component = require('../libs/component')
 
 const data = {
   int: {
-    'zi': '{ z-index: $INT }'
+    'zi': '{ "z-index": $INT }'
   }
 }
 
