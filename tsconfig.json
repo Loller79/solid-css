@@ -11,7 +11,8 @@
     "listFiles": true,
     "noEmitOnError": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "esModuleInterop": true
   },
   "exclude": [
     "node_modules",

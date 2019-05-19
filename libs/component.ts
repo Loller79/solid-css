@@ -46,10 +46,11 @@ class Component {
       this.classes.int,
       (r: Class, v: string, k: string) => {
         forEach(this.length, (n: number, i: number) => {
-          r[k + i] = v.replace(regex.width, size(i, this.screen.width))
-          r[k + i] = v.replace(regex.height, size(i, this.screen.height))
-          r[k + i] = v.replace(regex.lineHeight, line(i))
-          r[k + i] = v.replace(regex.int, i.toString())
+          r[k + i] = v
+            .replace(regex.width, size(i, this.screen.width))
+            .replace(regex.height, size(i, this.screen.height))
+            .replace(regex.lineHeight, line(i))
+            .replace(regex.int, i.toString())
         })
         return r
       },
