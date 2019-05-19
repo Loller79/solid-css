@@ -1,11 +1,10 @@
-const Component = require('../libs/component')
-
-const data = {
-  int: {
-    'o': '{ "opacity": $INT }'
-  }
-}
-
-const Opacity = new Component('opacity', data)
-
-module.exports = Opacity
+"use strict";
+exports.__esModule = true;
+var component_1 = require("../libs/component");
+var data = {
+    int: {
+        'o': '{ "opacity": $INT }'
+    }
+};
+var Opacity = new component_1["default"]('opacity', data);
+exports["default"] = Opacity;

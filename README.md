@@ -219,10 +219,6 @@ The **&** means that it works with dynamic colors.
 -  `fpl$ => applies padding on left side with $ px`
 -  `fpr$ => applies padding on right side with $ px`
 
-### Placeholder
-
--  `ph-& => applies placeholder color with & color`
-
 ### Position
 
 -  `dp => applies position: static`

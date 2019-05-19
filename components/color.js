@@ -1,12 +1,11 @@
-const Component = require('../libs/component')
-
-const data = {
-  color: {
-    '': '{ "color": "$COLOR" }',
-    'bg-': '{ "background": "$COLOR" }'
-  }
-}
-
-const Color = (colors) => new Component('color', data, colors)
-
-module.exports = Color
+"use strict";
+exports.__esModule = true;
+var component_1 = require("../libs/component");
+var data = {
+    color: {
+        '': '{ "color": "$COLOR" }',
+        'bg-': '{ "background": "$COLOR" }'
+    }
+};
+var Color = function (colors) { return new component_1["default"]('color', data, colors); };
+exports["default"] = Color;

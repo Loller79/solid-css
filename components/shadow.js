@@ -1,14 +1,10 @@
-const Component = require('../libs/component')
-
-const data = {
-  int: {
-    's': '{ "elevation": $INT }'
-  },
-  special: {
-    's$INT-$COLOR': '{ "elevation": $INT }'
-  }
-}
-
-const Shadow = (colors) => new Component('shadow', data, colors)
-
-module.exports = Shadow
+"use strict";
+exports.__esModule = true;
+var component_1 = require("../libs/component");
+var data = {
+    int: {
+        's': '{ "elevation": $INT }'
+    }
+};
+var Shadow = function (colors) { return new component_1["default"]('shadow', data, colors); };
+exports["default"] = Shadow;

@@ -1,223 +1,116 @@
-const { has, forEach, set } = require('lodash')
-const regex = require('./regex')
-const { toCamelCase } = require('../utils')
-
-class Component {
-  constructor (_name, _classes, _colors, _length, _screen) {
-    this.name = _name
-    this.colors = _colors
-    this.classes = _classes
-    this.length = _length || 100
-    this.screen = _screen
-  }
-
-  getRegex () {
-    let result, push
-
-    result = []
-    push = (name) => result.push(`\\b${name}\\b`)
-
-    if (has(this.classes, 'normal')) {
-      forEach(this.classes.normal, (_property, _name) => {
-        push(_name)
-      })
-    }
-    if (has(this.classes, 'int')) {
-      forEach(this.classes.int, (_property, _name) => {
-        push(`${_name}\\d+`)
-      })
-    }
-    if (has(this.classes, 'color')) {
-      forEach(this.classes.color, (_property, _name) => {
-        forEach(this.colors, (_color) => {
-          push(`${_name}${_color}`)
-        })
-      })
-    }
-    if (has(this.classes, 'special')) {
-      forEach(this.classes.special, (_property, _name) => {
-        let name
-
-        if (_name.includes('::placeholder')) name = _name.replace('::placeholder', '')
-        else name = _name
-
-        if (_name.includes('$INT') && (_name.includes('$COLOR'))) {
-          forEach(this.colors, (_color) => {
-            push(`${name.replace(regex.int, '\\d+').replace(regex.color, _color)}`)
-          })
-        } else if (_name.includes('$INT')) {
-          push(`${name.replace(regex.int, '\\d+')}`)
-        } else if (_name.includes('$COLOR')) {
-          forEach(this.colors, (_color) => {
-            push(`${name.replace(regex.color, _color)}`)
-          })
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
         }
-      })
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+exports.__esModule = true;
+var lodash_1 = require("lodash");
+var regex_1 = require("./regex");
+var utils_1 = require("../utils");
+var Component = /** @class */ (function () {
+    /**
+     * Create a new Solid Component
+     *
+     * @param {string} name
+     * @param {Classes} classes
+     * @param {Array<NativeColor>} colors
+     * @param {number} length
+     * @param {ScaledSize} screen
+     */
+    function Component(name, classes, colors, length, screen) {
+        if (colors === void 0) { colors = []; }
+        if (length === void 0) { length = 101; }
+        if (screen === void 0) { screen = {
+            width: 0,
+            height: 0,
+            scale: 0,
+            fontScale: 0
+        }; }
+        this.name = name;
+        this.classes = __assign({ normal: {}, int: {}, color: {} }, classes);
+        this.colors = colors;
+        this.length = new Array(length).fill(0);
+        this.screen = screen;
     }
-
-    return result
-  }
-
-  getClasses (_selector) {
-    let classes, filtered, ordered
-
-    classes = this.parse()
-    filtered = {}
-
-    forEach(_selector, (_name) => {
-      let name
-
-      name = _name.replace(regex.media, '')
-
-      if (has(classes, name)) filtered[_name] = classes[name]
-    })
-
-    ordered = {}
-
-    Object.keys(filtered).sort((a, b) => {
-      let priority = { a: -1, b: -1 }
-
-      if (a.includes('sm-')) priority.a = 0
-      if (a.includes('md-')) priority.a = 1
-      if (a.includes('lg-')) priority.a = 2
-      if (a.includes('xl-')) priority.a = 3
-
-      if (b.includes('sm-')) priority.b = 0
-      if (b.includes('md-')) priority.b = 1
-      if (b.includes('lg-')) priority.b = 2
-      if (b.includes('xl-')) priority.b = 3
-
-      return priority.a - priority.b
-    }).forEach(key => {
-      ordered[key] = filtered[key]
-    })
-
-    return ordered
-  }
-
-  parseNormal () {
-    let classes = {}
-
-    if (has(this.classes, 'normal')) {
-      classes = this.classes.normal
-    }
-
-    return classes
-  }
-
-  parseInt (_classes, _override) {
-    let classes = {}
-
-    if (has(_classes, 'int')) {
-      forEach(_classes.int, (_property, _name) => {
-        for (let i = 0; i <= this.length; i++) {
-          let name, property
-
-          name = _override ? _name.replace(regex.int, i) : (_name + i)
-          property = _property
-
-          if (this.screen && i === 50) console.log(i === 0 ? 0 : (i / 100) * this.screen.width)
-
-          if (_property.match(regex.width)) { property = property.replace(regex.width, i === 0 ? 0 : (i / 100) * this.screen.width) }
-          if (_property.match(regex.height)) { property = property.replace(regex.height, i === 0 ? 0 : (i / 100) * this.screen.height) }
-          if (_property.match(regex.lineHeight)) { property = property.replace(regex.lineHeight, i === 0 ? 0 : i + (i / 4)) }
-
-          property = property.replace(regex.int, i === 0 ? 0 : (i / 100) * 100)
-
-          classes[name] = property
-        }
-      })
-    }
-
-    return classes
-  }
-
-  parseColor (_classes, _override) {
-    let classes = {}
-
-    if (has(_classes, 'color')) {
-      forEach(_classes.color, (_property, _name) => {
-        this.colors.forEach((color) => {
-          let name, property
-
-          name = _override ? _name.replace(regex.color, color) : (_name + color)
-          property = _property.replace(regex.color, color)
-
-          classes[name] = property
-        })
-      })
-    }
-
-    return classes
-  }
-
-  parseSpecial (_classes) {
-    let inject = {}
-    let int = {}
-    let color = {}
-    let both = {}
-
-    if (has(_classes, 'special')) {
-      forEach(_classes.special, (_property, _name) => {
-        if (_name.includes('$INT') && _name.includes('$COLOR')) {
-          for (let i = 0; i <= this.length; i++) {
-            this.colors.forEach((color) => {
-              let name, property
-
-              name = _name.replace(regex.color, color).replace(regex.int, i)
-              property = _property.replace(regex.color, color).replace(regex.int, i)
-
-              both[name] = property
-            })
-          }
-        } else if (_name.includes('$INT')) {
-          set(inject, `int.${_name}`, _property)
-
-          int = { ...int, ...this.parseInt(inject, true) }
-        } else if (_name.includes('$COLOR')) {
-          set(inject, `color.${_name}`, _property)
-
-          color = { ...color, ...this.parseColor(inject, true) }
-        }
-
-        inject = {}
-      })
-    }
-
-    return { ...int, ...color, ...both }
-  }
-
-  parse (_classes) {
-    let classes, normal, int, color, special
-
-    classes = _classes || this.classes
-
-    normal = this.parseNormal(classes)
-    int = this.parseInt(classes)
-    color = this.parseColor(classes)
-    special = this.parseSpecial(classes)
-
-    return { ...normal, ...int, ...color, ...special }
-  }
-
-  toJs (_classes) {
-    let js = {}
-
-    forEach(_classes, (property, name) => {
-      js[name] = JSON.parse(property, toCamelCase)
-    })
-
-    return js
-  }
-
-  build () {
-    let classes, js
-
-    classes = this.parse()
-    js = this.toJs(classes)
-
-    return js
-  }
-}
-
-module.exports = Component
+    /**
+     * Parse int classes to inject numbers
+     *
+     * @returns {Class}
+     */
+    Component.prototype.parseInt = function () {
+        var _this = this;
+        var size = function (i, j) {
+            if (j === void 0) { j = 100; }
+            return (i === 0 ? 0 : (i / 100) * j).toString();
+        };
+        var line = function (i) { return (i === 0 ? 0 : i + (i / 4)).toString(); };
+        return lodash_1.reduce(this.classes.int, function (r, v, k) {
+            lodash_1.forEach(_this.length, function (n, i) {
+                r[k + i] = v.replace(regex_1["default"].width, size(i, _this.screen.width));
+                r[k + i] = v.replace(regex_1["default"].height, size(i, _this.screen.height));
+                r[k + i] = v.replace(regex_1["default"].lineHeight, line(i));
+                r[k + i] = v.replace(regex_1["default"].int, i.toString());
+            });
+            return r;
+        }, {});
+    };
+    /**
+     * Parse color classes to inject colors
+     *
+     * @returns {Class}
+     */
+    Component.prototype.parseColor = function () {
+        var _this = this;
+        return lodash_1.reduce(this.classes.color, function (r, v, k) {
+            lodash_1.forEach(_this.colors, function (_a) {
+                var name = _a.name, hex = _a.hex;
+                r[k + name] = v.replace(regex_1["default"].color, hex);
+            });
+            return r;
+        }, {});
+    };
+    /**
+     * Parse all classes
+     *
+     * @returns {Class}
+     */
+    Component.prototype.parseAll = function () {
+        var normal, int, color;
+        normal = this.classes.normal;
+        int = this.parseInt();
+        color = this.parseColor();
+        return __assign({}, normal, int, color);
+    };
+    /**
+     * Convert the JSON classes to JS
+     *
+     * @param {Class} classes
+     * @returns {Build}
+     */
+    Component.prototype.toJs = function (classes) {
+        return lodash_1.reduce(classes, function (r, v, k) {
+            r[k] = JSON.parse(v, utils_1.toCamelCase);
+            return r;
+        }, {});
+    };
+    /**
+     * Build the Component
+     *
+     * @returns {Build}
+     */
+    Component.prototype.build = function () {
+        var classes, js;
+        classes = this.parseAll();
+        js = this.toJs(classes);
+        return js;
+    };
+    return Component;
+}());
+exports["default"] = Component;

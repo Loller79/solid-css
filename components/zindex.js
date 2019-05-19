@@ -1,11 +1,10 @@
-const Component = require('../libs/component')
-
-const data = {
-  int: {
-    'zi': '{ "z-index": $INT }'
-  }
-}
-
-const ZIndex = new Component('zindex', data)
-
-module.exports = ZIndex
+"use strict";
+exports.__esModule = true;
+var component_1 = require("../libs/component");
+var data = {
+    int: {
+        'zi': '{ "z-index": $INT }'
+    }
+};
+var ZIndex = new component_1["default"]('zindex', data);
+exports["default"] = ZIndex;
