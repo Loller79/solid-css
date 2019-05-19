@@ -1,4 +1,9 @@
-import Component from '../libs/component';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var component_1 = __importDefault(require("../libs/component"));
 var data = {
     normal: {
         'tfl': '{ "font-weight": 300 }',
@@ -16,6 +21,6 @@ var data = {
         'ts': '{ "font-size": $INT, "line-height": $LINEHEIGHT }'
     }
 };
-var Text = new Component('text', data);
-export default Text;
+var Text = new component_1["default"]('text', data);
+exports["default"] = Text;
 //# sourceMappingURL=text.js.map

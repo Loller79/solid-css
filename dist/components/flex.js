@@ -1,4 +1,9 @@
-import Component from '../libs/component';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var component_1 = __importDefault(require("../libs/component"));
 var data = {
     normal: {
         'frr': '{ "flex-direction": "row-reverse" }',
@@ -22,6 +27,6 @@ var data = {
         'asc': '{ "align-self": "center" }'
     }
 };
-var Flex = new Component('flex', data);
-export default Flex;
+var Flex = new component_1["default"]('flex', data);
+exports["default"] = Flex;
 //# sourceMappingURL=flex.js.map

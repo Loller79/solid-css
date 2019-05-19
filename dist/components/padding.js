@@ -1,4 +1,9 @@
-import Component from '../libs/component';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var component_1 = __importDefault(require("../libs/component"));
 var data = {
     normal: {
         'pa': '{ "padding": "auto" }',
@@ -23,6 +28,6 @@ var data = {
         'prn': '{ "padding-right": -$INT }'
     }
 };
-var Padding = new Component('padding', data);
-export default Padding;
+var Padding = new component_1["default"]('padding', data);
+exports["default"] = Padding;
 //# sourceMappingURL=padding.js.map

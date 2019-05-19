@@ -1,4 +1,9 @@
-import Component from '../libs/component';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var component_1 = __importDefault(require("../libs/component"));
 var data = {
     int: {
         'br': '{ "border-radius": $INT }',
@@ -31,6 +36,6 @@ var data = {
         'b-': '{ "border-color": "$COLOR" }'
     }
 };
-var Border = function (colors) { return new Component('border', data, colors); };
-export default Border;
+var Border = function (colors) { return new component_1["default"]('border', data, colors); };
+exports["default"] = Border;
 //# sourceMappingURL=border.js.map

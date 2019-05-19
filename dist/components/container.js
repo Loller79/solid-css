@@ -1,4 +1,9 @@
-import Component from '../libs/component';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var component_1 = __importDefault(require("../libs/component"));
 var data = {
     normal: {
         'cna': '{ "width": "auto", "height": "auto" }'
@@ -15,6 +20,6 @@ var data = {
         'mxcnd': '{ "max-width": $INTvw, "max-height": $INTvh }'
     }
 };
-var Container = function (screen) { return new Component('container', data, [], 200, screen); };
-export default Container;
+var Container = function (screen) { return new component_1["default"]('container', data, [], 200, screen); };
+exports["default"] = Container;
 //# sourceMappingURL=container.js.map

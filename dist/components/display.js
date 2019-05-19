@@ -1,4 +1,9 @@
-import Component from '../libs/component';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var component_1 = __importDefault(require("../libs/component"));
 var data = {
     normal: {
         'df': '{ "display": "flex" }',
@@ -11,6 +16,6 @@ var data = {
         'cp': '{ "cursor": "pointer" }'
     }
 };
-var Display = new Component('display', data);
-export default Display;
+var Display = new component_1["default"]('display', data);
+exports["default"] = Display;
 //# sourceMappingURL=display.js.map

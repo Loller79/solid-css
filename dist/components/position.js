@@ -1,4 +1,9 @@
-import Component from '../libs/component';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var component_1 = __importDefault(require("../libs/component"));
 var data = {
     normal: {
         'fp': '{ "position": "fixed" }',
@@ -26,6 +31,6 @@ var data = {
         'aprn': '{ "right": "-$INT%" }'
     }
 };
-var Position = new Component('position', data, [], 200);
-export default Position;
+var Position = new component_1["default"]('position', data, [], 200);
+exports["default"] = Position;
 //# sourceMappingURL=position.js.map

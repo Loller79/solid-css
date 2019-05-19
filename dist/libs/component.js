@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,9 +10,13 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import { forEach, reduce } from 'lodash';
-import regex from './regex';
-import { toCamelCase } from '../various/utils';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var lodash_1 = require("lodash");
+var regex_1 = __importDefault(require("./regex"));
+var utils_1 = require("../various/utils");
 var Component = (function () {
     function Component(name, classes, colors, length, screen) {
         if (colors === void 0) { colors = []; }
@@ -35,23 +40,23 @@ var Component = (function () {
             return (i === 0 ? 0 : (i / 100) * j).toString();
         };
         var line = function (i) { return (i === 0 ? 0 : i + (i / 4)).toString(); };
-        return reduce(this.classes.int, function (r, v, k) {
-            forEach(_this.length, function (n, i) {
+        return lodash_1.reduce(this.classes.int, function (r, v, k) {
+            lodash_1.forEach(_this.length, function (n, i) {
                 r[k + i] = v
-                    .replace(regex.width, size(i, _this.screen.width))
-                    .replace(regex.height, size(i, _this.screen.height))
-                    .replace(regex.lineHeight, line(i))
-                    .replace(regex.int, i.toString());
+                    .replace(regex_1["default"].width, size(i, _this.screen.width))
+                    .replace(regex_1["default"].height, size(i, _this.screen.height))
+                    .replace(regex_1["default"].lineHeight, line(i))
+                    .replace(regex_1["default"].int, i.toString());
             });
             return r;
         }, {});
     };
     Component.prototype.parseColor = function () {
         var _this = this;
-        return reduce(this.classes.color, function (r, v, k) {
-            forEach(_this.colors, function (_a) {
+        return lodash_1.reduce(this.classes.color, function (r, v, k) {
+            lodash_1.forEach(_this.colors, function (_a) {
                 var name = _a.name, hex = _a.hex;
-                r[k + name] = v.replace(regex.color, hex);
+                r[k + name] = v.replace(regex_1["default"].color, hex);
             });
             return r;
         }, {});
@@ -64,8 +69,8 @@ var Component = (function () {
         return __assign({}, normal, int, color);
     };
     Component.prototype.toJs = function (classes) {
-        return reduce(classes, function (r, v, k) {
-            r[k] = JSON.parse(v, toCamelCase);
+        return lodash_1.reduce(classes, function (r, v, k) {
+            r[k] = JSON.parse(v, utils_1.toCamelCase);
             return r;
         }, {});
     };
@@ -77,5 +82,5 @@ var Component = (function () {
     };
     return Component;
 }());
-export default Component;
+exports["default"] = Component;
 //# sourceMappingURL=component.js.map

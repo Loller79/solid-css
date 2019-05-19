@@ -1,3 +1,5 @@
+"use strict";
+exports.__esModule = true;
 var regex = {
     int: new RegExp(/\$INT/, 'gm'),
     color: new RegExp(/\$COLOR/, 'gm'),
@@ -7,5 +9,5 @@ var regex = {
     height: new RegExp(/\$INTvh/, 'gm'),
     lineHeight: new RegExp(/\$LINEHEIGHT/, 'gm')
 };
-export default regex;
+exports["default"] = regex;
 //# sourceMappingURL=regex.js.map

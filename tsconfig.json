@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "commonjs",
     "outDir": "dist",
     "removeComments": true,
     "sourceMap": true,
@@ -12,7 +12,8 @@
     "noEmitOnError": true,
     "strict": true,
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "target": "es3"
   },
   "exclude": [
     "node_modules",

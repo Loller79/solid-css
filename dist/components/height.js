@@ -1,4 +1,9 @@
-import Component from '../libs/component';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var component_1 = __importDefault(require("../libs/component"));
 var data = {
     normal: {
         'ha': '{ "height": "auto" }'
@@ -15,6 +20,6 @@ var data = {
         'mxhd': '{ "max-height": $INTvh }'
     }
 };
-var Height = function (screen) { return new Component('height', data, [], 200, screen); };
-export default Height;
+var Height = function (screen) { return new component_1["default"]('height', data, [], 200, screen); };
+exports["default"] = Height;
 //# sourceMappingURL=height.js.map

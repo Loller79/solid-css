@@ -1,4 +1,9 @@
-import Component from '../libs/component';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var component_1 = __importDefault(require("../libs/component"));
 var data = {
     normal: {
         'wa': '{ "width": "auto" }'
@@ -15,6 +20,6 @@ var data = {
         'mxwd': '{ "max-width": $INTvw }'
     }
 };
-var Width = function (screen) { return new Component('width', data, [], 200, screen); };
-export default Width;
+var Width = function (screen) { return new component_1["default"]('width', data, [], 200, screen); };
+exports["default"] = Width;
 //# sourceMappingURL=width.js.map
