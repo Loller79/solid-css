@@ -1,5 +1,5 @@
 
-# Solid CSS
+# Solid CSS for React Native
 
 The core purpose of this library is to make you forget about writing css code but doing it in a clean way compared to other css frameworks, this is done through a procedural algorithm that builds the most used css properties.
 
@@ -7,51 +7,21 @@ The core purpose of this library is to make you forget about writing css code bu
 
 You can get the latest version on npm/yarn, so to install it execute one of these:
 
--  `npm install solid-css`
--  `yarn add solid-css`
+-  `npm install solid-css-react-native`
+-  `yarn add solid-css-react-native`
 
-Then you'll need to import it along with whatever initializes your project, for example the most common one is probably webpack, so you will have something like this in a webpack dev config:
+Then you'll need to create a new file like styles.js and write something like this:
 
-    import SolidCss from 'solid-css'
+    import SolidCss from 'solid-css-react-native'
+    import { Dimensions } from 'react-native'
     
     
     // Initializes a new css construct with the black and white colors
-    
-    const MyCss = new SolidCss(['black', 'white'])
-    
-    
-    // Builds the development files which contain all the classes
-    
-    MyCss.build()
-
-In the production webpack config you just have to replace the build command with minify, like this:
-
-`MyCss.minify('./path-to-source-files')`
-
-With the same initializations as before, so you could just use the same config and use an if else depending on the environment.
-
-The production files will end up in a folder called "dist", there you will find all the css files that you can import.
-
-To make the filters that use the intensity coefficient you have to define it in your main css file, along with the colors, for example:
-
-    @import url('./dist/solid.css')
+    const MyCss = new SolidCss(['black', 'white'], Dimensions.get('window'))
     
     
-    :root {
-    
-    --intensity: 5px;
-    
-    --black: #000000;
-    
-    --white: #FFFFFF;
-
-    --shadow: rgba(0,0,0,0.1);
-    
-    }
-
-You can also choose a different path than dist for building the css files, by doing this:
-
-`const MyCss = new SolidCss(['black', 'white'], './my-folder/my-subfolder')`
+    // Builds the classes as JS output
+    export default MyCss.build()
 
 # How to use it
 

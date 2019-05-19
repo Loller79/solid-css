@@ -37,10 +37,11 @@ var Component = (function () {
         var line = function (i) { return (i === 0 ? 0 : i + (i / 4)).toString(); };
         return reduce(this.classes.int, function (r, v, k) {
             forEach(_this.length, function (n, i) {
-                r[k + i] = v.replace(regex.width, size(i, _this.screen.width));
-                r[k + i] = v.replace(regex.height, size(i, _this.screen.height));
-                r[k + i] = v.replace(regex.lineHeight, line(i));
-                r[k + i] = v.replace(regex.int, i.toString());
+                r[k + i] = v
+                    .replace(regex.width, size(i, _this.screen.width))
+                    .replace(regex.height, size(i, _this.screen.height))
+                    .replace(regex.lineHeight, line(i))
+                    .replace(regex.int, i.toString());
             });
             return r;
         }, {});

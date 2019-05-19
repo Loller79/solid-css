@@ -8,7 +8,7 @@
     "preserveConstEnums": true,
     "declaration": true,
     "declarationMap": true,
-    "listFiles": true,
+    "listEmittedFiles": true,
     "noEmitOnError": true,
     "strict": true,
     "skipLibCheck": true,
