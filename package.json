@@ -1,6 +1,6 @@
 {
   "name": "solid-css-react-native",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "main": "dist/index.js",
   "author": {
     "name": "Dario Sechi",
@@ -33,7 +33,7 @@
   "scripts": {
     "lint": "standard --fix",
     "test": "jest test",
-    "build": "yarn lint && yarn test && tsc",
+    "build": "rm -rf dist && yarn lint && yarn test && tsc",
     "deploy": "yarn build && yarn publish"
   },
   "devDependencies": {
