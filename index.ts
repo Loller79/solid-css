@@ -121,7 +121,8 @@ class Solid extends Css {
     unordered = reduce(
       search,
       (r: Class, v: string) => {
-        if (has(this.classes, Css.removeQuery(v))) r[v] = get(this.classes, Css.removeQuery(v))
+        if (!has(this.classes, Css.removeQuery(v))) { console.warn(`The class ${v} does not exist`); return r }
+        r[v] = get(this.classes, Css.removeQuery(v))
         return r
       },
       {}
