@@ -1,5 +1,5 @@
 import fs from 'fs-extra'
-import { camelCase, forEach, isObject, mapKeys } from 'lodash'
+import { forEach } from 'lodash'
 import { resolve } from 'path'
 import regex from '../libs/regex'
 
@@ -32,10 +32,6 @@ export async function readFiles (path: string) {
   })
 
   return readable
-}
-
-export function toCamelCase (k: string, v: string | object) {
-  return isObject(v) ? mapKeys(v, (_v: string, _k: string) => camelCase(_k)) : v
 }
 
 export function orderByQuery (a: string, b: string): number {
