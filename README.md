@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Loller79/solid-css.png?branch=master)](https://travis-ci.com/Loller79/solid-css)
+[![codecov](https://codecov.io/gh/Loller79/solid-css/branch/master/graph/badge.svg)](https://codecov.io/gh/Loller79/solid-css)
 
 # Solid CSS
 
