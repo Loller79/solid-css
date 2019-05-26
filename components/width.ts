@@ -1,5 +1,4 @@
 import Component from '../libs/component'
-import { ScaledSize } from 'react-native'
 
 const data = {
   normal: {
@@ -18,6 +17,6 @@ const data = {
   }
 }
 
-const Width = (screen: ScaledSize) => new Component('width', data, [], 200, screen)
+const Width = () => new Component('width', data, [])
 
 export default Width

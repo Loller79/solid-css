@@ -17,6 +17,6 @@ const data = {
   }
 }
 
-const Overflow = new Component('overflow', data)
+const Overflow = () => new Component('overflow', data, [])
 
 export default Overflow

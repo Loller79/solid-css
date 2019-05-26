@@ -1,5 +1,4 @@
 import Component from '../libs/component'
-import { ScaledSize } from 'react-native'
 
 const data = {
   normal: {
@@ -18,6 +17,6 @@ const data = {
   }
 }
 
-const Container = (screen: ScaledSize) => new Component('container', data, [], 200, screen)
+const Container = () => new Component('container', data, [])
 
 export default Container

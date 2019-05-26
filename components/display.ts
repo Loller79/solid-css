@@ -13,6 +13,6 @@ const data = {
   }
 }
 
-const Display = new Component('display', data)
+const Display = () => new Component('display', data, [])
 
 export default Display

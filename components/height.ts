@@ -1,5 +1,4 @@
 import Component from '../libs/component'
-import { ScaledSize } from 'react-native'
 
 const data = {
   normal: {
@@ -18,6 +17,6 @@ const data = {
   }
 }
 
-const Height = (screen: ScaledSize) => new Component('height', data, [], 200, screen)
+const Height = () => new Component('height', data, [])
 
 export default Height

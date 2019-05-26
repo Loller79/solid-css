@@ -6,6 +6,6 @@ const data = {
   }
 }
 
-const Opacity = new Component('opacity', data)
+const Opacity = () => new Component('opacity', data, [])
 
 export default Opacity

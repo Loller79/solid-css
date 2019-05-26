@@ -1,15 +1,14 @@
-import { forEach, reduce } from 'lodash'
+import { forEach, reduce, uniq } from 'lodash'
 import regex from './regex'
-import { toCamelCase } from '../various/utils'
-import { Build, Class, Classes, NativeColor } from '../various/interfaces'
-import { ScaledSize } from 'react-native'
+import { Class, Classes, NativeColor } from '../various/interfaces'
+import Css from './css'
 
-class Component {
+class Component extends Css {
   readonly name: string
   readonly classes: Classes
   readonly colors: Array<NativeColor>
   readonly length: Array<number>
-  readonly screen: ScaledSize
+  readonly regex: Array<string>
 
   /**
    * Create a new Solid Component
@@ -17,20 +16,31 @@ class Component {
    * @param {string} name
    * @param {Classes} classes
    * @param {Array<NativeColor>} colors
-   * @param {number} length
-   * @param {ScaledSize} screen
    */
-  constructor (name: string, classes: Classes, colors: Array<NativeColor> = [], length: number = 101, screen: ScaledSize = {
-    width: 0,
-    height: 0,
-    scale: 0,
-    fontScale: 0
-  }) {
+  constructor (name: string, classes: Classes, colors: Array<NativeColor> = []) {
+    super()
     this.name = name
-    this.classes = { normal: {}, int: {}, color: {}, ...classes }
+    this.classes = { normal: {}, int: {}, color: {}, special: {}, ...classes }
     this.colors = colors
-    this.length = new Array<number>(length).fill(0)
-    this.screen = screen
+    this.length = new Array<number>(101).fill(0)
+    this.regex = []
+  }
+
+  /**
+   * Parse normal classes
+   *
+   * @returns {Class}
+   */
+  parseNormal (): Class {
+    return reduce(
+      this.classes.normal,
+      (r: Class, v: string, k: string) => {
+        r[k] = v
+        this.regex.push(`\\b${k}\\b`)
+        return r
+      },
+      {}
+    )
   }
 
   /**
@@ -39,7 +49,6 @@ class Component {
    * @returns {Class}
    */
   parseInt (): Class {
-    let size = (i: number, j: number = 100) => ( i === 0 ? 0 : ( i / 100 ) * j ).toString()
     let line = (i: number) => ( i === 0 ? 0 : i + ( i / 4 ) ).toString()
 
     return reduce(
@@ -47,11 +56,14 @@ class Component {
       (r: Class, v: string, k: string) => {
         forEach(this.length, (n: number, i: number) => {
           r[k + i] = v
-            .replace(regex.width, size(i, this.screen.width))
-            .replace(regex.height, size(i, this.screen.height))
-            .replace(regex.lineHeight, line(i))
-            .replace(regex.int, i.toString())
+            .replace(regex.width, i.toString() + 'vw')
+            .replace(regex.height, i.toString() + 'vh')
+            .replace(regex.lineHeight, line(i) + 'px')
+            .replace(regex.percent, i.toString() + '%')
+            .replace(regex.zIndex, i.toString())
+            .replace(regex.int, i.toString() + 'px')
         })
+        this.regex.push(`\\b${k}\\d+\\b`)
         return r
       },
       {}
@@ -69,6 +81,33 @@ class Component {
       (r: Class, v: string, k: string) => {
         forEach(this.colors, ({ name, hex }) => {
           r[k + name] = v.replace(regex.color, hex)
+          this.regex.push(`\\b${k + name}\\b`)
+        })
+        return r
+      },
+      {}
+    )
+  }
+
+  /**
+   * Parse special classes to inject both int and colors
+   *
+   * @returns {Class}
+   */
+  parseSpecial (): Class {
+    return reduce(
+      this.classes.special,
+      (r: Class, v: string, k: string) => {
+        forEach(this.length, (n: number, i: number) => {
+          forEach(this.colors, ({ name, hex }) => {
+            r[k
+              .replace(regex.int, i.toString())
+              .replace(regex.color, name)
+              ] = v
+              .replace(regex.int, i.toString())
+              .replace(regex.color, hex)
+            this.regex.push(`\\b${k.replace(regex.int, '\\d+').replace(regex.color, name)}\\b`)
+          })
         })
         return r
       },
@@ -82,44 +121,37 @@ class Component {
    * @returns {Class}
    */
   parseAll (): Class {
-    let normal, int, color
+    let normal, int, color, special
 
-    normal = this.classes.normal
+    normal = this.parseNormal()
     int = this.parseInt()
     color = this.parseColor()
+    special = this.parseSpecial()
 
-    return { ...normal, ...int, ...color }
-  }
-
-  /**
-   * Convert the JSON classes to JS
-   *
-   * @param {Class} classes
-   * @returns {Build}
-   */
-  toJs (classes: Class): Build {
-    return reduce(
-      classes,
-      (r: Class, v: string, k: string) => {
-        r[k] = JSON.parse(v, toCamelCase)
-        return r
-      },
-      {}
-    )
+    return { ...normal, ...int, ...color, ...special }
   }
 
   /**
    * Build the Component
    *
-   * @returns {Build}
+   * @returns {string}
    */
-  build (): Build {
-    let classes: Class, js: Build
+  build (): string {
+    let classes: Class, css: string
 
     classes = this.parseAll()
-    js = this.toJs(classes)
+    css = this.toCss(classes)
 
-    return js
+    return css
+  }
+
+  /**
+   * Get the regex for this component
+   *
+   * @returns {Array<String>}
+   */
+  getRegex (): Array<string> {
+    return uniq(this.regex)
   }
 }
 

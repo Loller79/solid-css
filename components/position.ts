@@ -28,6 +28,6 @@ const data = {
   }
 }
 
-const Position = new Component('position', data, [], 200)
+const Position = () => new Component('position', data, [])
 
 export default Position

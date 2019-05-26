@@ -18,6 +18,6 @@ const data = {
   }
 }
 
-const Text = new Component('text', data)
+const Text = () => new Component('text', data, [])
 
 export default Text

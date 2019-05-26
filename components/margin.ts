@@ -25,6 +25,6 @@ const data = {
   }
 }
 
-const Margin = new Component('margin', data)
+const Margin = () => new Component('margin', data, [])
 
 export default Margin

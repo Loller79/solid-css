@@ -24,6 +24,6 @@ const data = {
   }
 }
 
-const Flex = new Component('flex', data)
+const Flex = () => new Component('flex', data, [])
 
 export default Flex

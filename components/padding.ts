@@ -25,6 +25,6 @@ const data = {
   }
 }
 
-const Padding = new Component('padding', data)
+const Padding = () => new Component('padding', data, [])
 
 export default Padding
