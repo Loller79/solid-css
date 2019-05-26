@@ -19,10 +19,25 @@ class Css {
     this.queries = [{ name: '', width: 0 }, ...queries]
   }
 
+  /**
+   * Convert name and property to a media query css class
+   *
+   * @param {string} name
+   * @param {number} width
+   * @param {string} v
+   * @param {string} k
+   * @returns {string}
+   */
   static toQuery (name: string, width: number, v: string, k: string): string {
     return `${width ? `@media (min-width: ${width}px) { ` : ''}.${name ? `${name}-` : ''}${k} ${v.replace(/"/gm, '').replace(/,/gm, ';')} ${width ? '}' : ''}\n`
   }
 
+  /**
+   * Remove the query piece from a string
+   *
+   * @param {string} v
+   * @returns {string}
+   */
   static removeQuery (v: string) {
     return v.replace(regex.query(''), '')
   }
