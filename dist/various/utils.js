@@ -85,10 +85,6 @@ function readFiles(path) {
     });
 }
 exports.readFiles = readFiles;
-function toCamelCase(k, v) {
-    return lodash_1.isObject(v) ? lodash_1.mapKeys(v, function (_v, _k) { return lodash_1.camelCase(_k); }) : v;
-}
-exports.toCamelCase = toCamelCase;
 function orderByQuery(a, b) {
     var priority = { a: -1, b: -1 };
     if (a.includes('sm-'))
