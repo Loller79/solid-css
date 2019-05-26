@@ -18,6 +18,9 @@ var Css = (function () {
     Css.toQuery = function (name, width, v, k) {
         return (width ? "@media (min-width: " + width + "px) { " : '') + "." + (name ? name + "-" : '') + k + " " + v.replace(/"/gm, '').replace(/,/gm, ';') + " " + (width ? '}' : '') + "\n";
     };
+    Css.removeQuery = function (v) {
+        return v.replace(regex_1["default"].query(''), '');
+    };
     Css.prototype.toCss = function (classes, selective) {
         var _this = this;
         return lodash_1.reduce(classes, function (r, v, k) {

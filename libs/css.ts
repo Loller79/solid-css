@@ -23,6 +23,10 @@ class Css {
     return `${width ? `@media (min-width: ${width}px) { ` : ''}.${name ? `${name}-` : ''}${k} ${v.replace(/"/gm, '').replace(/,/gm, ';')} ${width ? '}' : ''}\n`
   }
 
+  static removeQuery (v: string) {
+    return v.replace(regex.query(''), '')
+  }
+
   /**
    * Convert the JSON classes to CSS
    *

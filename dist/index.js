@@ -157,7 +157,8 @@ var Solid = (function (_super) {
         var _this = this;
         var unordered, ordered;
         unordered = lodash_1.reduce(search, function (r, v) {
-            r[v] = lodash_1.get(_this.classes, v.replace(regex_1["default"].query(''), ''));
+            if (lodash_1.has(_this.classes, css_1["default"].removeQuery(v)))
+                r[v] = lodash_1.get(_this.classes, css_1["default"].removeQuery(v));
             return r;
         }, {});
         ordered = lodash_1.reduce(Object.keys(unordered).sort(utils_1.orderByQuery), function (r, k) {

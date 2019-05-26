@@ -13,7 +13,7 @@ import Shadow from './components/shadow'
 import Text from './components/text'
 import Width from './components/width'
 import ZIndex from './components/zindex'
-import { get, reduce } from 'lodash'
+import { get, has, reduce } from 'lodash'
 import { Class, Components, Minify, NativeColor } from './various/interfaces'
 import Component from './libs/component'
 import { formatBytes, orderByQuery, readFiles } from './various/utils'
@@ -121,7 +121,7 @@ class Solid extends Css {
     unordered = reduce(
       search,
       (r: Class, v: string) => {
-        r[v] = get(this.classes, v.replace(regex.query(''), ''))
+        if (has(this.classes, Css.removeQuery(v))) r[v] = get(this.classes, Css.removeQuery(v))
         return r
       },
       {}

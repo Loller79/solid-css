@@ -13,7 +13,7 @@ describe('Solid Collector', () => {
     colors = [{ name: 'black', hex: '#000' }, { name: 'white', hex: '#FFF' }]
     solid = new Solid(colors)
     path = './temp'
-    file = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Document</title></head><body><div class="df fc jcc aic md-fr bg-black"><span class="white ts24 tfsb"></span></div></body></html>`
+    file = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Document</title></head><body><div class="df fc jcc aic md-fr bg-black pl2 pr2 cn128"><span class="white ts24 tfsb mv2"></span></div></body></html>`
     output = `${path}/solid.css`
 
     fs.mkdirSync(path)
@@ -40,7 +40,7 @@ describe('Solid Collector', () => {
   })
 
   test('Search returns all classes inside the file', async () => {
-    expect(await solid.search('./temp')).toStrictEqual(['df', 'fc', 'jcc', 'aic', 'md-fr', 'bg-black', 'white', 'ts24', 'tfsb'])
+    expect(await solid.search('./temp')).toStrictEqual(['df', 'fc', 'jcc', 'aic', 'md-fr', 'bg-black', 'pl2', 'pr2', 'cn128', 'white', 'ts24', 'tfsb', 'mv2'])
   })
 
   test('Minification works correctly', async () => {
@@ -53,5 +53,9 @@ describe('Solid Collector', () => {
     expect((await solid.minify(path, output)).css).toContain('.white { color: #FFF }')
     expect((await solid.minify(path, output)).css).toContain('.ts24 { font-size: 24px; line-height: 30px }')
     expect((await solid.minify(path, output)).css).toContain('.tfsb { font-weight: 600 }')
+    expect((await solid.minify(path, output)).css).toContain('.pl2 { padding-left: 2px }')
+    expect((await solid.minify(path, output)).css).toContain('.pr2 { padding-right: 2px }')
+    expect((await solid.minify(path, output)).css).toContain('.mv2 { margin-top: 2px; margin-bottom: 2px }')
+    expect((await solid.minify(path, output)).css).not.toContain('.cn128 { width: 128px; height: 128px }')
   })
 })
