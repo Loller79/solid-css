@@ -20,6 +20,6 @@ var data = {
         'ofyv': '{ "overflow-y": "visible" }'
     }
 };
-var Overflow = new component_1["default"]('overflow', data);
+var Overflow = function () { return new component_1["default"]('overflow', data, []); };
 exports["default"] = Overflow;
 //# sourceMappingURL=overflow.js.map

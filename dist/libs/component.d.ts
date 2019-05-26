@@ -1,17 +1,19 @@
-import { Build, Class, Classes, NativeColor } from '../various/interfaces';
-import { ScaledSize } from 'react-native';
-declare class Component {
+import { Class, Classes, NativeColor } from '../various/interfaces';
+import Css from './css';
+declare class Component extends Css {
     readonly name: string;
     readonly classes: Classes;
     readonly colors: Array<NativeColor>;
     readonly length: Array<number>;
-    readonly screen: ScaledSize;
-    constructor(name: string, classes: Classes, colors?: Array<NativeColor>, length?: number, screen?: ScaledSize);
+    readonly regex: Array<string>;
+    constructor(name: string, classes: Classes, colors?: Array<NativeColor>);
+    parseNormal(): Class;
     parseInt(): Class;
     parseColor(): Class;
+    parseSpecial(): Class;
     parseAll(): Class;
-    toJs(classes: Class): Build;
-    build(): Build;
+    build(): string;
+    getRegex(): Array<string>;
 }
 export default Component;
 //# sourceMappingURL=component.d.ts.map

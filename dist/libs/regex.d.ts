@@ -1,5 +1,14 @@
 interface Regex {
-    [index: string]: RegExp;
+    int: RegExp;
+    color: RegExp;
+    media: RegExp;
+    type: RegExp;
+    width: RegExp;
+    height: RegExp;
+    lineHeight: RegExp;
+    percent: RegExp;
+    zIndex: RegExp;
+    query: Function;
 }
 declare const regex: Regex;
 export default regex;

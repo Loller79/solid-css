@@ -1,5 +1,4 @@
 import Component from '../libs/component';
-import { ScaledSize } from 'react-native';
-declare const Width: (screen: ScaledSize) => Component;
+declare const Width: () => Component;
 export default Width;
 //# sourceMappingURL=width.d.ts.map

@@ -1,19 +1,16 @@
 import Solid from '../index'
 import { NativeColor } from '../various/interfaces'
-import { ScaledSize } from 'react-native'
 import fs from 'fs-extra'
 
 describe('Solid Collector', () => {
   let solid: Solid
   let colors: Array<NativeColor>
-  let screen: ScaledSize
   let path: string
   let output: string
   let file: string
 
   beforeAll(() => {
     colors = [{ name: 'black', hex: '#000' }, { name: 'white', hex: '#FFF' }]
-    screen = { width: 375, height: 667, scale: 0, fontScale: 0 }
     solid = new Solid(colors)
     path = './temp'
     file = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Document</title></head><body><div class="df fc jcc aic md-fr bg-black"><span class="white ts24 tfsb"></span></div></body></html>`

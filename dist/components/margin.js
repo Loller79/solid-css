@@ -28,6 +28,6 @@ var data = {
         'mrn': '{ "margin-right": -$INT }'
     }
 };
-var Margin = new component_1["default"]('margin', data);
+var Margin = function () { return new component_1["default"]('margin', data, []); };
 exports["default"] = Margin;
 //# sourceMappingURL=margin.js.map

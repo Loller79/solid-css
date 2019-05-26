@@ -7,7 +7,10 @@ var regex = {
     type: new RegExp(/\.(html|js|jsx|ts)$/, 'gm'),
     width: new RegExp(/\$INTvw/, 'gm'),
     height: new RegExp(/\$INTvh/, 'gm'),
-    lineHeight: new RegExp(/\$LINEHEIGHT/, 'gm')
+    lineHeight: new RegExp(/\$LINEHEIGHT/, 'gm'),
+    percent: new RegExp(/\$INT%/, 'gm'),
+    zIndex: new RegExp(/\$INTzi/, 'gm'),
+    query: function (r) { return new RegExp("(sm-|md-|lg-|xl-|)(" + r + ")", 'gm'); }
 };
 exports["default"] = regex;
 //# sourceMappingURL=regex.js.map

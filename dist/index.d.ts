@@ -1,9 +1,14 @@
-import { ScaledSize } from 'react-native';
-import { Build, NativeColor } from './various/interfaces';
-declare class Solid {
+import { Class, Minify, NativeColor } from './various/interfaces';
+import Css from './libs/css';
+declare class Solid extends Css {
     private readonly components;
-    constructor(colors: Array<NativeColor>, screen: ScaledSize);
-    build(): Build;
+    private classes;
+    private regex;
+    constructor(colors: Array<NativeColor>);
+    minify(path: string, output: string): Promise<Minify>;
+    build(): string;
+    search(path: string): Promise<Array<string>>;
+    getOrderedClassesFromSearch(search: Array<string>): Class;
 }
 export default Solid;
 //# sourceMappingURL=index.d.ts.map

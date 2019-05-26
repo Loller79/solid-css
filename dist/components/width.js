@@ -20,6 +20,6 @@ var data = {
         'mxwd': '{ "max-width": $INTvw }'
     }
 };
-var Width = function (screen) { return new component_1["default"]('width', data, [], 200, screen); };
+var Width = function () { return new component_1["default"]('width', data, []); };
 exports["default"] = Width;
 //# sourceMappingURL=width.js.map

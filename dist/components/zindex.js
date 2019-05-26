@@ -6,9 +6,9 @@ exports.__esModule = true;
 var component_1 = __importDefault(require("../libs/component"));
 var data = {
     int: {
-        'zi': '{ "z-index": $INT }'
+        'zi': '{ "z-index": $INTzi }'
     }
 };
-var ZIndex = new component_1["default"]('zindex', data);
+var ZIndex = function () { return new component_1["default"]('zindex', data, []); };
 exports["default"] = ZIndex;
 //# sourceMappingURL=zindex.js.map

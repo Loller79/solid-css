@@ -21,6 +21,6 @@ var data = {
         'ts': '{ "font-size": $INT, "line-height": $LINEHEIGHT }'
     }
 };
-var Text = new component_1["default"]('text', data);
+var Text = function () { return new component_1["default"]('text', data, []); };
 exports["default"] = Text;
 //# sourceMappingURL=text.js.map

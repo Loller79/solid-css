@@ -20,6 +20,6 @@ var data = {
         'mxhd': '{ "max-height": $INTvh }'
     }
 };
-var Height = function (screen) { return new component_1["default"]('height', data, [], 200, screen); };
+var Height = function () { return new component_1["default"]('height', data, []); };
 exports["default"] = Height;
 //# sourceMappingURL=height.js.map

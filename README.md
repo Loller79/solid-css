@@ -1,5 +1,5 @@
 
-# Solid CSS for React Native
+# Solid CSS
 
 The core purpose of this library is to make you forget about writing css code but doing it in a clean way compared to other css frameworks, this is done through a procedural algorithm that builds the most used css properties.
 
@@ -7,21 +7,21 @@ The core purpose of this library is to make you forget about writing css code bu
 
 You can get the latest version on npm/yarn, so to install it execute one of these:
 
--  `npm install solid-css-react-native`
--  `yarn add solid-css-react-native`
+-  `npm install solid-css`
+-  `yarn add solid-css`
 
-Then you'll need to create a new file like styles.js and write something like this:
+Then you'll need to import it along with whatever initializes your project, for example the most common one is probably webpack, so you will have something like this in a webpack dev config:
 
-    import SolidCss from 'solid-css-react-native'
-    import { Dimensions } from 'react-native'
-    
+    import SolidCss from 'solid-css'
     
     // Initializes a new css construct with the black and white colors
-    const MyCss = new SolidCss(['black', 'white'], Dimensions.get('window'))
+    const MyCss = new SolidCss([{ name: 'black', hex: '#000' }, { name: 'white', hex: '#FFF' }])
     
-    
-    // Builds the classes as JS output
-    export default MyCss.build()
+    // Builds the minified css file based on your classes usage inside the project
+    MyCss.minify('./path-to-source-files', './name-of-the-minified-css.css)
+
+With the same initializations as before, so you could just use the same config and use an if else depending on the environment.
+
 
 # How to use it
 
@@ -188,6 +188,10 @@ The **&** means that it works with dynamic colors.
 -  `fpb$ => applies padding on bottom side with $ px`
 -  `fpl$ => applies padding on left side with $ px`
 -  `fpr$ => applies padding on right side with $ px`
+
+### Placeholder
+
+-  `ph-& => applies placeholder color with & color`
 
 ### Position
 

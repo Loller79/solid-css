@@ -27,6 +27,6 @@ var data = {
         'asc': '{ "align-self": "center" }'
     }
 };
-var Flex = new component_1["default"]('flex', data);
+var Flex = function () { return new component_1["default"]('flex', data, []); };
 exports["default"] = Flex;
 //# sourceMappingURL=flex.js.map

@@ -28,6 +28,6 @@ var data = {
         'prn': '{ "padding-right": -$INT }'
     }
 };
-var Padding = new component_1["default"]('padding', data);
+var Padding = function () { return new component_1["default"]('padding', data, []); };
 exports["default"] = Padding;
 //# sourceMappingURL=padding.js.map

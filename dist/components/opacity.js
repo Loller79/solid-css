@@ -9,6 +9,6 @@ var data = {
         'o': '{ "opacity": $INT }'
     }
 };
-var Opacity = new component_1["default"]('opacity', data);
+var Opacity = function () { return new component_1["default"]('opacity', data, []); };
 exports["default"] = Opacity;
 //# sourceMappingURL=opacity.js.map

@@ -31,6 +31,6 @@ var data = {
         'aprn': '{ "right": "-$INT%" }'
     }
 };
-var Position = new component_1["default"]('position', data, [], 200);
+var Position = function () { return new component_1["default"]('position', data, []); };
 exports["default"] = Position;
 //# sourceMappingURL=position.js.map

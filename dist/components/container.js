@@ -20,6 +20,6 @@ var data = {
         'mxcnd': '{ "max-width": $INTvw, "max-height": $INTvh }'
     }
 };
-var Container = function (screen) { return new component_1["default"]('container', data, [], 200, screen); };
+var Container = function () { return new component_1["default"]('container', data, []); };
 exports["default"] = Container;
 //# sourceMappingURL=container.js.map

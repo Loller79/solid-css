@@ -6,15 +6,25 @@ export interface NativeColor {
 export interface Class {
     [index: string]: string;
 }
+export interface Query {
+    name: string;
+    width: number;
+}
 export interface Classes {
     normal?: Class;
     int?: Class;
     color?: Class;
+    special?: Class;
 }
 export interface Components {
     [index: string]: Component;
 }
-export interface Build {
-    [index: string]: object;
+export interface Minify {
+    css: string;
+    size: {
+        final: string;
+        spared: string;
+    };
+    output: string;
 }
 //# sourceMappingURL=interfaces.d.ts.map

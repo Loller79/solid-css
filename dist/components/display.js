@@ -16,6 +16,6 @@ var data = {
         'cp': '{ "cursor": "pointer" }'
     }
 };
-var Display = new component_1["default"]('display', data);
+var Display = function () { return new component_1["default"]('display', data, []); };
 exports["default"] = Display;
 //# sourceMappingURL=display.js.map
