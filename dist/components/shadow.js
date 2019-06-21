@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var component_1 = __importDefault(require("../libs/component"));
 var data = {
-    int: {
-        's': '{ "elevation": $INT }'
+    special: {
+        's$INT-$COLOR': '{ "box-shadow": "0 0 $INTpx 0 $COLOR" }'
     }
 };
 var Shadow = function (colors) { return new component_1["default"]('shadow', data, colors); };

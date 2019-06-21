@@ -8,6 +8,7 @@ interface Regex {
     lineHeight: RegExp;
     percent: RegExp;
     zIndex: RegExp;
+    opacity: RegExp;
     query: Function;
 }
 declare const regex: Regex;

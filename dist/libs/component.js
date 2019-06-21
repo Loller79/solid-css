@@ -53,6 +53,7 @@ var Component = (function (_super) {
     Component.prototype.parseInt = function () {
         var _this = this;
         var line = function (i) { return (i === 0 ? 0 : i + (i / 4)).toString(); };
+        var opacity = function (i) { return (i / 100).toString(); };
         return lodash_1.reduce(this.classes.int, function (r, v, k) {
             lodash_1.forEach(_this.length, function (n, i) {
                 r[k + i] = v
@@ -61,6 +62,7 @@ var Component = (function (_super) {
                     .replace(regex_1["default"].lineHeight, line(i) + 'px')
                     .replace(regex_1["default"].percent, i.toString() + '%')
                     .replace(regex_1["default"].zIndex, i.toString())
+                    .replace(regex_1["default"].opacity, opacity(i))
                     .replace(regex_1["default"].int, i.toString() + 'px');
             });
             _this.regex.push("\\b" + k + "\\d+\\b");

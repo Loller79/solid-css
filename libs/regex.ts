@@ -8,6 +8,7 @@ interface Regex {
   lineHeight: RegExp,
   percent: RegExp,
   zIndex: RegExp,
+  opacity: RegExp,
   query: Function
 }
 
@@ -21,8 +22,8 @@ const regex: Regex = {
   lineHeight: new RegExp(/\$LINEHEIGHT/, 'gm'),
   percent: new RegExp(/\$INT%/, 'gm'),
   zIndex: new RegExp(/\$INTzi/, 'gm'),
+  opacity: new RegExp(/\$INTop/, 'gm'),
   query: (r: string) => new RegExp(`(sm-|md-|lg-|xl-|)(${r})`, 'gm')
 }
-
 
 export default regex

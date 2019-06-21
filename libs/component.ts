@@ -49,7 +49,8 @@ class Component extends Css {
    * @returns {Class}
    */
   parseInt (): Class {
-    let line = (i: number) => ( i === 0 ? 0 : i + ( i / 4 ) ).toString()
+    let line = (i: number) => (i === 0 ? 0 : i + (i / 4)).toString()
+    let opacity = (i: number) => (i / 100).toString()
 
     return reduce(
       this.classes.int,
@@ -61,6 +62,7 @@ class Component extends Css {
             .replace(regex.lineHeight, line(i) + 'px')
             .replace(regex.percent, i.toString() + '%')
             .replace(regex.zIndex, i.toString())
+            .replace(regex.opacity, opacity(i))
             .replace(regex.int, i.toString() + 'px')
         })
         this.regex.push(`\\b${k}\\d+\\b`)

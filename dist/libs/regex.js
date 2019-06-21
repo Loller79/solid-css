@@ -10,6 +10,7 @@ var regex = {
     lineHeight: new RegExp(/\$LINEHEIGHT/, 'gm'),
     percent: new RegExp(/\$INT%/, 'gm'),
     zIndex: new RegExp(/\$INTzi/, 'gm'),
+    opacity: new RegExp(/\$INTop/, 'gm'),
     query: function (r) { return new RegExp("(sm-|md-|lg-|xl-|)(" + r + ")", 'gm'); }
 };
 exports["default"] = regex;
