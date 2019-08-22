@@ -20,6 +20,7 @@ import { formatBytes, orderByQuery, readFiles } from './various/utils'
 import regex from './libs/regex'
 import Css from './libs/css'
 import fs from 'fs-extra'
+import WillChange from './components/willChange'
 
 class Solid extends Css {
   private readonly components: Components
@@ -48,6 +49,7 @@ class Solid extends Css {
       shadow: Shadow(colors),
       text: Text(),
       width: Width(),
+      willChange: WillChange(),
       zindex: ZIndex()
     }
     this.classes = {}
@@ -104,7 +106,7 @@ class Solid extends Css {
   async search (path: string): Promise<Array<string>> {
     return reduce(
       await readFiles(path),
-      (r: Array<string>, v: string) => [...r, ...( v.match(regex.query(this.regex.join('|'))) || [] )],
+      (r: Array<string>, v: string) => [...r, ...(v.match(regex.query(this.regex.join('|'))) || [])],
       []
     )
   }
@@ -121,7 +123,10 @@ class Solid extends Css {
     unordered = reduce(
       search,
       (r: Class, v: string) => {
-        if (!has(this.classes, Css.removeQuery(v))) { console.warn(`The class ${v} does not exist`); return r }
+        if (!has(this.classes, Css.removeQuery(v))) {
+          console.warn(`The class ${v} does not exist`)
+          return r
+        }
         r[v] = get(this.classes, Css.removeQuery(v))
         return r
       },
