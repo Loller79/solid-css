@@ -82,6 +82,7 @@ var utils_1 = require("./various/utils");
 var regex_1 = __importDefault(require("./libs/regex"));
 var css_1 = __importDefault(require("./libs/css"));
 var fs_extra_1 = __importDefault(require("fs-extra"));
+var willChange_1 = __importDefault(require("./components/willChange"));
 var Solid = (function (_super) {
     __extends(Solid, _super);
     function Solid(colors) {
@@ -101,6 +102,7 @@ var Solid = (function (_super) {
             shadow: shadow_1["default"](colors),
             text: text_1["default"](),
             width: width_1["default"](),
+            willChange: willChange_1["default"](),
             zindex: zindex_1["default"]()
         };
         _this.classes = {};
