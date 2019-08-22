@@ -9,6 +9,8 @@ const data = {
     'fw': '{ "flex-wrap": "wrap" }',
     'ffr': '{ "flex": "initial" }',
     'ff': '{ "flex": 1 }',
+    'fs': '{ "flex-shrink": 1 }',
+    'fsr': '{ "flex-shrink": 0 }',
     'jcfs': '{ "justify-content": "flex-start" }',
     'jcfe': '{ "justify-content": "flex-end" }',
     'jcc': '{ "justify-content": "center" }',
