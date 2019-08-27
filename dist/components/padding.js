@@ -10,9 +10,9 @@ var data = {
         'pha': '{ "padding-top": "auto", "padding-bottom": "auto" }',
         'pva': '{ "padding-left": "auto", "padding-right": "auto" }',
         'pta': '{ "padding-top": "auto" }',
-        'ptb': '{ "padding-bottom": "auto" }',
-        'ptl': '{ "padding-left": "auto" }',
-        'ptr': '{ "padding-right": "auto" }'
+        'pba': '{ "padding-bottom": "auto" }',
+        'pla': '{ "padding-left": "auto" }',
+        'pra': '{ "padding-right": "auto" }'
     },
     int: {
         'p': '{ "padding": $INT }',

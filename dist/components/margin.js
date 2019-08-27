@@ -10,9 +10,9 @@ var data = {
         'mha': '{ "margin-top": "auto", "margin-bottom": "auto" }',
         'mva': '{ "margin-left": "auto", "margin-right": "auto" }',
         'mta': '{ "margin-top": "auto" }',
-        'mtb': '{ "margin-bottom": "auto" }',
-        'mtl': '{ "margin-left": "auto" }',
-        'mtr': '{ "margin-right": "auto" }'
+        'mba': '{ "margin-bottom": "auto" }',
+        'mla': '{ "margin-left": "auto" }',
+        'mra': '{ "margin-right": "auto" }'
     },
     int: {
         'm': '{ "margin": $INT }',

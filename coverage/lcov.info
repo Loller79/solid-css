@@ -1,5 +1,5 @@
 TN:
-SF:/home/dario/Personal/solid-css/index.ts
+SF:/Users/dario/Projects/solid-css/index.ts
 FN:25,(anonymous_21)
 FN:35,Solid
 FN:66,(anonymous_23)
@@ -91,7 +91,7 @@ BRF:7
 BRH:6
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/border.ts
+SF:/Users/dario/Projects/solid-css/components/border.ts
 FN:37,(anonymous_1)
 FNF:1
 FNH:1
@@ -106,7 +106,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/color.ts
+SF:/Users/dario/Projects/solid-css/components/color.ts
 FN:11,(anonymous_1)
 FNF:1
 FNH:1
@@ -121,7 +121,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/container.ts
+SF:/Users/dario/Projects/solid-css/components/container.ts
 FN:20,(anonymous_1)
 FNF:1
 FNH:1
@@ -136,7 +136,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/display.ts
+SF:/Users/dario/Projects/solid-css/components/display.ts
 FN:16,(anonymous_1)
 FNF:1
 FNH:1
@@ -151,7 +151,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/flex.ts
+SF:/Users/dario/Projects/solid-css/components/flex.ts
 FN:29,(anonymous_1)
 FNF:1
 FNH:1
@@ -166,7 +166,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/height.ts
+SF:/Users/dario/Projects/solid-css/components/height.ts
 FN:20,(anonymous_1)
 FNF:1
 FNH:1
@@ -181,7 +181,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/margin.ts
+SF:/Users/dario/Projects/solid-css/components/margin.ts
 FN:28,(anonymous_1)
 FNF:1
 FNH:1
@@ -196,7 +196,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/opacity.ts
+SF:/Users/dario/Projects/solid-css/components/opacity.ts
 FN:9,(anonymous_1)
 FNF:1
 FNH:1
@@ -211,7 +211,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/overflow.ts
+SF:/Users/dario/Projects/solid-css/components/overflow.ts
 FN:20,(anonymous_1)
 FNF:1
 FNH:1
@@ -226,7 +226,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/padding.ts
+SF:/Users/dario/Projects/solid-css/components/padding.ts
 FN:28,(anonymous_1)
 FNF:1
 FNH:1
@@ -241,7 +241,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/position.ts
+SF:/Users/dario/Projects/solid-css/components/position.ts
 FN:31,(anonymous_1)
 FNF:1
 FNH:1
@@ -256,7 +256,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/shadow.ts
+SF:/Users/dario/Projects/solid-css/components/shadow.ts
 FN:10,(anonymous_1)
 FNF:1
 FNH:1
@@ -271,7 +271,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/text.ts
+SF:/Users/dario/Projects/solid-css/components/text.ts
 FN:21,(anonymous_1)
 FNF:1
 FNH:1
@@ -286,7 +286,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/width.ts
+SF:/Users/dario/Projects/solid-css/components/width.ts
 FN:20,(anonymous_1)
 FNF:1
 FNH:1
@@ -301,7 +301,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/willChange.ts
+SF:/Users/dario/Projects/solid-css/components/willChange.ts
 FN:12,(anonymous_1)
 FNF:1
 FNH:1
@@ -316,7 +316,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/components/zindex.ts
+SF:/Users/dario/Projects/solid-css/components/zindex.ts
 FN:9,(anonymous_1)
 FNF:1
 FNH:1
@@ -331,7 +331,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/libs/component.ts
+SF:/Users/dario/Projects/solid-css/libs/component.ts
 FN:6,(anonymous_9)
 FN:20,Component
 FN:34,(anonymous_11)
@@ -435,7 +435,7 @@ BRF:6
 BRH:6
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/libs/css.ts
+SF:/Users/dario/Projects/solid-css/libs/css.ts
 FN:5,(anonymous_1)
 FN:13,Css
 FN:31,(anonymous_3)
@@ -498,7 +498,7 @@ BRF:16
 BRH:13
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/libs/regex.ts
+SF:/Users/dario/Projects/solid-css/libs/regex.ts
 FN:26,(anonymous_0)
 FNF:1
 FNH:1
@@ -512,7 +512,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/dario/Personal/solid-css/various/utils.ts
+SF:/Users/dario/Projects/solid-css/various/utils.ts
 FN:6,getFiles
 FN:11,(anonymous_16)
 FN:11,(anonymous_17)
