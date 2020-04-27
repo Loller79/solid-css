@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1588016335440" clover="3.2.0">
-  <project timestamp="1588016335440" name="All files">
+<coverage generated="1588016382913" clover="3.2.0">
+  <project timestamp="1588016382913" name="All files">
     <metrics statements="233" coveredstatements="232" conditionals="52" coveredconditionals="39" methods="61" coveredmethods="61" elements="346" coveredelements="332" complexity="0" loc="233" ncloc="233" packages="4" files="21" classes="21"/>
     <package name="solid-css">
       <metrics statements="56" coveredstatements="56" conditionals="6" coveredconditionals="5" methods="11" coveredmethods="11"/>
