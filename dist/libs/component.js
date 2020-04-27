@@ -103,7 +103,7 @@ var Component = (function (_super) {
         int = this.parseInt();
         color = this.parseColor();
         special = this.parseSpecial();
-        return __assign({}, normal, int, color, special);
+        return __assign(__assign(__assign(__assign({}, normal), int), color), special);
     };
     Component.prototype.build = function () {
         var classes, css;

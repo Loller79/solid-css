@@ -3,25 +3,27 @@ import { forEach } from 'lodash'
 import { resolve } from 'path'
 import regex from '../libs/regex'
 
-async function getFiles (path: string): Promise<string | Array<string>> {
-  let folders: Array<string>, files: any, output
+function getFiles(path: string): Array<string> {
+  let items: Array<string>, files: Array<string>
 
-  folders = fs.readdirSync(path)
+  items = fs.readdirSync(path)
+  files = []
 
-  files = await Promise.all(folders.map(async (folder: string) => {
-    output = resolve(path, folder)
-    return ( fs.statSync(output) ).isDirectory() ? getFiles(output) : output
-  }))
-
-  files = files.reduce((a: string, f: string) => a.concat(f), [])
+  items.forEach(item => {
+    if (fs.statSync(resolve(path, item)).isDirectory()) {
+      files = files.concat(getFiles(resolve(path, item)))
+    } else {
+      files.push(resolve(path, item))
+    }
+  })
 
   return files
 }
 
-export async function readFiles (path: string) {
+export function readFiles(path: string): Array<string> {
   let files: string | Array<string>, readable: Array<string>
 
-  files = await getFiles(path)
+  files = getFiles(path)
   readable = []
 
   forEach(files, (file: string) => {
@@ -34,7 +36,7 @@ export async function readFiles (path: string) {
   return readable
 }
 
-export function orderByQuery (a: string, b: string): number {
+export function orderByQuery(a: string, b: string): number {
   let priority = { a: -1, b: -1 }
 
   if (a.includes('sm-')) priority.a = 0
@@ -50,4 +52,11 @@ export function orderByQuery (a: string, b: string): number {
   return priority.a - priority.b
 }
 
-export function formatBytes (a: number, b?: number) { if (a === 0) return '0 Bytes'; let c = 1024; let d = b || 2; let e = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']; let f = Math.floor(Math.log(a) / Math.log(c)); return parseFloat((a / Math.pow(c, f)).toFixed(d)) + ' ' + e[f] }
+export function formatBytes(a: number, b?: number) {
+  if (a === 0) return '0 Bytes'
+  let c = 1024
+  let d = b || 2
+  let e = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+  let f = Math.floor(Math.log(a) / Math.log(c))
+  return parseFloat((a / Math.pow(c, f)).toFixed(d)) + ' ' + e[f]
+}

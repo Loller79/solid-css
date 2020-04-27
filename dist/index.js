@@ -24,10 +24,11 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -57,6 +58,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
+};
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -109,14 +117,18 @@ var Solid = (function (_super) {
         _this.regex = [];
         return _this;
     }
-    Solid.prototype.minify = function (path, output) {
+    Solid.prototype.minify = function (output) {
+        var paths = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            paths[_i - 1] = arguments[_i];
+        }
         return __awaiter(this, void 0, void 0, function () {
             var build, search, classes, css, size;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         build = this.build();
-                        return [4, this.search(path)];
+                        return [4, this.search(paths)];
                     case 1:
                         search = _a.sent();
                         classes = this.getOrderedClassesFromSearch(search);
@@ -134,24 +146,16 @@ var Solid = (function (_super) {
     Solid.prototype.build = function () {
         var _this = this;
         return lodash_1.reduce(this.components, function (r, v) {
-            _this.classes = __assign({}, _this.classes, v.parseAll());
-            _this.regex = _this.regex.concat(v.getRegex());
+            _this.classes = __assign(__assign({}, _this.classes), v.parseAll());
+            _this.regex = __spreadArrays(_this.regex, v.getRegex());
             return r + v.build();
         }, '');
     };
-    Solid.prototype.search = function (path) {
+    Solid.prototype.search = function (paths) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a;
             var _this = this;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = lodash_1.reduce;
-                        return [4, utils_1.readFiles(path)];
-                    case 1: return [2, _a.apply(void 0, [_b.sent(),
-                            function (r, v) { return r.concat((v.match(regex_1["default"].query(_this.regex.join('|'))) || [])); },
-                            []])];
-                }
+            return __generator(this, function (_a) {
+                return [2, lodash_1.reduce(lodash_1.reduce(paths, function (r, v) { return __spreadArrays(r, utils_1.readFiles(v)); }, []), function (r, v) { return __spreadArrays(r, (v.match(regex_1["default"].query(_this.regex.join('|'))) || [])); }, [])];
             });
         });
     };

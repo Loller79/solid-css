@@ -5,9 +5,9 @@ declare class Solid extends Css {
     private classes;
     private regex;
     constructor(colors: Array<NativeColor>);
-    minify(path: string, output: string): Promise<Minify>;
+    minify(output: string, ...paths: Array<string>): Promise<Minify>;
     build(): string;
-    search(path: string): Promise<Array<string>>;
+    search(paths: Array<string>): Promise<Array<string>>;
     getOrderedClassesFromSearch(search: Array<string>): Class;
 }
 export default Solid;

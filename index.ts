@@ -32,7 +32,7 @@ class Solid extends Css {
    *
    * @param {Array<NativeColor>} colors
    */
-  constructor (colors: Array<NativeColor>) {
+  constructor(colors: Array<NativeColor>) {
     super()
     this.components = {
       border: Border(colors),
@@ -50,7 +50,7 @@ class Solid extends Css {
       text: Text(),
       width: Width(),
       willChange: WillChange(),
-      zindex: ZIndex()
+      zindex: ZIndex(),
     }
     this.classes = {}
     this.regex = []
@@ -59,20 +59,20 @@ class Solid extends Css {
   /**
    * Minify css based on used classes
    *
-   * @param {string} path
+   * @param {Array<string>} paths
    * @param {string} output
    * @returns {Promise<Minify>}
    */
-  async minify (path: string, output: string): Promise<Minify> {
-    let build: string, search: Array<string>, classes: Class, css: string, size: { final: string, spared: string }
+  async minify(output: string, ...paths: Array<string>): Promise<Minify> {
+    let build: string, search: Array<string>, classes: Class, css: string, size: { final: string; spared: string }
 
     build = this.build()
-    search = await this.search(path)
+    search = await this.search(paths)
     classes = this.getOrderedClassesFromSearch(search)
     css = this.toCss(classes, true)
     size = {
       final: formatBytes(Buffer.from(css).length),
-      spared: formatBytes(Buffer.from(build).length - Buffer.from(css).length)
+      spared: formatBytes(Buffer.from(build).length - Buffer.from(css).length),
     }
 
     fs.outputFileSync(output, css)
@@ -85,7 +85,7 @@ class Solid extends Css {
    *
    * @returns {string}
    */
-  build (): string {
+  build(): string {
     return reduce(
       this.components,
       (r: string, v: Component) => {
@@ -100,12 +100,12 @@ class Solid extends Css {
   /**
    * Search for class matches of the files inside the path
    *
-   * @param {string} path
+   * @param {Array<string>} paths
    * @returns {Promise<Array<string>>}
    */
-  async search (path: string): Promise<Array<string>> {
+  async search(paths: Array<string>): Promise<Array<string>> {
     return reduce(
-      await readFiles(path),
+      reduce(paths, (r: Array<string>, v: string) => [...r, ...readFiles(v)], []),
       (r: Array<string>, v: string) => [...r, ...(v.match(regex.query(this.regex.join('|'))) || [])],
       []
     )
@@ -117,7 +117,7 @@ class Solid extends Css {
    * @param {Array<string>} search
    * @returns {Class}
    */
-  getOrderedClassesFromSearch (search: Array<string>): Class {
+  getOrderedClassesFromSearch(search: Array<string>): Class {
     let unordered: Class, ordered: Class
 
     unordered = reduce(

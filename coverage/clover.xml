@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1566897544369" clover="3.2.0">
-  <project timestamp="1566897544369" name="All files">
-    <metrics statements="226" coveredstatements="226" conditionals="54" coveredconditionals="41" methods="62" coveredmethods="62" elements="342" coveredelements="329" complexity="0" loc="226" ncloc="226" packages="4" files="21" classes="21"/>
+<coverage generated="1588016335440" clover="3.2.0">
+  <project timestamp="1588016335440" name="All files">
+    <metrics statements="233" coveredstatements="232" conditionals="52" coveredconditionals="39" methods="61" coveredmethods="61" elements="346" coveredelements="332" complexity="0" loc="233" ncloc="233" packages="4" files="21" classes="21"/>
     <package name="solid-css">
-      <metrics statements="56" coveredstatements="56" conditionals="7" coveredconditionals="6" methods="10" coveredmethods="10"/>
-      <file name="index.ts" path="/Users/dario/Projects/solid-css/index.ts">
-        <metrics statements="56" coveredstatements="56" conditionals="7" coveredconditionals="6" methods="10" coveredmethods="10"/>
+      <metrics statements="56" coveredstatements="56" conditionals="6" coveredconditionals="5" methods="11" coveredmethods="11"/>
+      <file name="index.ts" path="/home/dario/Personal/solid-css/index.ts">
+        <metrics statements="56" coveredstatements="56" conditionals="6" coveredconditionals="5" methods="11" coveredmethods="11"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -32,7 +32,7 @@
         <line num="37" count="1" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
         <line num="69" count="1" type="stmt"/>
         <line num="70" count="1" type="stmt"/>
         <line num="71" count="1" type="stmt"/>
@@ -46,7 +46,7 @@
         <line num="93" count="32" type="stmt"/>
         <line num="94" count="32" type="stmt"/>
         <line num="106" count="1" type="stmt"/>
-        <line num="107" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="107" count="2" type="stmt"/>
         <line num="108" count="2" type="stmt"/>
         <line num="109" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="120" count="1" type="stmt"/>
@@ -66,112 +66,112 @@
     </package>
     <package name="solid-css.components">
       <metrics statements="64" coveredstatements="64" conditionals="0" coveredconditionals="0" methods="16" coveredmethods="16"/>
-      <file name="border.ts" path="/Users/dario/Projects/solid-css/components/border.ts">
+      <file name="border.ts" path="/home/dario/Personal/solid-css/components/border.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
       </file>
-      <file name="color.ts" path="/Users/dario/Projects/solid-css/components/color.ts">
+      <file name="color.ts" path="/home/dario/Personal/solid-css/components/color.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
       </file>
-      <file name="container.ts" path="/Users/dario/Projects/solid-css/components/container.ts">
+      <file name="container.ts" path="/home/dario/Personal/solid-css/components/container.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
       </file>
-      <file name="display.ts" path="/Users/dario/Projects/solid-css/components/display.ts">
+      <file name="display.ts" path="/home/dario/Personal/solid-css/components/display.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
       </file>
-      <file name="flex.ts" path="/Users/dario/Projects/solid-css/components/flex.ts">
+      <file name="flex.ts" path="/home/dario/Personal/solid-css/components/flex.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
       </file>
-      <file name="height.ts" path="/Users/dario/Projects/solid-css/components/height.ts">
+      <file name="height.ts" path="/home/dario/Personal/solid-css/components/height.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
       </file>
-      <file name="margin.ts" path="/Users/dario/Projects/solid-css/components/margin.ts">
+      <file name="margin.ts" path="/home/dario/Personal/solid-css/components/margin.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
       </file>
-      <file name="opacity.ts" path="/Users/dario/Projects/solid-css/components/opacity.ts">
+      <file name="opacity.ts" path="/home/dario/Personal/solid-css/components/opacity.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
       </file>
-      <file name="overflow.ts" path="/Users/dario/Projects/solid-css/components/overflow.ts">
+      <file name="overflow.ts" path="/home/dario/Personal/solid-css/components/overflow.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
       </file>
-      <file name="padding.ts" path="/Users/dario/Projects/solid-css/components/padding.ts">
+      <file name="padding.ts" path="/home/dario/Personal/solid-css/components/padding.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
       </file>
-      <file name="position.ts" path="/Users/dario/Projects/solid-css/components/position.ts">
+      <file name="position.ts" path="/home/dario/Personal/solid-css/components/position.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
         <line num="33" count="1" type="stmt"/>
       </file>
-      <file name="shadow.ts" path="/Users/dario/Projects/solid-css/components/shadow.ts">
+      <file name="shadow.ts" path="/home/dario/Personal/solid-css/components/shadow.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
       </file>
-      <file name="text.ts" path="/Users/dario/Projects/solid-css/components/text.ts">
+      <file name="text.ts" path="/home/dario/Personal/solid-css/components/text.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
       </file>
-      <file name="width.ts" path="/Users/dario/Projects/solid-css/components/width.ts">
+      <file name="width.ts" path="/home/dario/Personal/solid-css/components/width.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
       </file>
-      <file name="willChange.ts" path="/Users/dario/Projects/solid-css/components/willChange.ts">
+      <file name="willChange.ts" path="/home/dario/Personal/solid-css/components/willChange.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
       </file>
-      <file name="zindex.ts" path="/Users/dario/Projects/solid-css/components/zindex.ts">
+      <file name="zindex.ts" path="/home/dario/Personal/solid-css/components/zindex.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -181,7 +181,7 @@
     </package>
     <package name="solid-css.libs">
       <metrics statements="76" coveredstatements="76" conditionals="22" coveredconditionals="19" methods="28" coveredmethods="28"/>
-      <file name="component.ts" path="/Users/dario/Projects/solid-css/libs/component.ts">
+      <file name="component.ts" path="/home/dario/Personal/solid-css/libs/component.ts">
         <metrics statements="51" coveredstatements="51" conditionals="6" coveredconditionals="6" methods="19" coveredmethods="19"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -235,7 +235,7 @@
         <line num="158" count="2" type="stmt"/>
         <line num="160" count="2" type="stmt"/>
       </file>
-      <file name="css.ts" path="/Users/dario/Projects/solid-css/libs/css.ts">
+      <file name="css.ts" path="/home/dario/Personal/solid-css/libs/css.ts">
         <metrics statements="22" coveredstatements="22" conditionals="16" coveredconditionals="13" methods="8" coveredmethods="8"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
@@ -260,7 +260,7 @@
         <line num="74" count="2" type="stmt"/>
         <line num="76" count="2" type="stmt"/>
       </file>
-      <file name="regex.ts" path="/Users/dario/Projects/solid-css/libs/regex.ts">
+      <file name="regex.ts" path="/home/dario/Personal/solid-css/libs/regex.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="15" count="2" type="stmt"/>
         <line num="26" count="39" type="stmt"/>
@@ -268,39 +268,46 @@
       </file>
     </package>
     <package name="solid-css.various">
-      <metrics statements="30" coveredstatements="30" conditionals="25" coveredconditionals="16" methods="8" coveredmethods="8"/>
-      <file name="utils.ts" path="/Users/dario/Projects/solid-css/various/utils.ts">
-        <metrics statements="30" coveredstatements="30" conditionals="25" coveredconditionals="16" methods="8" coveredmethods="8"/>
+      <metrics statements="37" coveredstatements="36" conditionals="24" coveredconditionals="15" methods="6" coveredmethods="6"/>
+      <file name="utils.ts" path="/home/dario/Personal/solid-css/various/utils.ts">
+        <metrics statements="37" coveredstatements="36" conditionals="24" coveredconditionals="15" methods="6" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
         <line num="13" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="24" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="25" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
         <line num="27" count="2" type="stmt"/>
-        <line num="28" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="29" count="2" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="38" count="27" type="stmt"/>
-        <line num="40" count="27" type="cond" truecount="1" falsecount="1"/>
-        <line num="41" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="27" type="stmt"/>
         <line num="42" count="27" type="cond" truecount="1" falsecount="1"/>
-        <line num="43" count="27" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="27" type="cond" truecount="1" falsecount="1"/>
         <line num="45" count="27" type="cond" truecount="1" falsecount="1"/>
-        <line num="46" count="27" type="cond" truecount="2" falsecount="0"/>
         <line num="47" count="27" type="cond" truecount="1" falsecount="1"/>
-        <line num="48" count="27" type="cond" truecount="1" falsecount="1"/>
-        <line num="50" count="27" type="stmt"/>
-        <line num="53" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="48" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="27" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="27" type="cond" truecount="1" falsecount="1"/>
+        <line num="52" count="27" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="58" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
       </file>
     </package>
   </project>

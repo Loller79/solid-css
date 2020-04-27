@@ -47,11 +47,11 @@ describe('Solid Collector', () => {
   })
 
   test('Search returns all classes inside the file', async () => {
-    expect(await solid.search('./temp')).toStrictEqual(['df', 'fc', 'jcc', 'aic', 'md-fr', 'bg-black', 'pl2', 'pr2', 'cn128', 'white', 'ts24', 'tfsb', 'mv2'])
+    expect(await solid.search(['./temp'])).toStrictEqual(['df', 'fc', 'jcc', 'aic', 'md-fr', 'bg-black', 'pl2', 'pr2', 'cn128', 'white', 'ts24', 'tfsb', 'mv2'])
   })
 
   test('Minify method works', async () => {
-    minify = await solid.minify(path, output)
+    minify = await solid.minify(output, path)
     expect(minify).toBeTruthy()
   })
 
