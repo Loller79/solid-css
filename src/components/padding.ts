@@ -11,17 +11,17 @@ const data = {
     pra: '{ "padding-right": "auto" }'
   },
   int: {
-    p: '{ "padding": $INT }',
-    pv: '{ "padding-top": $INT, "padding-bottom": $INT }',
-    ph: '{ "padding-left": $INT, "padding-right": $INT }',
-    pt: '{ "padding-top": $INT }',
-    pb: '{ "padding-bottom": $INT }',
-    pl: '{ "padding-left": $INT }',
-    pr: '{ "padding-right": $INT }',
-    ptn: '{ "padding-top": -$INT }',
-    pbn: '{ "padding-bottom": -$INT }',
-    pln: '{ "padding-left": -$INT }',
-    prn: '{ "padding-right": -$INT }'
+    p: '{ "padding": $INTpx }',
+    pv: '{ "padding-top": $INTpx, "padding-bottom": $INTpx }',
+    ph: '{ "padding-left": $INTpx, "padding-right": $INTpx }',
+    pt: '{ "padding-top": $INTpx }',
+    pb: '{ "padding-bottom": $INTpx }',
+    pl: '{ "padding-left": $INTpx }',
+    pr: '{ "padding-right": $INTpx }',
+    ptn: '{ "padding-top": -$INTpx }',
+    pbn: '{ "padding-bottom": -$INTpx }',
+    pln: '{ "padding-left": -$INTpx }',
+    prn: '{ "padding-right": -$INTpx }'
   }
 }
 

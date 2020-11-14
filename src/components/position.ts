@@ -2,21 +2,21 @@ import Component from '../libs/component'
 
 const data = {
   normal: {
-    fp: '{ "position": "fixed" }',
-    rp: '{ "position": "relative" }',
-    ap: '{ "position": "absolute" }',
-    sp: '{ "position": "sticky" }',
-    dp: '{ "position": "static" }'
+    pof: '{ "position": "fixed" }',
+    por: '{ "position": "relative" }',
+    poa: '{ "position": "absolute" }',
+    posy: '{ "position": "sticky" }',
+    posc: '{ "position": "static" }'
   },
   int: {
-    at: '{ "top": $INT }',
-    ab: '{ "bottom": $INT }',
-    al: '{ "left": $INT }',
-    ar: '{ "right": $INT }',
-    atn: '{ "top": -$INT }',
-    abn: '{ "bottom": -$INT }',
-    aln: '{ "left": -$INT }',
-    arn: '{ "right": -$INT }',
+    at: '{ "top": $INTpx }',
+    ab: '{ "bottom": $INTpx }',
+    al: '{ "left": $INTpx }',
+    ar: '{ "right": $INTpx }',
+    atn: '{ "top": -$INTpx }',
+    abn: '{ "bottom": -$INTpx }',
+    aln: '{ "left": -$INTpx }',
+    arn: '{ "right": -$INTpx }',
     apt: '{ "top": "$INT%" }',
     apb: '{ "bottom": "$INT%" }',
     apl: '{ "left": "$INT%" }',

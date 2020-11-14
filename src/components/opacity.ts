@@ -2,7 +2,7 @@ import Component from '../libs/component'
 
 const data = {
   int: {
-    o: '{ "opacity": $INTop }'
+    o: '{ "opacity": $OPACITY }'
   }
 }
 

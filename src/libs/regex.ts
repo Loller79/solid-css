@@ -5,10 +5,10 @@ const Regex = {
   type: /\.(html|js|jsx|ts|tsx|vue)$/gm,
   width: /\$INTvw/gm,
   height: /\$INTvh/gm,
-  lineHeight: /\$LINEHEIGHT/gm,
+  lineHeight: /\$LINE_HEIGHT/gm,
   percent: /\$INT%/gm,
   zIndex: /\$INTzi/gm,
-  opacity: /\$INTop/gm,
+  opacity: /\$OPACITY/gm,
   query: (r: string) => new RegExp(`(sm-|md-|lg-|xl-|)(${r})`, 'gm')
 }
 

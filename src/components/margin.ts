@@ -11,17 +11,17 @@ const data = {
     mra: '{ "margin-right": "auto" }'
   },
   int: {
-    m: '{ "margin": $INT }',
-    mv: '{ "margin-top": $INT, "margin-bottom": $INT }',
-    mh: '{ "margin-left": $INT, "margin-right": $INT }',
-    mt: '{ "margin-top": $INT }',
-    mb: '{ "margin-bottom": $INT }',
-    ml: '{ "margin-left": $INT }',
-    mr: '{ "margin-right": $INT }',
-    mtn: '{ "margin-top": -$INT }',
-    mbn: '{ "margin-bottom": -$INT }',
-    mln: '{ "margin-left": -$INT }',
-    mrn: '{ "margin-right": -$INT }'
+    m: '{ "margin": $INTpx }',
+    mv: '{ "margin-top": $INTpx, "margin-bottom": $INTpx }',
+    mh: '{ "margin-left": $INTpx, "margin-right": $INTpx }',
+    mt: '{ "margin-top": $INTpx }',
+    mb: '{ "margin-bottom": $INTpx }',
+    ml: '{ "margin-left": $INTpx }',
+    mr: '{ "margin-right": $INTpx }',
+    mtn: '{ "margin-top": -$INTpx }',
+    mbn: '{ "margin-bottom": -$INTpx }',
+    mln: '{ "margin-left": -$INTpx }',
+    mrn: '{ "margin-right": -$INTpx }'
   }
 }
 

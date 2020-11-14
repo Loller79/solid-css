@@ -2,7 +2,7 @@ import Component from '../libs/component'
 
 const data = {
   int: {
-    zi: '{ "z-index": $INTzi }'
+    zi: '{ "z-index": $INT }'
   }
 }
 

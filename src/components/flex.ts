@@ -2,15 +2,12 @@ import Component from '../libs/component'
 
 const data = {
   normal: {
-    frr: '{ "flex-direction": "row-reverse" }',
-    fr: '{ "flex-direction": "row" }',
-    fcr: '{ "flex-direction": "column-reverse" }',
-    fc: '{ "flex-direction": "column" }',
+    f1: '{ "flex": 1 }',
     fw: '{ "flex-wrap": "wrap" }',
-    ffr: '{ "flex": "initial" }',
-    ff: '{ "flex": 1 }',
-    fs: '{ "flex-shrink": 1 }',
-    fsr: '{ "flex-shrink": 0 }',
+    fdr: '{ "flex-direction": "row" }',
+    fdrr: '{ "flex-direction": "row-reverse" }',
+    fdc: '{ "flex-direction": "column" }',
+    fdcr: '{ "flex-direction": "column-reverse" }',
     jcfs: '{ "justify-content": "flex-start" }',
     jcfe: '{ "justify-content": "flex-end" }',
     jcc: '{ "justify-content": "center" }',

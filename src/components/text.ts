@@ -2,11 +2,11 @@ import Component from '../libs/component'
 
 const data = {
   normal: {
-    tfl: '{ "font-weight": 300 }',
-    tfr: '{ "font-weight": 400 }',
-    tfm: '{ "font-weight": 500 }',
-    tfsb: '{ "font-weight": 600 }',
-    tfb: '{ "font-weight": 700 }',
+    twl: '{ "font-weight": 300 }',
+    twr: '{ "font-weight": 400 }',
+    twm: '{ "font-weight": 500 }',
+    twsb: '{ "font-weight": 600 }',
+    twb: '{ "font-weight": 700 }',
     tal: '{ "text-align": "left" }',
     tac: '{ "text-align": "center" }',
     tar: '{ "text-align": "right" }',
@@ -14,7 +14,7 @@ const data = {
     tdu: '{ "text-decoration": "underline" }'
   },
   int: {
-    ts: '{ "font-size": $INT, "line-height": $LINEHEIGHT }'
+    ts: '{ "font-size": $INTpx, "line-height": $LINE_HEIGHT }'
   }
 }
 
