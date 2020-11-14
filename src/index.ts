@@ -24,7 +24,6 @@ import { formatBytes, orderByQuery, readFiles } from './various/utils'
 
 class Solid extends Css {
   private readonly components: Components
-
   private classes: Class
   private regex: string[]
 

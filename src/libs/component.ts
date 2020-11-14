@@ -18,7 +18,7 @@ class Component extends CSS {
     this.name = name
     this.classes = { normal: {}, int: {}, color: {}, special: {}, ...classes }
     this.colors = colors
-    this.length = new Array<number>(100 + 1).fill(0).map((v, k: number) => k)
+    this.length = new Array<number>(101).fill(0)
     this.regex = []
   }
 
@@ -41,14 +41,21 @@ class Component extends CSS {
    * Parse int classes to inject numbers
    */
   parseInt(): Class {
+    let line = (i: number) => (i === 0 ? 0 : i + i / 4).toString()
+    let opacity = (i: number) => (i / 100).toString()
+
     return reduce(
       this.classes.int,
       (r: Class, v: string, k: string) => {
-        forEach(this.length, (i: number) => {
+        forEach(this.length, (n: number, i: number) => {
           r[k + i] = v
-            .replace(regex.lineHeight, (i === 0 ? 0 : i + i / 4).toString() + 'px')
-            .replace(regex.opacity, (i / 100).toString())
-            .replace(regex.int, i.toString())
+            .replace(regex.width, i.toString() + 'vw')
+            .replace(regex.height, i.toString() + 'vh')
+            .replace(regex.lineHeight, line(i) + 'px')
+            .replace(regex.percent, i.toString() + '%')
+            .replace(regex.zIndex, i.toString())
+            .replace(regex.opacity, opacity(i))
+            .replace(regex.int, i.toString() + 'px')
         })
         this.regex.push(`\\b${k}\\d+\\b`)
         return r
@@ -81,7 +88,7 @@ class Component extends CSS {
     return reduce(
       this.classes.special,
       (r: Class, v: string, k: string) => {
-        forEach(this.length, (i: number) => {
+        forEach(this.length, (n: number, i: number) => {
           forEach(this.colors, ({ name, hex }) => {
             r[k.replace(regex.int, i.toString()).replace(regex.color, name)] = v.replace(regex.int, i.toString()).replace(regex.color, hex)
             this.regex.push(`\\b${k.replace(regex.int, '\\d+').replace(regex.color, name)}\\b`)

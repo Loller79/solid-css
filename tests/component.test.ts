@@ -44,7 +44,7 @@ describe('Int Component', () => {
   let build: string
 
   beforeAll(() => {
-    classes = { int: { w: '{ "width": $INTpx}', wp: '{ "width": "$INT%" }', wd: '{ "width": $INTvw } ' } }
+    classes = { int: { w: '{ "width": $INT }', wp: '{ "width": "$INT%" }', wd: '{ "width": $INTvw } ' } }
     component = new Component('component', classes, [])
   })
 

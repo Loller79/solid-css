@@ -5,15 +5,15 @@ const data = {
     wa: '{ "width": "auto" }'
   },
   int: {
-    w: '{ "width": $INTpx }',
-    mnw: '{ "min-width": $INTpx }',
-    mxw: '{ "max-width": $INTpx }',
+    w: '{ "width": $INT }',
+    mnw: '{ "min-width": $INT }',
+    mxw: '{ "max-width": $INT }',
     wp: '{ "width": "$INT%" }',
     mnwp: '{ "min-width": "$INT%" }',
     mxwp: '{ "max-width": "$INT%" }',
     wd: '{ "width": $INTvw }',
-    mnwv: '{ "min-width": $INTvw }',
-    mxwv: '{ "max-width": $INTvw }'
+    mnwd: '{ "min-width": $INTvw }',
+    mxwd: '{ "max-width": $INTvw }'
   }
 }
 

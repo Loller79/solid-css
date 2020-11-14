@@ -5,15 +5,15 @@ const data = {
     ha: '{ "height": "auto" }'
   },
   int: {
-    h: '{ "height": $INTpx }',
-    mnh: '{ "min-height": $INTpx }',
-    mxh: '{ "max-height": $INTpx }',
+    h: '{ "height": $INT }',
+    mnh: '{ "min-height": $INT }',
+    mxh: '{ "max-height": $INT }',
     hp: '{ "height": "$INT%" }',
     mnhp: '{ "min-height": "$INT%" }',
     mxhp: '{ "max-height": "$INT%" }',
-    hv: '{ "height": $INTvh }',
-    mnhv: '{ "min-height": $INTvh }',
-    mxhv: '{ "max-height": $INTvh }'
+    hd: '{ "height": $INTvh }',
+    mnhd: '{ "min-height": $INTvh }',
+    mxhd: '{ "max-height": $INTvh }'
   }
 }
 
