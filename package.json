@@ -1,48 +1,33 @@
 {
-  "name": "solid-css",
-  "version": "1.0.45",
-  "main": "dist/index.js",
-  "author": {
-    "name": "Dario Sechi",
-    "email": "dario.sechi.rnd@gmail.com",
-    "url": "http://dariosechi.it"
-  },
+  "name": "@queelag/css",
+  "version": "1.1.0",
+  "main": "index.js",
+  "author": "Dario Sechi",
   "license": "MIT",
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.11.2",
+    "@types/fs-extra": "^9.0.4",
+    "@types/jest": "^26.0.15",
+    "@types/lodash": "^4.14.164",
+    "@types/node": "^14.14.6",
+    "jest": "^26.6.3",
+    "terser-webpack-plugin": "^5.0.3",
+    "ts-jest": "^26.4.3",
+    "ts-loader": "^8.0.9",
+    "typescript": "^4.0.5",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
+  },
   "dependencies": {
-    "fs-extra": "^8.0.1",
+    "fs-extra": "^9.0.1",
     "lodash": "^4.17.11"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Loller79/solid-css"
-  },
-  "homepage": "http://dariosechi.it",
-  "keywords": [
-    "solid",
-    "css",
-    "library",
-    "free",
-    "open",
-    "source"
-  ],
-  "bugs": {
-    "email": "dario.sechi.rnd@gmail.com",
-    "url": "https://github.com/Loller79/solid-css/issues"
-  },
   "scripts": {
-    "lint": "standard --fix",
-    "test": "jest test",
-    "build": "rm -rf dist && yarn lint && yarn test && tsc",
-    "deploy": "yarn build && yarn publish"
-  },
-  "devDependencies": {
-    "@types/fs-extra": "^7.0.0",
-    "@types/jest": "^24.0.13",
-    "@types/lodash": "^4.14.129",
-    "@types/node": "^12.0.2",
-    "jest": "^24.8.0",
-    "standard": "^12.0.1",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.4.5"
+    "start": "node dist/index.js",
+    "build": "rm -rf dist && rm -rf declarations && yarn webpack",
+    "test": "yarn jest index",
+    "tarball": "yarn version && cp package.json dist/. && cd dist && yarn pack",
+    "dts": "yarn api-extractor run --local",
+    "deploy": "yarn test && MODE=PRODUCTION yarn build && yarn dts && yarn tarball && yarn publish dist/*.tgz --access public && git push"
   }
 }

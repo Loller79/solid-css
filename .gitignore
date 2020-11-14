@@ -1,4 +1,10 @@
-node_modules/
+# FOLDERS
+coverage
+declarations
+dist
+node_modules
+
+# FILES
 yarn.lock
 .DS_Store
 .idea
