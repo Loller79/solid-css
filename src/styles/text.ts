@@ -2,22 +2,30 @@ import { TextStyle } from 'react-native'
 import { Style } from '../definitions/types'
 
 const Text: Style<TextStyle> = {
-  // COLOR
-  c: {
-    color: 'COLOR'
-  },
-  // FONT SIZE
   fs: {
     fontSize: 0
   },
-  // FONT STYLE
   fstn: {
     fontStyle: 'normal'
   },
   fsti: {
     fontStyle: 'italic'
   },
-  // FONT WEIGHT
+  fvln: {
+    fontVariant: ['lining-nums']
+  },
+  fvosn: {
+    fontVariant: ['oldstyle-nums']
+  },
+  fvpn: {
+    fontVariant: ['proportional-nums']
+  },
+  fvsc: {
+    fontVariant: ['small-caps']
+  },
+  fvtn: {
+    fontVariant: ['tabular-nums']
+  },
   fw100: {
     fontWeight: '100'
   },
@@ -45,29 +53,20 @@ const Text: Style<TextStyle> = {
   fw900: {
     fontWeight: '900'
   },
-  // INCLUDE FONT PADDING
   ifpf: {
     includeFontPadding: false
   },
   ifpt: {
     includeFontPadding: true
   },
-  // LETTER SPACING
-  ls: {
-    letterSpacing: 0
-  },
   lh: {
     lineHeight: 0
   },
-  // TEXT ALIGN
+  ls: {
+    letterSpacing: 0
+  },
   taa: {
     textAlign: 'auto'
-  },
-  tat: {
-    textAlign: 'left'
-  },
-  tar: {
-    textAlign: 'right'
   },
   tac: {
     textAlign: 'center'
@@ -75,12 +74,14 @@ const Text: Style<TextStyle> = {
   taj: {
     textAlign: 'justify'
   },
-  // TEXT ALIGN VERTICAL
+  tal: {
+    textAlign: 'left'
+  },
+  tar: {
+    textAlign: 'right'
+  },
   tava: {
     textAlignVertical: 'auto'
-  },
-  tavt: {
-    textAlignVertical: 'top'
   },
   tavb: {
     textAlignVertical: 'bottom'
@@ -88,64 +89,53 @@ const Text: Style<TextStyle> = {
   tavc: {
     textAlignVertical: 'center'
   },
-  // TEXT DECORATION LINE
+  tavt: {
+    textAlignVertical: 'top'
+  },
+  tdc: {
+    textDecorationColor: 'COLOR'
+  },
+  tdllt: {
+    textDecorationLine: 'line-through'
+  },
   tdln: {
     textDecorationLine: 'none'
   },
   tdlu: {
     textDecorationLine: 'underline'
   },
-  tdllt: {
-    textDecorationLine: 'line-through'
-  },
   tdlult: {
     textDecorationLine: 'underline line-through'
-  },
-  // TEXT DECORATION STYLE
-  tdss: {
-    textDecorationStyle: 'solid'
-  },
-  tdsdb: {
-    textDecorationStyle: 'double'
-  },
-  tdsdt: {
-    textDecorationStyle: 'dotted'
   },
   tdsds: {
     textDecorationStyle: 'dashed'
   },
-  tdc: {
-    textDecorationColor: 'COLOR'
+  tdsdt: {
+    textDecorationStyle: 'dotted'
   },
-  // TEXT SHADOW
+  tdsdb: {
+    textDecorationStyle: 'double'
+  },
+  tdss: {
+    textDecorationStyle: 'solid'
+  },
   tsc: {
     textShadowColor: 'COLOR'
   },
   tsr: {
     textShadowRadius: 0
   },
-  // TEXT TRANSFORM
-  ttn: {
-    textTransform: 'none'
-  },
   ttc: {
     textTransform: 'capitalize'
-  },
-  ttu: {
-    textTransform: 'uppercase'
   },
   ttl: {
     textTransform: 'lowercase'
   },
-  // WRITING DIRECTION
-  wda: {
-    writingDirection: 'auto'
+  ttn: {
+    textTransform: 'none'
   },
-  wdltr: {
-    writingDirection: 'ltr'
-  },
-  wdrtl: {
-    writingDirection: 'rtl'
+  ttu: {
+    textTransform: 'uppercase'
   }
 }
 

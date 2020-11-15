@@ -2,65 +2,56 @@ import { FlexStyle } from 'react-native'
 import { Style } from '../definitions/types'
 
 const Flex: Style<FlexStyle> = {
-  acfs: {
-    alignContent: 'flex-start'
+  acc: {
+    alignContent: 'center'
   },
   acfe: {
     alignContent: 'flex-end'
   },
-  acc: {
-    alignContent: 'center'
-  },
-  acs: {
-    alignContent: 'stretch'
-  },
-  acsb: {
-    alignContent: 'space-between'
+  acfs: {
+    alignContent: 'flex-start'
   },
   acsa: {
     alignContent: 'space-around'
   },
-  aifs: {
-    alignItems: 'flex-start'
+  acsb: {
+    alignContent: 'space-between'
   },
-  aife: {
-    alignItems: 'flex-end'
-  },
-  aic: {
-    alignItems: 'center'
-  },
-  ais: {
-    alignItems: 'stretch'
+  acs: {
+    alignContent: 'stretch'
   },
   aib: {
     alignItems: 'baseline'
   },
+  aic: {
+    alignItems: 'center'
+  },
+  aife: {
+    alignItems: 'flex-end'
+  },
+  aifs: {
+    alignItems: 'flex-start'
+  },
+  ais: {
+    alignItems: 'stretch'
+  },
   asa: {
     alignSelf: 'auto'
-  },
-  asfs: {
-    alignSelf: 'flex-start'
-  },
-  asfe: {
-    alignSelf: 'flex-end'
-  },
-  asc: {
-    alignSelf: 'center'
-  },
-  ass: {
-    alignSelf: 'stretch'
   },
   asb: {
     alignSelf: 'baseline'
   },
-  di: {
-    direction: 'inherit'
+  asc: {
+    alignSelf: 'center'
   },
-  dltr: {
-    direction: 'ltr'
+  asfe: {
+    alignSelf: 'flex-end'
   },
-  drtl: {
-    direction: 'rtl'
+  asfs: {
+    alignSelf: 'flex-start'
+  },
+  ass: {
+    alignSelf: 'stretch'
   },
   f: {
     flex: 0
@@ -71,17 +62,17 @@ const Flex: Style<FlexStyle> = {
   fbp: {
     flexBasis: '%'
   },
-  fdr: {
-    flexDirection: 'row'
-  },
   fdc: {
     flexDirection: 'column'
   },
-  fdrr: {
-    flexDirection: 'row-reverse'
-  },
   fdcr: {
     flexDirection: 'column-reverse'
+  },
+  fdr: {
+    flexDirection: 'row'
+  },
+  fdrr: {
+    flexDirection: 'row-reverse'
   },
   fg: {
     flexGrow: 0
@@ -89,29 +80,29 @@ const Flex: Style<FlexStyle> = {
   fsh: {
     flexShrink: 0
   },
-  fww: {
-    flexWrap: 'wrap'
-  },
   fwnw: {
     flexWrap: 'nowrap'
+  },
+  fww: {
+    flexWrap: 'wrap'
   },
   fwwr: {
     flexWrap: 'wrap-reverse'
   },
-  jcfs: {
-    justifyContent: 'flex-start'
+  jcc: {
+    justifyContent: 'center'
   },
   jcfe: {
     justifyContent: 'flex-end'
   },
-  jcc: {
-    justifyContent: 'center'
-  },
-  jcsb: {
-    justifyContent: 'space-between'
+  jcfs: {
+    justifyContent: 'flex-start'
   },
   jcsa: {
     justifyContent: 'space-around'
+  },
+  jcsb: {
+    justifyContent: 'space-between'
   },
   jcse: {
     justifyContent: 'space-evenly'

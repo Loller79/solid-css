@@ -2,77 +2,59 @@ import { ViewStyle } from 'react-native'
 import { Style } from '../definitions/types'
 
 const Border: Style<ViewStyle> = {
+  bc: {
+    borderColor: 'COLOR'
+  },
   bbc: {
     borderBottomColor: 'COLOR'
   },
-  bber: {
-    borderBottomEndRadius: 0
+  blc: {
+    borderLeftColor: 'COLOR'
   },
-  bbel: {
+  brc: {
+    borderRightColor: 'COLOR'
+  },
+  btc: {
+    borderTopColor: 'COLOR'
+  },
+  br: {
+    borderRadius: 0
+  },
+  bblr: {
     borderBottomLeftRadius: 0
   },
   bbrr: {
     borderBottomRightRadius: 0
   },
-  bbsr: {
-    borderBottomStartRadius: 0
-  },
-  bbw: {
-    borderBottomWidth: 0
-  },
-  bc: {
-    borderColor: 'COLOR'
-  },
-  bec: {
-    borderEndColor: 'COLOR'
-  },
-  blc: {
-    borderLeftColor: 'COLOR'
-  },
-  blw: {
-    borderLeftWidth: 0
-  },
-  br: {
-    borderRadius: 0
-  },
-  brc: {
-    borderRightColor: 'COLOR'
-  },
-  brw: {
-    borderRightWidth: 0
-  },
-  bsc: {
-    borderStartColor: 'COLOR'
-  },
-  bss: {
-    borderStyle: 'solid'
-  },
-  bsdt: {
-    borderStyle: 'dotted'
-  },
-  bsds: {
-    borderStyle: 'dashed'
-  },
-  btc: {
-    borderTopColor: 'COLOR'
-  },
-  bter: {
-    borderTopEndRadius: 0
+  btrr: {
+    borderTopRightRadius: 0
   },
   btlr: {
     borderTopLeftRadius: 0
   },
-  btrr: {
-    borderTopRightRadius: 0
+  bsds: {
+    borderStyle: 'dashed'
   },
-  btsr: {
-    borderTopStartRadius: 0
+  bsdt: {
+    borderStyle: 'dotted'
   },
-  btw: {
-    borderTopWidth: 0
+  bss: {
+    borderStyle: 'solid'
   },
   bw: {
     borderWidth: 0
+  },
+  bbw: {
+    borderBottomWidth: 0
+  },
+  blw: {
+    borderLeftWidth: 0
+  },
+  brw: {
+    borderRightWidth: 0
+  },
+  btw: {
+    borderTopWidth: 0
   }
 }
 

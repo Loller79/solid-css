@@ -14,18 +14,6 @@ const Margin: Style<FlexStyle> = {
   mbp: {
     marginBottom: '%'
   },
-  me: {
-    marginEnd: 0
-  },
-  mep: {
-    marginEnd: '%'
-  },
-  mh: {
-    marginHorizontal: 0
-  },
-  mhp: {
-    marginHorizontal: '%'
-  },
   ml: {
     marginLeft: 0
   },
@@ -38,17 +26,17 @@ const Margin: Style<FlexStyle> = {
   mrp: {
     marginRight: '%'
   },
-  ms: {
-    marginStart: 0
-  },
-  msp: {
-    marginStart: '%'
-  },
   mt: {
     marginTop: 0
   },
   mtp: {
     marginTop: '%'
+  },
+  mh: {
+    marginHorizontal: 0
+  },
+  mhp: {
+    marginHorizontal: '%'
   },
   mv: {
     marginVertical: 0

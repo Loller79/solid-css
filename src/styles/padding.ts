@@ -14,18 +14,6 @@ const Padding: Style<FlexStyle> = {
   pbp: {
     paddingBottom: '%'
   },
-  pe: {
-    paddingEnd: 0
-  },
-  pep: {
-    paddingEnd: '%'
-  },
-  ph: {
-    paddingHorizontal: 0
-  },
-  php: {
-    paddingHorizontal: '%'
-  },
   pl: {
     paddingLeft: 0
   },
@@ -38,17 +26,17 @@ const Padding: Style<FlexStyle> = {
   prp: {
     paddingRight: '%'
   },
-  ps: {
-    paddingStart: 0
-  },
-  psp: {
-    paddingStart: '%'
-  },
   pt: {
     paddingTop: 0
   },
   ptp: {
     paddingTop: '%'
+  },
+  ph: {
+    paddingHorizontal: 0
+  },
+  php: {
+    paddingHorizontal: '%'
   },
   pv: {
     paddingVertical: 0

@@ -1,9 +1,10 @@
-import { filter, forEach, max, reduce, uniq } from 'lodash'
+import { filter, forEach, reduce, uniq } from 'lodash'
 import { ScaledSize } from 'react-native'
 import { Color, Style } from './definitions/types'
 import Aspect from './styles/aspect'
 import Backface from './styles/backface'
 import Border from './styles/border'
+import ColorStyle from './styles/color'
 import Display from './styles/display'
 import Flex from './styles/flex'
 import Height from './styles/height'
@@ -12,30 +13,27 @@ import Opacity from './styles/opacity'
 import Overflow from './styles/overflow'
 import Padding from './styles/padding'
 import Position from './styles/position'
+import Resize from './styles/resize'
 import Shadow from './styles/shadow'
 import Text from './styles/text'
 import Width from './styles/width'
 import ZIndex from './styles/z.index'
 
-class CSSConstructor {
-  colors: Color[]
-  compiled: Style<any>
-  source: Style<any>
-  window: ScaledSize
+class CSS {
+  private readonly colors: Color[]
+  private readonly source: Style<any>
+  private readonly window: ScaledSize
 
-  constructor() {
-    this.colors = []
-    this.compiled = {}
-    this.source = {}
-    this.window = { fontScale: 0, height: 0, scale: 0, width: 0 }
-  }
+  private compiled: Style<any>
 
-  initialize(colors: Color[], window: ScaledSize) {
+  constructor(colors: Color[], window: ScaledSize) {
     this.colors = colors
+    this.compiled = {}
     this.source = {
       ...Aspect,
       ...Backface,
       ...Border,
+      ...ColorStyle,
       ...Display,
       ...Flex,
       ...Height,
@@ -44,24 +42,33 @@ class CSSConstructor {
       ...Overflow,
       ...Padding,
       ...Position,
+      ...Resize,
       ...Shadow,
       ...Text,
       ...Width,
       ...ZIndex
     }
     this.window = window
-
-    this.compiled = this.compile()
   }
 
   compile(): Style<any> {
-    return reduce(
+    reduce(
       this.source,
       (r: Style<any>, v: any, k: string) => {
         forEach(v, (w: boolean | number | string, l: string) => {
           switch (true) {
-            case typeof w === 'number':
-              for (let i = 0; i <= max([this.window.width, this.window.height]); i++) {
+            case typeof w === 'number' && w === 0:
+              for (let i = 0; i <= 100; i++) {
+                r[k + i] = { [l]: i }
+              }
+              break
+            case typeof w === 'number' && w === 1:
+              for (let i = 0; i <= this.window.height; i++) {
+                r[k + i] = { [l]: i }
+              }
+              break
+            case typeof w === 'number' && w === 2:
+              for (let i = 0; i <= this.window.width; i++) {
                 r[k + i] = { [l]: i }
               }
               break
@@ -82,7 +89,7 @@ class CSSConstructor {
               break
             case typeof w === 'string' && w === 'COLOR':
               for (let i = 0; i < this.colors.length; i++) {
-                r[k + '-' + this.colors[i].name] = { [l]: this.colors[i].hex }
+                r[k + (k ? '-' : '') + this.colors[i].name] = { [l]: this.colors[i].hex }
               }
               break
             default:
@@ -93,27 +100,31 @@ class CSSConstructor {
 
         return r
       },
-      {}
+      this.compiled
     )
+
+    return this.compiled
   }
 
   derive(style: string): Style<any> {
-    return reduce(
-      style.split(' '),
-      (r: Style<any>, k: string) => {
-        let v: any
+    let split: string[], value: any, keys: string[], values: any[], output: Style<any>
 
-        v = this.compiled[k]
-        if (!v) return r
+    split = style.split(' ')
+    output = {}
 
-        forEach(v, (v: boolean | number | string, k: string) => {
-          r[k] = v
-        })
+    for (let i = 0; i < split.length; i++) {
+      value = this.compiled[split[i]]
+      if (!value) continue
 
-        return r
-      },
-      {}
-    )
+      keys = Object.keys(value)
+      values = Object.values(value)
+
+      for (let j = 0; j < split.length; j++) {
+        output[keys[j]] = values[j]
+      }
+    }
+
+    return output
   }
 
   get duplicates(): string[] {
@@ -121,5 +132,4 @@ class CSSConstructor {
   }
 }
 
-const CSS = new CSSConstructor()
 export default CSS

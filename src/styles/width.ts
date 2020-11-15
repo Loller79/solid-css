@@ -2,17 +2,17 @@ import { FlexStyle } from 'react-native'
 import { Style } from '../definitions/types'
 
 const Width: Style<FlexStyle> = {
-  mxw: {
-    maxWidth: 0
+  w: {
+    width: 2
   },
-  mxwp: {
-    maxWidth: '%'
+  wp: {
+    width: '%'
   },
-  mxwv: {
-    maxWidth: 'WINDOW_WIDTH'
+  wv: {
+    width: 'WINDOW_WIDTH'
   },
   mnw: {
-    minWidth: 0
+    minWidth: 2
   },
   mnwp: {
     minWidth: '%'
@@ -20,14 +20,14 @@ const Width: Style<FlexStyle> = {
   mnwv: {
     minWidth: 'WINDOW_WIDTH'
   },
-  w: {
-    width: 0
+  mxw: {
+    maxWidth: 2
   },
-  wp: {
-    width: '%'
+  mxwp: {
+    maxWidth: '%'
   },
-  wv: {
-    width: 'WINDOW_WIDTH'
+  mxwv: {
+    maxWidth: 'WINDOW_WIDTH'
   }
 }
 
