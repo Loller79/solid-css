@@ -1,6 +1,6 @@
 {
-  "name": "@queelag/css",
-  "version": "1.1.0",
+  "name": "@queelag/css-react-native",
+  "version": "1.0.0",
   "main": "index.js",
   "author": "Dario Sechi",
   "license": "MIT",
@@ -10,7 +10,9 @@
     "@types/jest": "^26.0.15",
     "@types/lodash": "^4.14.164",
     "@types/node": "^14.14.6",
+    "@types/react-native": "^0.63.35",
     "jest": "^26.6.3",
+    "react": "^17.0.1",
     "terser-webpack-plugin": "^5.0.3",
     "ts-jest": "^26.4.3",
     "ts-loader": "^8.0.9",

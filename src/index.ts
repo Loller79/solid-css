@@ -1,135 +1,125 @@
-import fs from 'fs-extra'
-import { get, has, reduce } from 'lodash'
-import Border from './components/border'
-import Color from './components/color'
-import Container from './components/container'
-import Display from './components/display'
-import Flex from './components/flex'
-import Height from './components/height'
-import Margin from './components/margin'
-import Opacity from './components/opacity'
-import Overflow from './components/overflow'
-import Padding from './components/padding'
-import Position from './components/position'
-import Shadow from './components/shadow'
-import Text from './components/text'
-import Width from './components/width'
-import WillChange from './components/willChange'
-import ZIndex from './components/zindex'
-import Component from './libs/component'
-import Css from './libs/css'
-import regex from './libs/regex'
-import { Class, Components, Minify, NativeColor } from './various/interfaces'
-import { formatBytes, orderByQuery, readFiles } from './various/utils'
+import { filter, forEach, max, reduce, uniq } from 'lodash'
+import { ScaledSize } from 'react-native'
+import { Color, Style } from './definitions/types'
+import Aspect from './styles/aspect'
+import Backface from './styles/backface'
+import Border from './styles/border'
+import Display from './styles/display'
+import Flex from './styles/flex'
+import Height from './styles/height'
+import Margin from './styles/margin'
+import Opacity from './styles/opacity'
+import Overflow from './styles/overflow'
+import Padding from './styles/padding'
+import Position from './styles/position'
+import Shadow from './styles/shadow'
+import Text from './styles/text'
+import Width from './styles/width'
+import ZIndex from './styles/z.index'
 
-class Solid extends Css {
-  private readonly components: Components
-  private classes: Class
-  private regex: string[]
+class CSSConstructor {
+  colors: Color[]
+  compiled: Style<any>
+  source: Style<any>
+  window: ScaledSize
 
-  /**
-   * Create a new Solid Instance
-   */
-  constructor(colors: NativeColor[]) {
-    super()
-    this.components = {
-      border: Border(colors),
-      color: Color(colors),
-      container: Container(),
-      display: Display(),
-      flex: Flex(),
-      height: Height(),
-      margin: Margin(),
-      opacity: Opacity(),
-      overflow: Overflow(),
-      padding: Padding(),
-      position: Position(),
-      shadow: Shadow(colors),
-      text: Text(),
-      width: Width(),
-      willChange: WillChange(),
-      zindex: ZIndex()
+  constructor() {
+    this.colors = []
+    this.compiled = {}
+    this.source = {}
+    this.window = { fontScale: 0, height: 0, scale: 0, width: 0 }
+  }
+
+  initialize(colors: Color[], window: ScaledSize) {
+    this.colors = colors
+    this.source = {
+      ...Aspect,
+      ...Backface,
+      ...Border,
+      ...Display,
+      ...Flex,
+      ...Height,
+      ...Margin,
+      ...Opacity,
+      ...Overflow,
+      ...Padding,
+      ...Position,
+      ...Shadow,
+      ...Text,
+      ...Width,
+      ...ZIndex
     }
-    this.classes = {}
-    this.regex = []
+    this.window = window
+
+    this.compiled = this.compile()
   }
 
-  /**
-   * Minify css based on used classes
-   */
-  async minify(output: string, ...paths: string[]): Promise<Minify> {
-    let build: string, search: string[], classes: Class, css: string, size: { final: string; spared: string }
-
-    build = this.build()
-    search = await this.search(paths)
-    classes = this.getOrderedClassesFromSearch(search)
-    css = this.toCSS(classes, true)
-    size = {
-      final: formatBytes(Buffer.from(css).length),
-      spared: formatBytes(Buffer.from(build).length - Buffer.from(css).length)
-    }
-
-    fs.outputFileSync(output, css)
-
-    return { css, size, output }
-  }
-
-  /**
-   * Build the components
-   */
-  build(): string {
+  compile(): Style<any> {
     return reduce(
-      this.components,
-      (r: string, v: Component) => {
-        this.classes = { ...this.classes, ...v.parseAll() }
-        this.regex = [...this.regex, ...v.getRegex()]
-        return r + v.build()
-      },
-      ''
-    )
-  }
+      this.source,
+      (r: Style<any>, v: any, k: string) => {
+        forEach(v, (w: boolean | number | string, l: string) => {
+          switch (true) {
+            case typeof w === 'number':
+              for (let i = 0; i <= max([this.window.width, this.window.height]); i++) {
+                r[k + i] = { [l]: i }
+              }
+              break
+            case typeof w === 'string' && w === '%':
+              for (let i = 0; i <= 100; i++) {
+                r[k + i] = { [l]: i + '%' }
+              }
+              break
+            case typeof w === 'string' && w === 'WINDOW_WIDTH':
+              for (let i = 100; i >= 0; i--) {
+                r[k + i] = { [l]: (this.window.width * i) / 100 }
+              }
+              break
+            case typeof w === 'string' && w === 'WINDOW_HEIGHT':
+              for (let i = 100; i >= 0; i--) {
+                r[k + i] = { [l]: (this.window.height * i) / 100 }
+              }
+              break
+            case typeof w === 'string' && w === 'COLOR':
+              for (let i = 0; i < this.colors.length; i++) {
+                r[k + '-' + this.colors[i].name] = { [l]: this.colors[i].hex }
+              }
+              break
+            default:
+              r[k] = { [l]: w }
+              break
+          }
+        })
 
-  /**
-   * Search for class matches of the files inside the path
-   */
-  async search(paths: string[]): Promise<string[]> {
-    return reduce(
-      reduce(paths, (r: string[], v: string) => [...r, ...readFiles(v)], []),
-      (r: string[], v: string) => [...r, ...(v.match(regex.query(this.regex.join('|'))) || [])],
-      []
-    )
-  }
-
-  /**
-   * Get the ordered classes from the search
-   */
-  getOrderedClassesFromSearch(search: string[]): Class {
-    let unordered: Class, ordered: Class
-
-    unordered = reduce(
-      search,
-      (r: Class, v: string) => {
-        if (!has(this.classes, Css.removeQuery(v))) {
-          console.warn(`The class ${v} does not exist`)
-          return r
-        }
-        r[v] = get(this.classes, Css.removeQuery(v))
         return r
       },
       {}
     )
+  }
 
-    ordered = reduce(
-      Object.keys(unordered).sort(orderByQuery),
-      (r: Class, k: string) => {
-        r[k] = unordered[k]
+  derive(style: string): Style<any> {
+    return reduce(
+      style.split(' '),
+      (r: Style<any>, k: string) => {
+        let v: any
+
+        v = this.compiled[k]
+        if (!v) return r
+
+        forEach(v, (v: boolean | number | string, k: string) => {
+          r[k] = v
+        })
+
         return r
       },
       {}
     )
+  }
 
-    return ordered
+  get duplicates(): string[] {
+    return uniq(filter(Object.keys(this.source), (v, i, a: any) => a.indexOf(v) !== i))
   }
 }
 
-export default Solid
+const CSS = new CSSConstructor()
+export default CSS
