@@ -3,7 +3,7 @@ import { Style } from '../definitions/types'
 
 const Opacity: Style<ViewStyle> = {
   o: {
-    opacity: 0
+    opacity: '%' as any
   }
 }
 

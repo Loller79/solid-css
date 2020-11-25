@@ -2,39 +2,39 @@ import { FlexStyle } from 'react-native'
 import { Style } from '../definitions/types'
 
 const Container: Style<FlexStyle> = {
-  cn: {
+  hw: {
     height: 3,
     width: 3
   },
-  cnp: {
+  hwp: {
     height: '%',
     width: '%'
   },
-  cnv: {
+  hwv: {
     height: 'WINDOW_HEIGHT',
     width: 'WINDOW_WIDTH'
   },
-  mncn: {
+  mnhw: {
     minHeight: 3,
     minWidth: 3
   },
-  mncnp: {
+  mnhwp: {
     minHeight: '%',
     minWidth: '%'
   },
-  mncnv: {
+  mnhwv: {
     minHeight: 'WINDOW_HEIGHT',
     minWidth: 'WINDOW_WIDTH'
   },
-  mxcn: {
+  mxhw: {
     maxHeight: 3,
     maxWidth: 3
   },
-  mxcnp: {
+  mxhwp: {
     maxHeight: '%',
     maxWidth: '%'
   },
-  mxcnv: {
+  mxhwv: {
     maxHeight: 'WINDOW_HEIGHT',
     maxWidth: 'WINDOW_WIDTH'
   }

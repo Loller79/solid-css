@@ -13,18 +13,19 @@ describe('CSS', () => {
 
   it('compiles', () => {
     css.compile()
-    expect(Object.keys(css.style)).toHaveLength(40344)
+    expect(Object.keys(css.style)).toHaveLength(44441)
   })
 
   it('derives', () => {
-    expect(css.derive('wp100 hv50 bg-black white br100 bw1 bc-white false-positive')).toMatchObject({
+    expect(css.derive('wp100 hv50 bg-black white br100 bw1 bc-white false-positive o50')).toMatchObject({
       width: '100%',
       height: '50vh',
       backgroundColor: '#000',
       color: '#fff',
       borderRadius: '100px',
       borderWidth: '1px',
-      borderColor: '#fff'
+      borderColor: '#fff',
+      opacity: '50%'
     })
   })
 

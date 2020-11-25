@@ -157,7 +157,30 @@ class CSS {
   }
 
   get duplicates(): string[] {
-    return uniq(filter(Object.keys(this.source), (v, i, a: any) => a.indexOf(v) !== i))
+    return uniq(
+      filter(
+        [
+          ...Object.keys(Backface),
+          ...Object.keys(Border),
+          ...Object.keys(ColorStyle),
+          ...Object.keys(Container),
+          ...Object.keys(Cursor),
+          ...Object.keys(Display),
+          ...Object.keys(Flex),
+          ...Object.keys(Height),
+          ...Object.keys(Margin),
+          ...Object.keys(Opacity),
+          ...Object.keys(Overflow),
+          ...Object.keys(Padding),
+          ...Object.keys(Position),
+          ...Object.keys(Text),
+          ...Object.keys(Width),
+          ...Object.keys(WillChange),
+          ...Object.keys(ZIndex)
+        ],
+        (v, i, a: any) => a.indexOf(v) !== i
+      )
+    )
   }
 }
 
