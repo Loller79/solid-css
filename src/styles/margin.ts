@@ -33,16 +33,20 @@ const Margin: Style<FlexStyle> = {
     marginTop: '%'
   },
   mh: {
-    marginHorizontal: 0
+    marginLeft: 0,
+    marginRight: 0
   },
   mhp: {
-    marginHorizontal: '%'
+    marginLeft: '%',
+    marginRight: '%'
   },
   mv: {
-    marginVertical: 0
+    marginTop: 0,
+    marginBottom: 0
   },
   mvp: {
-    marginVertical: '%'
+    marginTop: '%',
+    marginBottom: '%'
   }
 }
 

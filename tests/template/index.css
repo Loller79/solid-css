@@ -1,0 +1,20 @@
+.w300 { width: 300px; }
+.h500 { height: 500px; }
+.bg-black { background-color: #000; }
+.white { color: #fff; }
+.p20 { padding: 20px; }
+.df { display: flex; }
+.fdc { flex-direction: column; }
+.br5 { border-radius: 5px; }
+.fs32 { font-size: 32px; line-height: 32px; }
+.fw700 { font-weight: 700; }
+.fs16 { font-size: 16px; line-height: 16px; }
+.mt20 { margin-top: 20px; }
+.wp100 { width: 100%; }
+.hv50 { height: 50vh; }
+.br100 { border-radius: 100px; }
+.bw1 { border-width: 1px; }
+@media (min-width: 568px) { .sm-wp20 { width: 20%; } }
+@media (min-width: 768px) { .md-wp40 { width: 40%; } }
+@media (min-width: 1024px) { .lg-wp60 { width: 60%; } }
+@media (min-width: 1280px) { .xl-wp80 { width: 80%; } }

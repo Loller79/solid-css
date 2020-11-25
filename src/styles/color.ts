@@ -7,12 +7,6 @@ const Color: Style<ImageStyle & TextStyle> = {
   },
   bg: {
     backgroundColor: 'COLOR'
-  },
-  oc: {
-    overlayColor: 'COLOR'
-  },
-  tc: {
-    tintColor: 'COLOR'
   }
 }
 

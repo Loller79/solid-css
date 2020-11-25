@@ -1,30 +1,29 @@
+import fs from 'fs'
 import CSS from '../src/index'
 
 describe('CSS', () => {
   let css: CSS
 
   beforeAll(() => {
-    css = new CSS(
-      [
-        { name: 'black', hex: '#000' },
-        { name: 'white', hex: '#fff' }
-      ],
-      { fontScale: 0, height: 512, scale: 0, width: 256 }
-    )
+    css = new CSS([
+      { name: 'black', hex: '#000' },
+      { name: 'white', hex: '#fff' }
+    ])
   })
 
   it('compiles', () => {
-    expect(Object.keys(css.compile())).toHaveLength(9793)
+    css.compile()
+    expect(Object.keys(css.style)).toHaveLength(40344)
   })
 
   it('derives', () => {
     expect(css.derive('wp100 hv50 bg-black white br100 bw1 bc-white false-positive')).toMatchObject({
       width: '100%',
-      height: 256,
+      height: '50vh',
       backgroundColor: '#000',
       color: '#fff',
-      borderRadius: 100,
-      borderWidth: 1,
+      borderRadius: '100px',
+      borderWidth: '1px',
       borderColor: '#fff'
     })
   })
@@ -32,4 +31,27 @@ describe('CSS', () => {
   it('has no duplicates', () => {
     expect(css.duplicates).toHaveLength(0)
   })
+
+  it('extrapolates', () => {
+    expect(css.extrapolate('./tests/template/')).toHaveLength(20)
+  })
+
+  it('writes', () => {
+    css.write('./tests/template/', './tests/template/index.css')
+    expect(fs.readFileSync('./tests/template/index.css', 'utf8').length).toBe(699)
+  })
+
+  // it('watches', () => {
+  //   let watcher: FSWatcher
+
+  //   watcher = css.watch('./tests/template', './tests/template/index.css')
+
+  //   fs.writeFileSync('./tests/template/temporary.html', '<div class="w128 h128"></div>', 'utf8')
+
+  //   expect(fs.readFileSync('./tests/template/index.css').length).toBe(943)
+
+  //   fs.rmSync('./tests/template/temporary.html')
+
+  //   expect(fs.readFileSync('./tests/template/index.css').length).toBe(699)
+  // })
 })

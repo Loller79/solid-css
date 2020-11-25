@@ -1,6 +1,6 @@
 {
-  "name": "@queelag/css-react-native",
-  "version": "1.0.1",
+  "name": "@queelag/css",
+  "version": "1.0.0",
   "main": "index.js",
   "author": "Dario Sechi",
   "license": "MIT",

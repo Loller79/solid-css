@@ -5,8 +5,14 @@ const Position: Style<FlexStyle> = {
   psa: {
     position: 'absolute'
   },
+  psf: {
+    position: 'fixed' as any
+  },
   psr: {
     position: 'relative'
+  },
+  pss: {
+    position: 'sticky' as any
   },
   b: {
     bottom: 0

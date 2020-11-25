@@ -33,16 +33,20 @@ const Padding: Style<FlexStyle> = {
     paddingTop: '%'
   },
   ph: {
-    paddingHorizontal: 0
+    paddingLeft: 0,
+    paddingRight: 0
   },
   php: {
-    paddingHorizontal: '%'
+    paddingLeft: '%',
+    paddingRight: '%'
   },
   pv: {
-    paddingVertical: 0
+    paddingTop: 0,
+    paddingBottom: 0
   },
   pvp: {
-    paddingVertical: '%'
+    paddingTop: '%',
+    paddingBottom: '%'
   }
 }
 

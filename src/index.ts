@@ -1,10 +1,14 @@
-import { filter, forEach, reduce, uniq } from 'lodash'
-import { ScaledSize } from 'react-native'
-import { Color, Style } from './definitions/types'
-import Aspect from './styles/aspect'
+import fs, { Dirent, FSWatcher } from 'fs'
+import { filter, uniq } from 'lodash'
+import { Color, Compiled, Style } from './definitions/types'
+import Compile from './modules/compile'
+import Convert from './modules/convert'
+import Sort from './modules/sort'
 import Backface from './styles/backface'
 import Border from './styles/border'
 import ColorStyle from './styles/color'
+import Container from './styles/container'
+import Cursor from './styles/cursor'
 import Display from './styles/display'
 import Flex from './styles/flex'
 import Height from './styles/height'
@@ -13,27 +17,29 @@ import Opacity from './styles/opacity'
 import Overflow from './styles/overflow'
 import Padding from './styles/padding'
 import Position from './styles/position'
-import Resize from './styles/resize'
-import Shadow from './styles/shadow'
 import Text from './styles/text'
 import Width from './styles/width'
+import WillChange from './styles/will.change'
 import ZIndex from './styles/z.index'
 
 class CSS {
-  private readonly colors: Color[]
-  private readonly source: Style<any>
-  private readonly window: ScaledSize
+  readonly colors: Color[]
+  readonly extensions: RegExp
+  readonly source: Style<any>
 
-  private compiled: Style<any>
+  style: Style<any>
+  regex: RegExp
 
-  constructor(colors: Color[], window: ScaledSize) {
+  constructor(colors: Color[]) {
     this.colors = colors
-    this.compiled = {}
+    this.extensions = new RegExp(/\.(html|jsx?|tsx?)$/)
+    this.regex = new RegExp('')
     this.source = {
-      ...Aspect,
       ...Backface,
       ...Border,
       ...ColorStyle,
+      ...Container,
+      ...Cursor,
       ...Display,
       ...Flex,
       ...Height,
@@ -42,68 +48,21 @@ class CSS {
       ...Overflow,
       ...Padding,
       ...Position,
-      ...Resize,
-      ...Shadow,
       ...Text,
       ...Width,
+      ...WillChange,
       ...ZIndex
     }
-    this.window = window
+    this.style = {}
   }
 
-  compile(): Style<any> {
-    reduce(
-      this.source,
-      (r: Style<any>, v: any, k: string) => {
-        forEach(v, (w: boolean | number | string, l: string) => {
-          switch (true) {
-            case typeof w === 'number' && w === 0:
-              for (let i = 0; i <= 100; i++) {
-                r[k + i] = { [l]: i }
-              }
-              break
-            case typeof w === 'number' && w === 1:
-              for (let i = 0; i <= this.window.height; i++) {
-                r[k + i] = { [l]: i }
-              }
-              break
-            case typeof w === 'number' && w === 2:
-              for (let i = 0; i <= this.window.width; i++) {
-                r[k + i] = { [l]: i }
-              }
-              break
-            case typeof w === 'string' && w === '%':
-              for (let i = 0; i <= 100; i++) {
-                r[k + i] = { [l]: i + '%' }
-              }
-              break
-            case typeof w === 'string' && w === 'WINDOW_WIDTH':
-              for (let i = 100; i >= 0; i--) {
-                r[k + i] = { [l]: (this.window.width * i) / 100 }
-              }
-              break
-            case typeof w === 'string' && w === 'WINDOW_HEIGHT':
-              for (let i = 100; i >= 0; i--) {
-                r[k + i] = { [l]: (this.window.height * i) / 100 }
-              }
-              break
-            case typeof w === 'string' && w === 'COLOR':
-              for (let i = 0; i < this.colors.length; i++) {
-                r[k + (k ? '-' : '') + this.colors[i].name] = { [l]: this.colors[i].hex }
-              }
-              break
-            default:
-              r[k] = { [l]: w }
-              break
-          }
-        })
+  compile(): void {
+    let compiled: Compiled
 
-        return r
-      },
-      this.compiled
-    )
+    compiled = Compile.all(this.source, this.colors)
 
-    return this.compiled
+    this.regex = compiled.regex
+    this.style = compiled.style
   }
 
   derive(style: string): Style<any> {
@@ -113,7 +72,7 @@ class CSS {
     output = {}
 
     for (let i = 0; i < split.length; i++) {
-      value = this.compiled[split[i]]
+      value = this.style[split[i]]
       if (!value) continue
 
       keys = Object.keys(value)
@@ -125,6 +84,76 @@ class CSS {
     }
 
     return output
+  }
+
+  extrapolate(path: string, classes: string[] = []): string[] {
+    let entries: Dirent[], entry: Dirent, content: string, matches: RegExpMatchArray, match: string
+
+    path = path.replace(/\/$/, '') + '/'
+    entries = fs.readdirSync(path, { withFileTypes: true })
+
+    for (let i = 0; i < entries.length; i++) {
+      entry = entries[i]
+
+      if (entry.isDirectory()) {
+        classes = this.extrapolate(path + entry.name, classes)
+        continue
+      }
+      if (!this.extensions.test(entry.name)) continue
+
+      content = fs.readFileSync(path + entry.name, 'utf8')
+      matches = content.match(this.regex)
+
+      for (let j = 0; j < matches.length; j++) {
+        match = matches[j]
+        if (!classes.includes(match)) classes.push(match)
+      }
+    }
+
+    return classes
+  }
+
+  write(path: string, destination: string): void {
+    let css: string[], classes: string[], v: string
+
+    css = []
+    classes = this.extrapolate(path).sort(Sort.byQuery)
+
+    for (let i = 0; i < classes.length; i++) {
+      v = classes[i]
+
+      switch (true) {
+        case v.includes('sm-'):
+          css.push(`@media (min-width: 568px) { .${classes[i]} { ${Convert.toCSS(this.style[v.replace('sm-', '')])} } }`)
+          break
+        case v.includes('md-'):
+          css.push(`@media (min-width: 768px) { .${classes[i]} { ${Convert.toCSS(this.style[v.replace('md-', '')])} } }`)
+          break
+        case v.includes('lg-'):
+          css.push(`@media (min-width: 1024px) { .${classes[i]} { ${Convert.toCSS(this.style[v.replace('lg-', '')])} } }`)
+          break
+        case v.includes('xl-'):
+          css.push(`@media (min-width: 1280px) { .${classes[i]} { ${Convert.toCSS(this.style[v.replace('xl-', '')])} } }`)
+          break
+        default:
+          css.push(`.${classes[i]} { ${Convert.toCSS(this.style[v])} }`)
+          break
+      }
+    }
+
+    return fs.writeFileSync(destination, css.join('\n'), 'utf8')
+  }
+
+  watch(path: string, destination: string): FSWatcher {
+    let watcher: FSWatcher
+
+    watcher = fs.watch(path)
+
+    watcher.on('change', (et: string, name: string) => {
+      if (this.extensions.test(name)) this.write(path, destination)
+    })
+
+    return watcher
   }
 
   get duplicates(): string[] {

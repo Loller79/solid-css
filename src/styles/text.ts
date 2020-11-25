@@ -3,7 +3,8 @@ import { Style } from '../definitions/types'
 
 const Text: Style<TextStyle> = {
   fs: {
-    fontSize: 0
+    fontSize: 0,
+    lineHeight: 0
   },
   fstn: {
     fontStyle: 'normal'
@@ -11,20 +12,8 @@ const Text: Style<TextStyle> = {
   fsti: {
     fontStyle: 'italic'
   },
-  fvln: {
-    fontVariant: ['lining-nums']
-  },
-  fvosn: {
-    fontVariant: ['oldstyle-nums']
-  },
-  fvpn: {
-    fontVariant: ['proportional-nums']
-  },
   fvsc: {
     fontVariant: ['small-caps']
-  },
-  fvtn: {
-    fontVariant: ['tabular-nums']
   },
   fw100: {
     fontWeight: '100'
@@ -53,20 +42,11 @@ const Text: Style<TextStyle> = {
   fw900: {
     fontWeight: '900'
   },
-  ifpf: {
-    includeFontPadding: false
-  },
-  ifpt: {
-    includeFontPadding: true
-  },
   lh: {
     lineHeight: 0
   },
   ls: {
     letterSpacing: 0
-  },
-  taa: {
-    textAlign: 'auto'
   },
   tac: {
     textAlign: 'center'
@@ -80,18 +60,6 @@ const Text: Style<TextStyle> = {
   tar: {
     textAlign: 'right'
   },
-  tava: {
-    textAlignVertical: 'auto'
-  },
-  tavb: {
-    textAlignVertical: 'bottom'
-  },
-  tavc: {
-    textAlignVertical: 'center'
-  },
-  tavt: {
-    textAlignVertical: 'top'
-  },
   tdc: {
     textDecorationColor: 'COLOR'
   },
@@ -104,9 +72,6 @@ const Text: Style<TextStyle> = {
   tdlu: {
     textDecorationLine: 'underline'
   },
-  tdlult: {
-    textDecorationLine: 'underline line-through'
-  },
   tdsds: {
     textDecorationStyle: 'dashed'
   },
@@ -118,12 +83,6 @@ const Text: Style<TextStyle> = {
   },
   tdss: {
     textDecorationStyle: 'solid'
-  },
-  tsc: {
-    textShadowColor: 'COLOR'
-  },
-  tsr: {
-    textShadowRadius: 0
   },
   ttc: {
     textTransform: 'capitalize'
