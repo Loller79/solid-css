@@ -1,4 +1,5 @@
 import { Color, Compiled, Style } from '../definitions/types'
+import ColorHandler from 'color'
 
 class Compile {
   static all(v: Style<any>, cs: Color[]): Compiled {
@@ -43,6 +44,9 @@ class Compile {
           case v2 === 3:
             this.natural(r1, r2, k1, k2, 'px', 4096)
             break
+          case v2 === 4:
+            this.natural(r1, r2, k1, k2, 0)
+            break
           case v2 === 'COLOR':
             this.color(r1, r2, k1, k2, cs)
             break
@@ -85,7 +89,12 @@ class Compile {
   static color(r1: Style<any>, r2: string[], k1: string, k2: string, cs: Color[]) {
     for (let i = 0; i < cs.length; i++) {
       r1[k1 + (k1 ? '-' : '') + cs[i].name] = { [k2]: cs[i].hex }
-      r2.push(`\\b${k1}${k1 ? '-' : ''}${cs[i].name}\\b`)
+
+      for (let j = 0; j <= 100; j++) {
+        r1[k1 + (k1 ? '-' : '') + cs[i].name + '-' + j] = { [k2]: new ColorHandler(cs[i].hex).alpha(j / 100).rgb().string() }
+      }
+
+      r2.push(`\\b${k1}${k1 ? '-' : ''}${cs[i].name}(\-[0-9]+)?\\b`)
     }
   }
 

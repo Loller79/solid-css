@@ -3,7 +3,7 @@ import { Style } from '../definitions/types'
 
 const ZIndex: Style<ViewStyle> = {
   zi: {
-    zIndex: 0
+    zIndex: 4
   }
 }
 
