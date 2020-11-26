@@ -3,46 +3,46 @@ import { Style } from '../definitions/types'
 
 const Padding: Style<FlexStyle> = {
   p: {
-    padding: 0
+    padding: 3
   },
   pp: {
     padding: '%'
   },
   pb: {
-    paddingBottom: 0
+    paddingBottom: 3
   },
   pbp: {
     paddingBottom: '%'
   },
   pl: {
-    paddingLeft: 0
+    paddingLeft: 3
   },
   plp: {
     paddingLeft: '%'
   },
   pr: {
-    paddingRight: 0
+    paddingRight: 3
   },
   prp: {
     paddingRight: '%'
   },
   pt: {
-    paddingTop: 0
+    paddingTop: 3
   },
   ptp: {
     paddingTop: '%'
   },
   ph: {
-    paddingLeft: 0,
-    paddingRight: 0
+    paddingLeft: 3,
+    paddingRight: 3
   },
   php: {
     paddingLeft: '%',
     paddingRight: '%'
   },
   pv: {
-    paddingTop: 0,
-    paddingBottom: 0
+    paddingTop: 3,
+    paddingBottom: 3
   },
   pvp: {
     paddingTop: '%',

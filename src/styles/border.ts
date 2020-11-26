@@ -18,19 +18,19 @@ const Border: Style<ViewStyle> = {
     borderTopColor: 'COLOR'
   },
   br: {
-    borderRadius: 0
+    borderRadius: 3
   },
   bblr: {
-    borderBottomLeftRadius: 0
+    borderBottomLeftRadius: 3
   },
   bbrr: {
-    borderBottomRightRadius: 0
+    borderBottomRightRadius: 3
   },
   btrr: {
-    borderTopRightRadius: 0
+    borderTopRightRadius: 3
   },
   btlr: {
-    borderTopLeftRadius: 0
+    borderTopLeftRadius: 3
   },
   bsds: {
     borderStyle: 'dashed'

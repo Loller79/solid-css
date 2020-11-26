@@ -3,46 +3,46 @@ import { Style } from '../definitions/types'
 
 const Margin: Style<FlexStyle> = {
   m: {
-    margin: 0
+    margin: 3
   },
   mp: {
     margin: '%'
   },
   mb: {
-    marginBottom: 0
+    marginBottom: 3
   },
   mbp: {
     marginBottom: '%'
   },
   ml: {
-    marginLeft: 0
+    marginLeft: 3
   },
   mlp: {
     marginLeft: '%'
   },
   mr: {
-    marginRight: 0
+    marginRight: 3
   },
   mrp: {
     marginRight: '%'
   },
   mt: {
-    marginTop: 0
+    marginTop: 3
   },
   mtp: {
     marginTop: '%'
   },
   mh: {
-    marginLeft: 0,
-    marginRight: 0
+    marginLeft: 3,
+    marginRight: 3
   },
   mhp: {
     marginLeft: '%',
     marginRight: '%'
   },
   mv: {
-    marginTop: 0,
-    marginBottom: 0
+    marginTop: 3,
+    marginBottom: 3
   },
   mvp: {
     marginTop: '%',

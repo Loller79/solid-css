@@ -1,5 +1,5 @@
-import { Color, Compiled, Style } from '../definitions/types'
 import ColorHandler from 'color'
+import { Color, Compiled, Style } from '../definitions/types'
 
 class Compile {
   static all(v: Style<any>, cs: Color[]): Compiled {
@@ -91,7 +91,12 @@ class Compile {
       r1[k1 + (k1 ? '-' : '') + cs[i].name] = { [k2]: cs[i].hex }
 
       for (let j = 0; j <= 100; j++) {
-        r1[k1 + (k1 ? '-' : '') + cs[i].name + '-' + j] = { [k2]: new ColorHandler(cs[i].hex).alpha(j / 100).rgb().string() }
+        r1[k1 + (k1 ? '-' : '') + cs[i].name + '-' + j] = {
+          [k2]: new ColorHandler(cs[i].hex)
+            .alpha(j / 100)
+            .rgb()
+            .string()
+        }
       }
 
       r2.push(`\\b${k1}${k1 ? '-' : ''}${cs[i].name}(\-[0-9]+)?\\b`)

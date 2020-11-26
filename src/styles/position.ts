@@ -15,25 +15,25 @@ const Position: Style<FlexStyle> = {
     position: 'sticky' as any
   },
   b: {
-    bottom: 0
+    bottom: 3
   },
   bp: {
     bottom: '%'
   },
   l: {
-    left: 0
+    left: 3
   },
   lp: {
     left: '%'
   },
   r: {
-    right: 0
+    right: 3
   },
   rp: {
     right: '%'
   },
   t: {
-    top: 0
+    top: 3
   },
   tp: {
     top: '%'
