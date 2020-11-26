@@ -20,11 +20,17 @@ const Position: Style<FlexStyle> = {
   bp: {
     bottom: '%'
   },
+  bv: {
+    bottom: 'WINDOW_HEIGHT'
+  },
   l: {
     left: 3
   },
   lp: {
     left: '%'
+  },
+  lv: {
+    left: 'WINDOW_WIDTH'
   },
   r: {
     right: 3
@@ -32,11 +38,17 @@ const Position: Style<FlexStyle> = {
   rp: {
     right: '%'
   },
+  rv: {
+    right: 'WINDOW_WIDTH'
+  },
   t: {
     top: 3
   },
   tp: {
     top: '%'
+  },
+  tv: {
+    top: 'WINDOW_HEIGHT'
   }
 }
 

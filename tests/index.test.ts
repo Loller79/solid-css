@@ -13,7 +13,7 @@ describe('CSS', () => {
 
   it('compiles', () => {
     css.compile()
-    expect(Object.keys(css.style).length).toBe(138169)
+    expect(Object.keys(css.style).length).toBe(138573)
   })
 
   it('derives', () => {
