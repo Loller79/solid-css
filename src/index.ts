@@ -102,7 +102,7 @@ class CSS {
       if (!this.extensions.test(entry.name)) continue
 
       content = fs.readFileSync(path + entry.name, 'utf8')
-      matches = content.match(this.regex)
+      matches = content.match(this.regex) || []
 
       for (let j = 0; j < matches.length; j++) {
         match = matches[j]
