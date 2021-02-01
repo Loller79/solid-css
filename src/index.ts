@@ -1,5 +1,6 @@
 import fs, { Dirent, FSWatcher } from 'fs'
 import { filter, uniq } from 'lodash'
+import watch from 'node-watch'
 import { Color, Compiled, Style } from './definitions/types'
 import Compile from './modules/compile'
 import Convert from './modules/convert'
@@ -147,11 +148,8 @@ class CSS {
   watch(path: string, destination: string): FSWatcher {
     let watcher: FSWatcher
 
-    watcher = fs.watch(path)
-
-    watcher.on('change', (et: string, name: string) => {
-      if (this.extensions.test(name)) this.write(path, destination)
-    })
+    watcher = watch(path, { filter: this.extensions, recursive: true })
+    watcher.on('change', () => this.write(path, destination))
 
     return watcher
   }
