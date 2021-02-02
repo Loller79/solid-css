@@ -104,19 +104,19 @@ class CSS {
 
       switch (true) {
         case v.includes('sm-'):
-          css.push(`@media (min-width: 568px) { .${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace(/(sm-|!)/g, '')], v.includes('!'))} } }`)
+          css.push(`@media (min-width: 568px) { .${v} { ${Convert.toCSS(this.style[v.replace('sm-', '')])} } }`)
           break
         case v.includes('md-'):
-          css.push(`@media (min-width: 768px) { .${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace(/(md-|!)/g, '')], v.includes('!'))} } }`)
+          css.push(`@media (min-width: 768px) { .${v} { ${Convert.toCSS(this.style[v.replace('md-', '')])} } }`)
           break
         case v.includes('lg-'):
-          css.push(`@media (min-width: 1024px) { .${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace(/(lg-|!)/g, '')], v.includes('!'))} } }`)
+          css.push(`@media (min-width: 1024px) { .${v} { ${Convert.toCSS(this.style[v.replace('lg-', '')])} } }`)
           break
         case v.includes('xl-'):
-          css.push(`@media (min-width: 1280px) { .${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace(/(xl-|!)/g, '')], v.includes('!'))} } }`)
+          css.push(`@media (min-width: 1280px) { .${v} { ${Convert.toCSS(this.style[v.replace('xl-', '')])} } }`)
           break
         default:
-          css.push(`.${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace('!', '')], v.includes('!'))} }`)
+          css.push(`.${v} { ${Convert.toCSS(this.style[v])} }`)
           break
       }
     }

@@ -26,7 +26,7 @@ describe('CSS', () => {
 
   it('writes', () => {
     css.write('./tests/template/', './tests/template/index.css')
-    expect(fs.readFileSync('./tests/template/index.css', 'utf8').length).toBe(710)
+    expect(fs.readFileSync('./tests/template/index.css', 'utf8').length).toBe(941)
   })
 
   // it('watches', () => {
