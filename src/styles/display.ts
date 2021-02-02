@@ -1,9 +1,24 @@
-import { ViewStyle } from 'react-native'
 import { Style } from '../definitions/types'
 
-const Display: Style<ViewStyle> = {
+type DisplayStyle = {
+  display: 'block' | 'flex' | 'inline' | 'inline-block' | 'inline-flex' | 'none'
+}
+
+const Display: Style<DisplayStyle> = {
+  db: {
+    display: 'block'
+  },
   df: {
     display: 'flex'
+  },
+  di: {
+    display: 'inline'
+  },
+  dib: {
+    display: 'inline-block'
+  },
+  dif: {
+    display: 'inline-flex'
   },
   dn: {
     display: 'none'

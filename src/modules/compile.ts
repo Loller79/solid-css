@@ -57,7 +57,7 @@ class Compile {
       }
     }
 
-    return { regex: new RegExp('(sm-|md-|lg-|xl-)?' + '(' + r2.join('|') + ')', 'gm'), style: r1 }
+    return { regex: new RegExp('(sm-|md-|lg-|xl-)?' + '(' + r2.join('|') + ')' + '!?', 'gm'), style: r1 }
   }
 
   static natural(r1: Style<any>, r2: string[], k1: string, k2: string, m: any = 'px', mx: number = 100) {

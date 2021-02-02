@@ -66,27 +66,6 @@ class CSS {
     this.style = compiled.style
   }
 
-  derive(style: string): Style<any> {
-    let split: string[], value: any, keys: string[], values: any[], output: Style<any>
-
-    split = style.split(' ')
-    output = {}
-
-    for (let i = 0; i < split.length; i++) {
-      value = this.style[split[i]]
-      if (!value) continue
-
-      keys = Object.keys(value)
-      values = Object.values(value)
-
-      for (let j = 0; j < split.length; j++) {
-        output[keys[j]] = values[j]
-      }
-    }
-
-    return output
-  }
-
   extrapolate(path: string, classes: string[] = []): string[] {
     let entries: Dirent[], entry: Dirent, content: string, matches: RegExpMatchArray, match: string
 
@@ -125,19 +104,19 @@ class CSS {
 
       switch (true) {
         case v.includes('sm-'):
-          css.push(`@media (min-width: 568px) { .${classes[i]} { ${Convert.toCSS(this.style[v.replace('sm-', '')])} } }`)
+          css.push(`@media (min-width: 568px) { .${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace(/(sm-|!)/g, '')], v.includes('!'))} } }`)
           break
         case v.includes('md-'):
-          css.push(`@media (min-width: 768px) { .${classes[i]} { ${Convert.toCSS(this.style[v.replace('md-', '')])} } }`)
+          css.push(`@media (min-width: 768px) { .${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace(/(md-|!)/g, '')], v.includes('!'))} } }`)
           break
         case v.includes('lg-'):
-          css.push(`@media (min-width: 1024px) { .${classes[i]} { ${Convert.toCSS(this.style[v.replace('lg-', '')])} } }`)
+          css.push(`@media (min-width: 1024px) { .${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace(/(lg-|!)/g, '')], v.includes('!'))} } }`)
           break
         case v.includes('xl-'):
-          css.push(`@media (min-width: 1280px) { .${classes[i]} { ${Convert.toCSS(this.style[v.replace('xl-', '')])} } }`)
+          css.push(`@media (min-width: 1280px) { .${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace(/(xl-|!)/g, '')], v.includes('!'))} } }`)
           break
         default:
-          css.push(`.${classes[i]} { ${Convert.toCSS(this.style[v])} }`)
+          css.push(`.${v.replace('!', '')} { ${Convert.toCSS(this.style[v.replace('!', '')], v.includes('!'))} }`)
           break
       }
     }

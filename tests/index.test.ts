@@ -13,21 +13,7 @@ describe('CSS', () => {
 
   it('compiles', () => {
     css.compile()
-    expect(Object.keys(css.style).length).toBe(138573)
-  })
-
-  it('derives', () => {
-    expect(css.derive('wp100 hv50 bg-black white br100 bw1 bc-white-50 false-positive o50 zi2')).toMatchObject({
-      width: '100%',
-      height: '50vh',
-      backgroundColor: '#000',
-      color: '#fff',
-      borderRadius: '100px',
-      borderWidth: '1px',
-      borderColor: 'rgba(255, 255, 255, 0.5)',
-      opacity: '50%',
-      zIndex: 2
-    })
+    expect(Object.keys(css.style).length).toBe(138577)
   })
 
   it('has no duplicates', () => {
@@ -40,7 +26,7 @@ describe('CSS', () => {
 
   it('writes', () => {
     css.write('./tests/template/', './tests/template/index.css')
-    expect(fs.readFileSync('./tests/template/index.css', 'utf8').length).toBe(699)
+    expect(fs.readFileSync('./tests/template/index.css', 'utf8').length).toBe(710)
   })
 
   // it('watches', () => {

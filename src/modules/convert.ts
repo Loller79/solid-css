@@ -1,7 +1,7 @@
 import { kebabCase } from 'lodash'
 
 class Convert {
-  static toCSS<T extends object>(style: T): string {
+  static toCSS<T extends object>(style: T, important: boolean = false): string {
     let r: string[], ks: string[], vs: any[], k: string, v: any
 
     r = []
@@ -13,7 +13,7 @@ class Convert {
       k = ks[i]
       v = vs[i]
 
-      r.push(`${kebabCase(k)}: ${v};`)
+      r.push(`${kebabCase(k)}: ${v}${important ? ' !important' : ''};`)
     }
 
     return r.join(' ')
